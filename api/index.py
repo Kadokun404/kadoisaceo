@@ -101,7 +101,6 @@ async def get_system_status():
         "version": "1.0.0",
         "uptime_seconds": uptime_seconds,
         "uptime_display": f"{uptime_seconds // 3600}h {(uptime_seconds % 3600) // 60}m {uptime_seconds % 60}s",
-        "uptime_percentage": 99.98,
         "region": "iad1",
         "timestamp": int(time.time()),
         "endpoints_available": [

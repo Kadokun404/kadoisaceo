@@ -1,845 +1,867 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth dark">
+<html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta name="color-scheme" content="light">
+
   <!-- Primary Meta Tags -->
-  <title>Kadokun — Full-Stack Developer & REST API Hub | kado.sang.ceo</title>
-  <meta name="title" content="Kadokun — Full-Stack Developer & REST API Hub | kado.sang.ceo">
-  <meta name="description" content="Official developer portfolio of Kadokun. Building public REST APIs, modular WhatsApp bot engines, and high-performance Python & Node.js backends.">
-  <meta name="keywords" content="Kadokun, kado.sang.ceo, Full-Stack Developer, FastAPI, Python, WhatsApp Bot, Baileys, REST API, Node.js">
-  <meta name="author" content="Kadokun">
-  <meta name="theme-color" content="#09090b">
+  <title>Kado — Full-Stack Developer & REST API Hub | kado.sang.ceo</title>
+  <meta name="title" content="Kado — Full-Stack Developer & REST API Hub | kado.sang.ceo">
+  <meta name="description" content="Official portfolio of Kado. Building public REST APIs, modular WhatsApp bot engines, and high-performance Python & Node.js backends.">
+  <meta name="keywords" content="Kado, kado.sang.ceo, Kadokun, Full-Stack Developer, FastAPI, Python, WhatsApp Bot, Baileys, REST API">
+  <meta name="author" content="Kado">
+  <meta name="theme-color" content="#F1EEE6">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://kadoisaceo.vercel.app/">
 
-  <!-- Favicons (Smooth Rounded Anime Avatar) -->
+  <!-- Favicons -->
   <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png">
 
-  <!-- Open Graph / WhatsApp / Facebook (1200x630 HD Anime Preview) -->
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://kadoisaceo.vercel.app/">
-  <meta property="og:title" content="Kadokun — Full-Stack Developer & REST API Hub">
+  <meta property="og:title" content="Kado — Full-Stack Developer & REST API Hub">
   <meta property="og:description" content="Building public REST APIs, modular WhatsApp bot engines, and high-performance backend systems.">
-  <meta property="og:site_name" content="Kadokun • kado.sang.ceo">
+  <meta property="og:site_name" content="kado.sang.ceo">
   <meta property="og:locale" content="id_ID">
   <meta property="og:image" content="https://kadoisaceo.vercel.app/static/og.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Kadokun — Full-Stack Developer & REST API Hub">
+  <meta property="og:image:alt" content="Kado — Full-Stack Developer & REST API Hub">
 
-  <!-- Twitter Card (Summary Large Image) -->
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://kadoisaceo.vercel.app/">
-  <meta name="twitter:title" content="Kadokun — Full-Stack Developer & REST API Hub">
+  <meta name="twitter:title" content="Kado — Full-Stack Developer & REST API Hub">
   <meta name="twitter:description" content="Building public REST APIs, modular WhatsApp bot engines, and high-performance backend systems.">
   <meta name="twitter:image" content="https://kadoisaceo.vercel.app/static/og.png">
 
-  <!-- Fonts: Inter & JetBrains Mono -->
+  <!-- Fonts: Archivo (display/body) & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
-          },
-          colors: {
-            brand: {
-              50: '#f0fdf4',
-              500: '#22c55e',
-              600: '#16a34a',
-            }
-          }
-        }
-      }
-    }
-  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
   <style>
+    :root {
+      --paper: #F1EEE6;
+      --paper-2: #E6E2D6;
+      --white: #FFFFFF;
+      --ink: #111111;
+      --muted: #4A473D;
+      --accent: #D92E10;        /* vermilion */
+      --accent-light: #FF7A59;  /* accent on dark surfaces */
+      --ok: #1B7F3B;
+      --line: 3px solid var(--ink);
+      --sans: 'Archivo', system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+      --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.55;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, p, pre { margin: 0; }
+    a { color: inherit; }
+    ::selection { background: var(--ink); color: var(--paper); }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    @media (min-width: 768px) { .wrap { padding: 0 32px; } }
+
+    .skip {
+      position: absolute; left: -9999px; top: 12px; z-index: 100;
+      background: var(--ink); color: var(--paper);
+      padding: 10px 16px; font: 700 12px var(--mono); text-transform: uppercase;
+    }
+    .skip:focus { left: 12px; }
+
+    /* ───────── Top bar ───────── */
+    .topbar {
+      position: sticky; top: 0; z-index: 40;
+      background: var(--paper);
+      border-bottom: var(--line);
+    }
+    .topbar-in { height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .logo { text-decoration: none; display: inline-flex; align-items: baseline; gap: 2px; }
+    .logo-k { font-weight: 900; font-size: 22px; letter-spacing: -0.03em; }
+    .logo-d { font: 500 11px var(--mono); letter-spacing: 0.06em; color: var(--muted); }
+    .nav { display: none; gap: 28px; }
+    .nav a {
+      font: 700 12px var(--mono); text-transform: uppercase; letter-spacing: 0.08em;
+      text-decoration: none; padding: 4px 0; border-bottom: 3px solid transparent;
+    }
+    .nav a:hover { border-bottom-color: var(--accent); }
+    @media (min-width: 860px) { .nav { display: flex; } }
+
+    /* ───────── Chips (status + tags) ───────── */
+    .chip {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 2px solid var(--ink); background: var(--paper-2);
+      padding: 5px 10px;
+      font: 700 11px var(--mono); text-transform: uppercase; letter-spacing: 0.08em;
+    }
+    .dot { width: 10px; height: 10px; background: #8A8578; border: 2px solid var(--ink); flex: none; }
+    .chip[data-state="ok"] { background: var(--white); }
+    .chip[data-state="ok"] .dot { background: var(--ok); }
+    .chip[data-state="bad"] { background: var(--accent); color: #fff; }
+    .chip[data-state="bad"] .dot { background: #fff; }
+    .tag {
+      display: inline-block; border: 2px solid var(--ink); background: var(--paper);
+      padding: 2px 8px; font: 500 11px var(--mono); text-transform: uppercase; letter-spacing: 0.04em;
+    }
+
+    /* ───────── Buttons ───────── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      border: var(--line); background: var(--paper); color: var(--ink);
+      padding: 14px 20px;
+      font: 700 13px var(--mono); text-transform: uppercase; letter-spacing: 0.06em;
+      text-decoration: none; cursor: pointer; border-radius: 0;
+      box-shadow: 5px 5px 0 var(--ink);
+      transition: transform .12s ease, box-shadow .12s ease;
+    }
+    .btn:hover { transform: translate(2px, 2px); box-shadow: 3px 3px 0 var(--ink); }
+    .btn:active { transform: translate(5px, 5px); box-shadow: 0 0 0 var(--ink); }
+    .btn:disabled { opacity: .6; cursor: not-allowed; transform: none; box-shadow: 5px 5px 0 var(--ink); }
+    .btn-primary { background: var(--ink); color: var(--paper); box-shadow: 5px 5px 0 var(--accent); }
+    .btn-primary:hover { box-shadow: 3px 3px 0 var(--accent); }
+    .btn-primary:active { box-shadow: 0 0 0 var(--accent); }
+    .btn-primary:disabled { box-shadow: 5px 5px 0 var(--accent); }
+    .btn-accent { background: var(--accent); color: #fff; }
+    .btn-sm { padding: 10px 14px; font-size: 12px; box-shadow: 4px 4px 0 var(--ink); }
+
+    /* ───────── Cards / panels ───────── */
+    .card { background: var(--white); border: var(--line); box-shadow: 8px 8px 0 var(--ink); }
+    .label { font: 700 11px var(--mono); text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+
+    /* ───────── Hero ───────── */
+    .hero { padding: 40px 0 64px; }
+    .hero-title {
+      font-weight: 900; text-transform: uppercase;
+      font-size: clamp(4.5rem, 21vw, 15rem);
+      line-height: 0.82; letter-spacing: -0.055em;
+      margin: 20px 0 32px;
+    }
+    .hero-title .accent { color: var(--accent); }
+    .hero-row { display: grid; gap: 32px; }
+    @media (min-width: 860px) { .hero-row { grid-template-columns: 1.25fr 1fr; gap: 56px; align-items: start; } }
+    .hero-role {
+      font: 700 clamp(14px, 2.4vw, 20px) var(--mono); text-transform: uppercase; letter-spacing: 0.04em;
+      border-left: 8px solid var(--accent); padding-left: 14px; margin-bottom: 20px;
+    }
+    .lead { color: var(--muted); max-width: 56ch; margin-bottom: 28px; }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 16px; }
+    .bio { padding: 24px; }
+    .bio .label { margin-bottom: 10px; display: block; }
+    .bio p { font-size: 17px; line-height: 1.6; }
+
+    /* ───────── Sections ───────── */
+    .section { border-top: var(--line); padding: 28px 0 72px; }
+    .sec-num { display: block; font: 700 12px var(--mono); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 14px; }
+    .sec-head { margin-bottom: 36px; max-width: 720px; }
+    .sec-head h2 {
+      font-weight: 900; text-transform: uppercase; letter-spacing: -0.03em; line-height: 0.95;
+      font-size: clamp(2rem, 6vw, 3.75rem);
+    }
+    .sec-head p { margin-top: 12px; color: var(--muted); }
+
+    /* Projects */
+    .grid-3 { display: grid; gap: 28px; }
+    @media (min-width: 900px) { .grid-3 { grid-template-columns: repeat(3, 1fr); gap: 32px; } }
+    .project { padding: 24px; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; }
+    .project-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+    .project-num { font: 900 40px var(--sans); line-height: 1; letter-spacing: -0.04em; }
+    .project h3 { font-weight: 800; font-size: 22px; text-transform: uppercase; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 10px; }
+    .project p { color: var(--muted); font-size: 15px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+    .meta { font: 500 11px var(--mono); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+
+    /* Playground */
+    .panel { background: var(--white); border: var(--line); box-shadow: 8px 8px 0 var(--ink); padding: 20px; }
+    @media (min-width: 768px) { .panel { padding: 36px; } }
+    .form-row { display: flex; flex-direction: column; gap: 14px; margin-bottom: 14px; }
+    @media (min-width: 640px) { .form-row { flex-direction: row; } .form-row .input { flex: 1; } }
+    .input {
+      width: 100%; border: var(--line); border-radius: 0; background: var(--paper); color: var(--ink);
+      padding: 14px 16px; font: 500 16px var(--mono);
+    }
+    .input::placeholder { color: #7A7566; }
+    .meta-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; margin-bottom: 24px; }
+    .viewer { border: var(--line); background: var(--white); }
+    .viewer-head {
+      display: flex; justify-content: space-between; align-items: center; gap: 12px;
+      padding: 10px 14px; border-bottom: var(--line); background: var(--paper-2);
+      font: 700 11px var(--mono); text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    #res-status { padding: 2px 8px; border: 2px solid transparent; }
+    #res-status[data-state="ok"] { background: var(--ink); color: var(--paper); }
+    #res-status[data-state="bad"] { background: var(--accent); color: #fff; }
+    .viewer pre {
+      padding: 16px; font: 500 12.5px/1.65 var(--mono);
+      white-space: pre-wrap; word-break: break-word; max-height: 288px; overflow: auto;
+    }
+    .panel-foot {
+      margin-top: 28px; padding-top: 20px; border-top: 2px solid var(--ink);
+      display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 14px;
+    }
+    .panel-foot p { font-size: 14px; color: var(--muted); }
+
+    /* Terminal — the only dark block on the page */
+    .term {
+      background: var(--ink); color: var(--paper); border: var(--line);
+      box-shadow: 8px 8px 0 var(--accent); font-family: var(--mono);
+    }
+    .term-bar {
+      display: flex; justify-content: space-between; align-items: center; gap: 12px;
+      padding: 10px 16px; border-bottom: 2px solid #3A3A3A; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .term-bar .sq { display: inline-block; width: 10px; height: 10px; border: 2px solid var(--paper); margin-right: 6px; }
+    .term-bar .sq:first-child { background: var(--accent-light); border-color: var(--accent-light); }
+    .term-body { padding: 20px; font-size: 14px; min-height: 260px; max-height: 420px; overflow-y: auto; cursor: text; }
+    .term-body > * + * { margin-top: 12px; }
+    .term-out { white-space: pre-wrap; line-height: 1.7; padding-left: 12px; border-left: 2px solid #4A4A4A; word-break: break-word; }
+    .term-err { color: var(--accent-light); padding-left: 12px; word-break: break-word; }
+    .term-prompt { color: var(--accent-light); font-weight: 700; }
+    .cmd { color: var(--accent-light); font-weight: 700; }
+    .term-line { display: flex; align-items: center; gap: 8px; }
+    .term-line input {
+      flex: 1; min-width: 0; background: transparent; border: 0; outline: 0; padding: 0;
+      color: var(--paper); font: 500 16px var(--mono); caret-color: var(--accent-light);
+    }
+    @media (min-width: 640px) { .term-line input { font-size: 14px; } }
+    .term-body :focus-visible { outline: none; }
+
+    /* Support strip */
+    .strip {
+      background: var(--accent); color: #fff; border: var(--line); box-shadow: 8px 8px 0 var(--ink);
+      padding: 28px; display: flex; flex-direction: column; gap: 22px; align-items: flex-start;
+    }
+    @media (min-width: 768px) { .strip { flex-direction: row; align-items: center; justify-content: space-between; padding: 36px; } }
+    .strip h3 { font-weight: 900; text-transform: uppercase; letter-spacing: -0.02em; font-size: clamp(1.4rem, 3.4vw, 2rem); line-height: 1; margin-bottom: 8px; }
+    .strip p { max-width: 52ch; }
+    .strip .btn { background: var(--white); color: var(--ink); }
+
+    /* Footer */
+    .footer { border-top: var(--line); padding: 28px 0 40px; }
+    .footer-in { display: flex; flex-direction: column; gap: 16px; font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: 0.05em; }
+    @media (min-width: 860px) { .footer-in { flex-direction: row; justify-content: space-between; align-items: center; } }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 20px; }
+    .footer-links a { text-decoration: none; border-bottom: 2px solid var(--ink); }
+    .footer-links a:hover { background: var(--ink); color: var(--paper); }
+
+    /* Floating coffee button */
+    .fab {
+      position: fixed; right: 16px; bottom: 16px; z-index: 30;
+      padding: 12px 14px; box-shadow: 4px 4px 0 var(--accent);
+    }
+    .fab .fab-label { display: none; }
+    @media (min-width: 640px) { .fab { right: 24px; bottom: 24px; padding: 12px 18px; } .fab .fab-label { display: inline; } }
+
+    /* Toast */
+    .toast {
+      position: fixed; right: 16px; bottom: 76px; z-index: 40; width: calc(100% - 32px); max-width: 340px;
+      background: var(--white); border: var(--line); box-shadow: 6px 6px 0 var(--ink); padding: 16px;
+      visibility: hidden; opacity: 0; transform: translateY(12px);
+      transition: opacity .18s ease, transform .18s ease, visibility .18s;
+    }
+    .toast.is-open { visibility: visible; opacity: 1; transform: none; }
+    .toast h4 { font: 800 14px var(--sans); text-transform: uppercase; letter-spacing: -0.01em; margin: 0 0 4px; }
+    .toast p { font-size: 13px; color: var(--muted); }
+    .toast-actions { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+    .toast .btn { padding: 8px 12px; font-size: 11px; box-shadow: 3px 3px 0 var(--ink); }
+    @media (min-width: 640px) { .toast { right: 24px; bottom: 90px; } }
+
+    /* Modal */
+    .modal {
+      position: fixed; inset: 0; z-index: 50; display: flex; align-items: center; justify-content: center; padding: 16px;
+      background: rgba(17, 17, 17, .72);
+      visibility: hidden; opacity: 0; transition: opacity .15s ease, visibility .15s;
+    }
+    .modal.is-open { visibility: visible; opacity: 1; }
+    .modal-panel {
+      position: relative; width: 100%; max-width: 460px; max-height: 92vh; overflow-y: auto;
+      background: var(--white); border: var(--line); box-shadow: 10px 10px 0 var(--ink); padding: 28px 24px;
+    }
+    .modal-close {
+      position: absolute; top: 12px; right: 12px; width: 40px; height: 40px;
+      border: var(--line); background: var(--paper); font: 700 20px var(--mono); line-height: 1; cursor: pointer;
+    }
+    .modal-close:hover { background: var(--ink); color: var(--paper); }
+    .modal h3 { font-weight: 900; text-transform: uppercase; letter-spacing: -0.03em; font-size: 28px; line-height: 1; margin: 0 40px 8px 0; }
+    .modal .sub { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+    .step { display: block; font: 700 11px var(--mono); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; }
+    .tiers { display: grid; gap: 10px; margin-bottom: 24px; }
+    .tier {
+      display: flex; justify-content: space-between; align-items: center; gap: 12px; width: 100%;
+      border: var(--line); background: var(--paper); color: var(--ink); padding: 14px; cursor: pointer; text-align: left;
+      font: 700 14px var(--sans); text-transform: uppercase; letter-spacing: 0.01em; border-radius: 0;
+    }
+    .tier .price { font: 700 13px var(--mono); }
+    .tier:hover { background: var(--paper-2); }
+    .tier[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+    .pay { display: grid; gap: 12px; }
+    .pay .btn { justify-content: space-between; text-align: left; width: 100%; font-size: 12px; }
+    .pay .amount { font-size: 11px; white-space: nowrap; }
+    .note { margin-top: 16px; font: 500 11px var(--mono); color: var(--muted); text-align: center; }
+
     @media (prefers-reduced-motion: reduce) {
       *, ::before, ::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important; animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important; scroll-behavior: auto !important;
       }
-    }
-    .glass {
-      background: rgba(18, 18, 23, 0.75);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    .glass-card {
-      background: rgba(24, 24, 29, 0.65);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-    }
-    .glass-card:hover {
-      border-color: rgba(34, 197, 94, 0.35);
-      box-shadow: 0 0 25px rgba(34, 197, 94, 0.08);
-    }
-    .glow-dot {
-      box-shadow: 0 0 10px #22c55e;
-    }
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #09090b;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #27272a;
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #3f3f46;
     }
   </style>
 </head>
-<body class="bg-[#09090b] text-zinc-100 font-sans antialiased min-h-screen selection:bg-emerald-500/30 selection:text-emerald-300 relative overflow-x-hidden">
-
-  <!-- Ambient Background Glows -->
-  <div class="fixed top-[-10%] left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-gradient-to-b from-emerald-500/10 via-violet-500/5 to-transparent blur-[120px] pointer-events-none -z-10" aria-hidden="true"></div>
-  <div class="fixed bottom-0 right-[-10%] w-[500px] h-[350px] bg-emerald-600/5 blur-[140px] pointer-events-none -z-10" aria-hidden="true"></div>
+<body>
+  <a class="skip" href="#main">Lewati ke konten</a>
 
   <!-- Navigation -->
-  <header class="sticky top-0 z-40 w-full glass border-b border-zinc-800/80">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-      <!-- Logo -->
-      <a href="/" class="flex items-center gap-2.5 group font-mono text-sm tracking-tight text-zinc-200">
-        <img src="/static/favicon-32x32.png" alt="Kadokun" class="w-6 h-6 rounded-lg border border-zinc-700/80 group-hover:scale-105 transition-transform" />
-        <span class="font-bold text-white group-hover:text-emerald-400 transition-colors">Kadokun</span>
-        <span class="text-zinc-500 text-xs">.sang.ceo</span>
+  <header class="topbar">
+    <div class="wrap topbar-in">
+      <a href="/" class="logo" aria-label="kado.sang.ceo — beranda">
+        <span class="logo-k">KADO</span><span class="logo-d">.SANG.CEO</span>
       </a>
 
-      <!-- Desktop Links -->
-      <nav class="hidden md:flex items-center gap-6 text-sm text-zinc-400">
-        <a href="#projects" class="hover:text-zinc-200 transition-colors">Projects</a>
-        <a href="#api" class="hover:text-zinc-200 transition-colors">API Playground</a>
-        <a href="#terminal" class="hover:text-zinc-200 transition-colors">Terminal</a>
-        <a href="/docs" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 flex items-center gap-1 transition-colors">
-          <span>Documentation</span>
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-        </a>
+      <nav class="nav" aria-label="Navigasi utama">
+        <a href="#projects">Projects</a>
+        <a href="#api">API Playground</a>
+        <a href="#terminal">Terminal</a>
+        <a href="/docs" target="_blank" rel="noopener noreferrer">Docs ↗</a>
       </nav>
 
-      <!-- Live API Status Badge (Honest Fetch-Driven State) -->
-      <div class="flex items-center gap-3">
-        <div id="nav-status-badge" class="flex items-center gap-2 text-xs font-mono px-3 py-1.5 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400">
-          <span id="nav-dot" class="w-2 h-2 rounded-full bg-zinc-600 animate-pulse"></span>
-          <span id="nav-status-text">Memeriksa node...</span>
-        </div>
+      <!-- Live API status (fetch-driven) -->
+      <div id="nav-status-badge" class="chip" data-state="pending" role="status">
+        <span id="nav-dot" class="dot" aria-hidden="true"></span>
+        <span id="nav-status-text">Memeriksa node...</span>
       </div>
     </div>
   </header>
 
-  <main class="max-w-6xl mx-auto px-4 sm:px-6 pt-12 sm:pt-20 pb-24">
+  <main id="main" class="wrap">
 
-    <!-- Hero Section -->
-    <section class="max-w-3xl mb-20 sm:mb-28">
-      <!-- Status Pill (Honest Fetch-Driven State) -->
-      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 text-xs font-mono mb-6 transition-all" id="hero-status-container">
-        <span id="hero-dot" class="w-2 h-2 rounded-full bg-zinc-600"></span>
+    <!-- Hero -->
+    <section class="hero">
+      <div id="hero-status-container" class="chip" data-state="pending" role="status">
+        <span id="hero-dot" class="dot" aria-hidden="true"></span>
         <span id="hero-status-pill">Menghubungkan ke API...</span>
       </div>
 
-      <!-- Main Headline with Avatar -->
-      <div class="flex items-center gap-5 mb-4">
-        <div class="relative flex-shrink-0">
-          <img src="/static/apple-touch-icon.png" alt="Kadokun" class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl border-2 border-emerald-500/40 shadow-xl object-cover" />
-          <span class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 border-2 border-zinc-950 glow-dot"></span>
-        </div>
+      <h1 class="hero-title">Kado<span class="accent">.</span></h1>
+
+      <div class="hero-row">
         <div>
-          <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-[1.1]">
-            Kadokun<span class="text-emerald-500">.</span>
-          </h1>
-          <p class="text-lg sm:text-xl font-medium text-zinc-300 font-mono mt-1">
-            Full-Stack Developer & API Systems Builder
+          <p class="hero-role">Full-stack developer &amp; API systems builder</p>
+          <p class="lead">
+            Fokus pada REST API publik berbasis Python (FastAPI), arsitektur bot WhatsApp modular berbasis Baileys,
+            serta manajemen infrastruktur server mandiri. Mengutamakan latensi rendah dan dokumentasi yang rapi.
           </p>
-        </div>
-      </div>
-
-      <!-- Bio "Kenalan" Manusiawi -->
-      <div class="mb-6 p-4 rounded-2xl bg-zinc-900/60 border border-zinc-800/80 text-sm text-zinc-300 leading-relaxed font-sans">
-        <span class="text-white font-semibold">Halo, aku Kadokun.</span> Seorang backend developer dan automation enthusiast asal Indonesia yang gemar membangun REST API, otomasi bot WhatsApp yang praktis, serta infrastruktur web yang efisien tanpa bloatware.
-      </div>
-
-      <!-- Concrete Technical Bio -->
-      <p class="text-sm sm:text-base text-zinc-400 leading-relaxed mb-8">
-        Fokus pada REST API publik berbasis Python (FastAPI), arsitektur bot WhatsApp modular berbasis Baileys, serta manajemen infrastruktur server mandiri. Mengutamakan latensi rendah dan dokumentasi yang rapi.
-      </p>
-
-      <!-- Single Focused CTA Button -->
-      <div class="flex flex-wrap items-center gap-4">
-        <a href="#api" class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-semibold text-sm transition-all shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/35 hover:-translate-y-0.5">
-          <span>Coba Live API Playground</span>
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
-        </a>
-
-        <a href="https://github.com/Kadokun404" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-zinc-900/80 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 hover:text-white text-sm transition-colors">
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-          <span>GitHub</span>
-        </a>
-      </div>
-    </section>
-
-    <!-- Featured Projects Section with Clickable Proof -->
-    <section id="projects" class="mb-24 scroll-mt-24">
-      <div class="flex items-center justify-between mb-8">
-        <div>
-          <h2 class="text-2xl font-bold text-white tracking-tight">Karya & Sistem Pilihan</h2>
-          <p class="text-sm text-zinc-400 mt-1">Sistem nyata yang aktif dikembangkan, dapat diverifikasi langsung lewat repositori atau tautan.</p>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- Project 1: Arashi WhatsApp Engine -->
-        <div class="glass-card rounded-2xl p-6 flex flex-col justify-between transition-all">
-          <div>
-            <div class="flex items-center justify-between mb-4">
-              <span class="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-md border border-emerald-500/20">Bot Architecture</span>
-              <span class="text-xs text-zinc-500 font-mono">Baileys v6</span>
-            </div>
-            <h3 class="text-lg font-bold text-white mb-2">Arashi WhatsApp Engine</h3>
-            <p class="text-sm text-zinc-400 leading-relaxed mb-6">
-              Bot WhatsApp modular berbasis Baileys dengan arsitektur plugin terisolasi, persistensi database SQLite, dan integrasi LLM untuk percakapan otomatis.
-            </p>
-          </div>
-          <div>
-            <div class="flex flex-wrap gap-1.5 font-mono text-[11px] text-zinc-400 mb-4">
-              <span class="px-2 py-0.5 rounded bg-zinc-800/80">Node.js</span>
-              <span class="px-2 py-0.5 rounded bg-zinc-800/80">Baileys</span>
-              <span class="px-2 py-0.5 rounded bg-zinc-800/80">SQLite</span>
-            </div>
-            <!-- Clickable Proof -->
-            <a 
-              href="https://github.com/Kadokun404/arashi" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              class="inline-flex items-center gap-1.5 text-xs font-mono text-emerald-400 hover:text-emerald-300 font-medium transition-colors"
-            >
-              <span>Buka Repository GitHub</span>
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-            </a>
+          <div class="cta-row">
+            <a href="#api" class="btn btn-primary">Coba Live API Playground ↓</a>
+            <a href="https://github.com/Kadokun404" target="_blank" rel="noopener noreferrer" class="btn">GitHub ↗</a>
           </div>
         </div>
 
-        <!-- Project 2: Kaelyn Developer API -->
-        <div class="glass-card rounded-2xl p-6 flex flex-col justify-between transition-all">
-          <div>
-            <div class="flex items-center justify-between mb-4">
-              <span class="text-xs font-mono text-cyan-400 bg-cyan-500/10 px-2.5 py-1 rounded-md border border-cyan-500/20">REST API Hub</span>
-              <span class="text-xs text-zinc-500 font-mono">FastAPI</span>
-            </div>
-            <h3 class="text-lg font-bold text-white mb-2">Kaelyn Developer API</h3>
-            <p class="text-sm text-zinc-400 leading-relaxed mb-6">
-              Koleksi REST API publik untuk developer dengan dokumentasi OpenAPI Swagger interaktif, rate-limiting memori, dan endpoint utilitas teks & kalkulasi.
-            </p>
-          </div>
-          <div>
-            <div class="flex flex-wrap gap-1.5 font-mono text-[11px] text-zinc-400 mb-4">
-              <span class="px-2 py-0.5 rounded bg-zinc-800/80">Python</span>
-              <span class="px-2 py-0.5 rounded bg-zinc-800/80">FastAPI</span>
-              <span class="px-2 py-0.5 rounded bg-zinc-800/80">OpenAPI</span>
-            </div>
-            <!-- Clickable Proof -->
-            <a 
-              href="/docs" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              class="inline-flex items-center gap-1.5 text-xs font-mono text-cyan-400 hover:text-cyan-300 font-medium transition-colors"
-            >
-              <span>Buka Swagger Interactive Docs</span>
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-            </a>
-          </div>
-        </div>
-
-        <!-- Project 3: Workspace Mail Infrastructure -->
-        <div class="glass-card rounded-2xl p-6 flex flex-col justify-between transition-all">
-          <div>
-            <div class="flex items-center justify-between mb-4">
-              <span class="text-xs font-mono text-violet-400 bg-violet-500/10 px-2.5 py-1 rounded-md border border-violet-500/20">Infrastructure</span>
-              <span class="text-xs text-zinc-500 font-mono">mail.kadokunn.com</span>
-            </div>
-            <h3 class="text-lg font-bold text-white mb-2">Kadokun Workspace Mail</h3>
-            <p class="text-sm text-zinc-400 leading-relaxed mb-6">
-              Infrastruktur webmail korporat mandiri di domain kadokunn.com terintegrasi backend Ruang.Email dengan konfigurasi record SPF, DKIM, dan SSL otomatis.
-            </p>
-          </div>
-          <div>
-            <div class="flex flex-wrap gap-1.5 font-mono text-[11px] text-zinc-400 mb-4">
-              <span class="px-2 py-0.5 rounded bg-zinc-800/80">DKIM/SPF</span>
-              <span class="px-2 py-0.5 rounded bg-zinc-800/80">Webmail</span>
-              <span class="px-2 py-0.5 rounded bg-zinc-800/80">Ruang.Email</span>
-            </div>
-            <!-- Clickable Proof -->
-            <a 
-              href="https://mail.kadokunn.com" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              class="inline-flex items-center gap-1.5 text-xs font-mono text-violet-400 hover:text-violet-300 font-medium transition-colors"
-            >
-              <span>Buka Webmail Portal</span>
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Interactive API Playground Section -->
-    <section id="api" class="mb-24 scroll-mt-24">
-      <div class="glass border border-zinc-800 rounded-3xl p-6 sm:p-10 relative overflow-hidden">
-        <div class="absolute -top-24 -right-24 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
-        <div class="max-w-2xl mb-8">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-xs font-mono text-zinc-400 mb-3">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-            <span>Live Interactive Endpoint</span>
-          </div>
-          <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">API Playground</h2>
-          <p class="text-sm text-zinc-400 mt-2">
-            Uji coba langsung backend Python FastAPI yang berjalan di server ini. Masukkan teks di bawah untuk melihat hasil inspeksi dan latensi real-time.
+        <aside class="card bio">
+          <span class="label">Kenalan</span>
+          <p>
+            <strong>Halo, aku Kado.</strong> Seorang backend developer dan automation enthusiast asal Indonesia
+            yang gemar membangun REST API, otomasi bot WhatsApp yang praktis, serta infrastruktur web yang efisien
+            tanpa bloatware.
           </p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- 01 Projects -->
+    <section id="projects" class="section">
+      <span class="sec-num">01 / Proyek</span>
+      <div class="sec-head">
+        <h2>Karya &amp; Sistem Pilihan</h2>
+        <p>Sistem nyata yang aktif dikembangkan, dapat diverifikasi langsung lewat repositori atau tautan.</p>
+      </div>
+
+      <div class="grid-3">
+        <!-- Project 1 -->
+        <article class="card project">
+          <div>
+            <div class="project-top">
+              <span class="project-num">01</span>
+              <span class="tag">Bot Architecture</span>
+            </div>
+            <h3>Arashi WhatsApp Engine</h3>
+            <p>Bot WhatsApp berbasis Baileys dengan arsitektur plugin modular terisolasi, persistensi database SQLite, dan integrasi LLM untuk percakapan otomatis.</p>
+          </div>
+          <div>
+            <div class="tags"><span class="tag">Node.js</span><span class="tag">Baileys</span><span class="tag">SQLite</span></div>
+            <a class="btn btn-sm" href="https://github.com/Kadokun404/arashi" target="_blank" rel="noopener noreferrer">Buka Repository GitHub ↗</a>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="card project">
+          <div>
+            <div class="project-top">
+              <span class="project-num">02</span>
+              <span class="tag">REST API Hub</span>
+            </div>
+            <h3>Arashi API</h3>
+            <p>Koleksi REST API publik untuk developer dengan dokumentasi OpenAPI Swagger interaktif, rate limiting in-memory, dan endpoint utilitas teks &amp; kalkulasi.</p>
+          </div>
+          <div>
+            <div class="tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">OpenAPI</span></div>
+            <a class="btn btn-sm" href="https://kadokunn.com" target="_blank" rel="noopener noreferrer">Buka Arashi API ↗</a>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="card project">
+          <div>
+            <div class="project-top">
+              <span class="project-num">03</span>
+              <span class="tag">Infrastructure</span>
+            </div>
+            <h3>Kadokun Workspace Mail</h3>
+            <p>Infrastruktur webmail korporat mandiri di domain kadokunn.com terintegrasi backend Ruang.Email dengan konfigurasi record SPF, DKIM, dan SSL otomatis.</p>
+          </div>
+          <div>
+            <div class="tags"><span class="tag">DKIM/SPF</span><span class="tag">Webmail</span><span class="tag">Ruang.Email</span></div>
+            <a class="btn btn-sm" href="https://mail.kadokunn.com" target="_blank" rel="noopener noreferrer">Buka Webmail Portal ↗</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 02 API Playground -->
+    <section id="api" class="section">
+      <span class="sec-num">02 / API</span>
+      <div class="sec-head">
+        <h2>API Playground</h2>
+        <p>Uji coba langsung backend Python FastAPI yang berjalan di server ini. Masukkan teks di bawah untuk melihat hasil inspeksi dan latensi real-time.</p>
+      </div>
+
+      <div class="panel">
+        <div class="form-row">
+          <input
+            type="text" id="playground-input" class="input"
+            value="kado is a ceo" placeholder="Masukkan teks apa saja..."
+            maxlength="500" autocomplete="off" spellcheck="false"
+            aria-label="Teks untuk dikirim ke endpoint inspect"
+          />
+          <button id="playground-btn" type="button" class="btn btn-primary">
+            <span id="btn-icon" aria-hidden="true">→</span>
+            <span id="btn-text">Kirim Request</span>
+          </button>
         </div>
 
-        <!-- Playground Form -->
-        <div class="space-y-4 mb-6">
-          <div class="flex flex-col sm:flex-row gap-3">
-            <div class="relative flex-1">
-              <input 
-                type="text" 
-                id="playground-input" 
-                value="Kadokun is a CEO" 
-                placeholder="Masukkan teks apa saja..."
-                class="w-full bg-zinc-950 border border-zinc-800 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 text-base sm:text-sm font-mono text-zinc-200 rounded-xl px-4 py-3 outline-none transition-all"
-              />
-            </div>
-            <button 
-              id="playground-btn" 
-              onclick="executeApiInspect()"
-              class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 active:scale-95 text-zinc-950 font-semibold text-sm transition-all shadow-md shadow-emerald-500/20"
-            >
-              <svg id="btn-icon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-              <span id="btn-text">Kirim Request</span>
-            </button>
-          </div>
-
-          <div class="flex items-center justify-between text-xs font-mono text-zinc-500">
-            <span>Method: <strong class="text-zinc-300">POST</strong> &nbsp;|&nbsp; Target: <strong class="text-zinc-300">/api/playground/inspect</strong></span>
-            <span>Rate Limit: 30 req/min</span>
-          </div>
+        <div class="meta-row meta">
+          <span>Method: <strong>POST</strong> &nbsp;|&nbsp; Target: <strong>/api/playground/inspect</strong></span>
+          <span>Rate limit: 30 req/min</span>
         </div>
 
-        <!-- Response Viewer -->
-        <div class="rounded-2xl bg-zinc-950 border border-zinc-800/80 overflow-hidden font-mono text-xs">
-          <!-- Titlebar -->
-          <div class="flex items-center justify-between px-4 py-2.5 border-b border-zinc-800 bg-zinc-900/60">
-            <div class="flex items-center gap-3">
-              <span class="flex items-center gap-1.5 text-zinc-400">
-                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                <span id="res-status">STATUS: READY</span>
-              </span>
-            </div>
-            <!-- Real Measured Latency -->
-            <div class="flex items-center gap-2 text-zinc-400">
-              <span>Latency:</span>
-              <span id="res-latency" class="text-emerald-400 font-bold font-mono">-- ms</span>
-            </div>
+        <div class="viewer">
+          <div class="viewer-head">
+            <span id="res-status" data-state="pending" role="status">STATUS: READY</span>
+            <span>Latency: <span id="res-latency">-- ms</span></span>
           </div>
-
-          <!-- Code Output -->
-          <div class="p-4 overflow-x-auto max-h-72">
-            <pre id="res-code" class="text-emerald-300/90 leading-relaxed font-mono whitespace-pre-wrap">// Klik tombol 'Kirim Request' di atas untuk menguji endpoint secara langsung...</pre>
-          </div>
+          <pre id="res-code" aria-live="polite">// Klik tombol 'Kirim Request' di atas untuk menguji endpoint secara langsung...</pre>
         </div>
 
-        <!-- Documentation Link -->
-        <div class="mt-6 flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-zinc-800/60">
-          <p class="text-xs text-zinc-400">
-            Butuh endpoint yang lebih lengkap untuk production?
-          </p>
-          <a 
-            href="/docs" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            class="inline-flex items-center gap-2 text-xs font-mono text-emerald-400 hover:text-emerald-300 transition-colors"
-          >
-            <span>Buka Dokumentasi Swagger Lengkap (/docs)</span>
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-          </a>
+        <div class="panel-foot">
+          <p>Butuh endpoint yang lebih lengkap untuk production?</p>
+          <a href="/docs" target="_blank" rel="noopener noreferrer" class="btn btn-sm">Dokumentasi Swagger (/docs) ↗</a>
         </div>
       </div>
     </section>
 
-    <!-- Interactive Terminal Section -->
-    <section id="terminal" class="mb-24 scroll-mt-24">
-      <div class="flex items-center justify-between mb-4">
+    <!-- 03 Terminal -->
+    <section id="terminal" class="section">
+      <span class="sec-num">03 / Terminal</span>
+      <div class="sec-head">
+        <h2>Interactive Terminal</h2>
+        <p>Eksplorasi profil, keahlian, dan sistem lewat konsol perintah.</p>
+      </div>
+
+      <div class="term">
+        <div class="term-bar">
+          <span><span class="sq"></span><span class="sq"></span><span class="sq"></span>kado@sang.ceo:~ (bash)</span>
+          <span>FastAPI Shell</span>
+        </div>
+        <div id="terminal-body" class="term-body">
+          <div>
+            Welcome to <strong>kado.sang.ceo</strong> terminal [Version 1.0.0]<br>
+            Ketik <span class="cmd">'help'</span> untuk melihat daftar perintah yang tersedia.
+          </div>
+          <div id="terminal-history"></div>
+          <div class="term-line">
+            <span class="term-prompt">kado@sang.ceo:~$</span>
+            <input type="text" id="term-input" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Terminal input" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 Support -->
+    <section class="section" aria-labelledby="support-title">
+      <span class="sec-num">04 / Dukungan</span>
+      <div class="strip">
         <div>
-          <h2 class="text-2xl font-bold text-white tracking-tight">Interactive Terminal</h2>
-          <p class="text-sm text-zinc-400 mt-1">Eksplorasi profil, keahlian, dan sistem lewat konsol perintah.</p>
+          <h3 id="support-title">Dukung Pengembangan &amp; Server</h3>
+          <p>Semua API publik &amp; tool berjalan berkat donasi secangkir kopi dari komunitas.</p>
         </div>
-      </div>
-
-      <div class="rounded-2xl bg-zinc-950 border border-zinc-800 overflow-hidden font-mono shadow-2xl">
-        <!-- Terminal Window Bar -->
-        <div class="px-4 py-3 bg-zinc-900 border-b border-zinc-800 flex items-center justify-between">
-          <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-rose-500/80 inline-block"></span>
-            <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
-            <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
-            <span class="text-xs text-zinc-400 ml-2 font-mono">kadokun@sang.ceo:~ (bash)</span>
-          </div>
-          <span class="text-[11px] text-zinc-500">FastAPI Shell</span>
-        </div>
-
-        <!-- Terminal Body -->
-        <div id="terminal-body" class="p-5 text-sm space-y-3 min-h-[260px] max-h-[420px] overflow-y-auto" onclick="document.getElementById('term-input').focus()">
-          <div class="text-zinc-400 leading-relaxed">
-            Welcome to <span class="text-white font-bold">Kadokun</span> Terminal [Version 1.0.0]<br>
-            Ketik <span class="text-emerald-400 font-bold">'help'</span> untuk melihat daftar perintah yang tersedia.
-          </div>
-          <div id="terminal-history" class="space-y-3"></div>
-
-          <!-- Prompt Line -->
-          <div class="flex items-center gap-2 text-zinc-300">
-            <span class="text-emerald-400 font-bold">kadokun@sang.ceo:~$</span>
-            <input 
-              type="text" 
-              id="term-input" 
-              class="flex-1 bg-transparent border-none outline-none text-zinc-100 font-mono text-base sm:text-sm focus:ring-0 p-0"
-              autocomplete="off"
-              spellcheck="false"
-              aria-label="Terminal input"
-            />
-          </div>
-        </div>
+        <button type="button" class="btn" data-open-coffee>Traktir Secangkir Kopi ☕</button>
       </div>
     </section>
-
-    <!-- Buy Me a Coffee Strip (Footer Level) -->
-    <section class="glass rounded-2xl p-6 sm:p-8 border border-zinc-800/80 flex flex-col sm:flex-row items-center justify-between gap-6 mb-16">
-      <div class="flex items-center gap-4 text-center sm:text-left">
-        <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-2xl flex-shrink-0">
-          ☕
-        </div>
-        <div>
-          <h3 class="text-base font-bold text-white">Dukung Pengembangan & Server</h3>
-          <p class="text-xs sm:text-sm text-zinc-400 mt-0.5">Semua API publik & tool berjalan berkat donasi secangkir kopi dari komunitas.</p>
-        </div>
-      </div>
-      <button 
-        onclick="openCoffeeModal()" 
-        class="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-zinc-950 font-semibold text-xs transition-all shadow-md shadow-amber-500/20 active:scale-95 flex-shrink-0"
-      >
-        Traktir Secangkir Kopi ☕
-      </button>
-    </section>
-
   </main>
 
   <!-- Footer -->
-  <footer class="border-t border-zinc-800/80 bg-zinc-950 py-10">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
-      <div class="flex items-center gap-2">
-        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-        <span class="text-zinc-400 font-mono">kado.sang.ceo</span>
-        <span>— Built with Python & FastAPI.</span>
-      </div>
-
-      <!-- Quick Clean Contact -->
-      <div class="flex items-center gap-6">
-        <a href="mailto:kado@kadokunn.com" class="hover:text-zinc-300 transition-colors">kado@kadokunn.com</a>
-        <a href="https://github.com/Kadokun404" target="_blank" rel="noopener noreferrer" class="hover:text-zinc-300 transition-colors">GitHub</a>
-        <a href="/docs" target="_blank" rel="noopener noreferrer" class="hover:text-zinc-300 transition-colors">Docs</a>
-      </div>
-
-      <div>
-        <span>&copy; 2026 Kadokun. All rights reserved.</span>
-      </div>
+  <footer class="footer">
+    <div class="wrap footer-in">
+      <span><strong>kado.sang.ceo</strong> — Built with Python &amp; FastAPI.</span>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="mailto:kado@kadokunn.com">kado@kadokunn.com</a>
+        <a href="https://github.com/Kadokun404" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="/docs" target="_blank" rel="noopener noreferrer">Docs</a>
+      </nav>
+      <span>&copy; 2026 Kado. All rights reserved.</span>
     </div>
   </footer>
 
-  <!-- Floating Coffee Button -->
-  <aside aria-label="Donasi Developer">
-    <button 
-      id="floating-coffee-btn" 
-      onclick="openCoffeeModal()"
-      title="Traktir Kadokun Kopi"
-      class="fixed bottom-6 right-6 z-30 flex items-center gap-2 px-4 py-3 rounded-full bg-zinc-900/90 hover:bg-zinc-800 text-amber-300 border border-amber-500/30 shadow-xl backdrop-blur-md transition-all hover:scale-105 active:scale-95 text-xs font-mono font-medium"
-    >
-      <span class="text-base">☕</span>
-      <span class="hidden sm:inline">Traktir Kopi</span>
-    </button>
-  </aside>
+  <!-- Floating coffee button -->
+  <button id="floating-coffee-btn" type="button" class="btn btn-primary fab" data-open-coffee title="Traktir Kado Kopi" aria-label="Traktir Kado Kopi">
+    <span aria-hidden="true">☕</span><span class="fab-label">Traktir Kopi</span>
+  </button>
 
-  <!-- Post-Success Subtle Toast Prompt -->
-  <div 
-    id="coffee-toast" 
-    class="fixed bottom-20 right-6 z-40 max-w-sm glass border border-amber-500/30 rounded-2xl p-4 shadow-2xl transition-all duration-300 translate-y-8 opacity-0 pointer-events-none"
-  >
-    <div class="flex items-start gap-3">
-      <span class="text-2xl">☕</span>
-      <div class="flex-1">
-        <h4 class="text-xs font-bold text-white">Suka dengan respon API-nya?</h4>
-        <p class="text-[11px] text-zinc-400 mt-0.5">Dukung server dan pengembangan API ini dengan secangkir kopi!</p>
-        <div class="flex items-center gap-2 mt-3">
-          <button 
-            onclick="openCoffeeModal(); dismissCoffeeToast();" 
-            class="px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold text-[11px] transition-colors"
-          >
-            Traktir Kopi
-          </button>
-          <button 
-            onclick="dismissCoffeeToast()" 
-            class="px-2 py-1.5 text-zinc-400 hover:text-white text-[11px] transition-colors"
-          >
-            Nanti Saja
-          </button>
-        </div>
-      </div>
-      <button onclick="dismissCoffeeToast()" class="text-zinc-500 hover:text-zinc-300 text-sm font-bold">&times;</button>
+  <!-- Post-success toast (shown once per session) -->
+  <div id="coffee-toast" class="toast" role="status" aria-live="polite">
+    <h4>Suka dengan respon API-nya?</h4>
+    <p>Dukung server dan pengembangan API ini dengan secangkir kopi!</p>
+    <div class="toast-actions">
+      <button type="button" class="btn btn-primary" data-toast-coffee>Traktir Kopi</button>
+      <button type="button" class="btn" data-dismiss-toast>Nanti Saja</button>
     </div>
   </div>
 
-  <!-- Buy Me a Coffee Modal (Functional Flow) -->
-  <div 
-    id="coffee-modal" 
-    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-200"
-    onclick="if(event.target === this) closeCoffeeModal()"
-  >
-    <div class="glass max-w-md w-full rounded-3xl p-6 sm:p-8 border border-zinc-800 shadow-2xl relative">
-      <!-- Close Button -->
-      <button 
-        onclick="closeCoffeeModal()" 
-        class="absolute top-5 right-5 w-8 h-8 rounded-full bg-zinc-800 hover:bg-zinc-700 text-zinc-400 hover:text-white flex items-center justify-center text-sm transition-colors"
-      >
-        &times;
-      </button>
+  <!-- Coffee modal -->
+  <div id="coffee-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="coffee-title" aria-hidden="true">
+    <div class="modal-panel">
+      <button type="button" id="coffee-close" class="modal-close" data-close-coffee aria-label="Tutup">&times;</button>
 
-      <div class="text-center mb-6">
-        <div class="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-3xl flex items-center justify-center mx-auto mb-3">
-          ☕
-        </div>
-        <h3 class="text-xl font-bold text-white">Traktir Kadokun Kopi</h3>
-        <p class="text-xs text-zinc-400 mt-1">Dukunganmu langsung digunakan untuk biaya server & maintenance API.</p>
-      </div>
+      <h3 id="coffee-title">Traktir Kado Kopi</h3>
+      <p class="sub">Dukunganmu langsung digunakan untuk biaya server &amp; maintenance API.</p>
 
-      <!-- Step 1: Select Tier -->
-      <div class="space-y-2 mb-6">
-        <label class="text-xs font-mono text-zinc-400 block mb-1">1. Pilih Nominal:</label>
-        
-        <button 
-          id="tier-5000"
-          onclick="selectTier(5000, '1 Cangkir Espresso', this)" 
-          class="tier-btn w-full flex items-center justify-between p-3.5 rounded-xl bg-zinc-900 border border-emerald-500/40 text-left transition-all"
-        >
-          <span class="flex items-center gap-2 text-sm text-zinc-200">
-            <span>☕</span>
-            <span class="font-medium">1 Cangkir Espresso</span>
-          </span>
-          <span class="text-xs font-mono font-bold text-emerald-400">Rp 5.000</span>
+      <span class="step">1. Pilih Nominal</span>
+      <div class="tiers">
+        <button type="button" id="tier-5000" class="tier" data-amount="5000" aria-pressed="true">
+          <span>1 Cangkir Espresso</span><span class="price">Rp 5.000</span>
         </button>
-
-        <button 
-          id="tier-10000"
-          onclick="selectTier(10000, '2 Cangkir Kopi Susu', this)" 
-          class="tier-btn w-full flex items-center justify-between p-3.5 rounded-xl bg-zinc-900/60 border border-zinc-800 hover:border-zinc-700 text-left transition-all"
-        >
-          <span class="flex items-center gap-2 text-sm text-zinc-200">
-            <span>☕☕</span>
-            <span class="font-medium">2 Cangkir Kopi Susu</span>
-          </span>
-          <span class="text-xs font-mono font-bold text-emerald-400">Rp 10.000</span>
+        <button type="button" id="tier-10000" class="tier" data-amount="10000" aria-pressed="false">
+          <span>2 Cangkir Kopi Susu</span><span class="price">Rp 10.000</span>
         </button>
-
-        <button 
-          id="tier-25000"
-          onclick="selectTier(25000, '1 Pack Roasted Beans', this)" 
-          class="tier-btn w-full flex items-center justify-between p-3.5 rounded-xl bg-zinc-900/60 border border-zinc-800 hover:border-zinc-700 text-left transition-all"
-        >
-          <span class="flex items-center gap-2 text-sm text-zinc-200">
-            <span>🫘</span>
-            <span class="font-medium">1 Pack Roasted Beans</span>
-          </span>
-          <span class="text-xs font-mono font-bold text-emerald-400">Rp 25.000</span>
+        <button type="button" id="tier-25000" class="tier" data-amount="25000" aria-pressed="false">
+          <span>1 Pack Roasted Beans</span><span class="price">Rp 25.000</span>
         </button>
       </div>
 
-      <!-- Step 2: Instant Direct Channels -->
-      <div>
-        <label class="text-xs font-mono text-zinc-400 block mb-2">2. Lanjutkan Pembayaran (Support QRIS/E-Wallet):</label>
-        
-        <div class="space-y-2.5">
-          <a 
-            id="saweria-btn" 
-            href="https://saweria.co/Kadokun404" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            class="w-full flex items-center justify-between p-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold text-xs transition-colors shadow-md shadow-amber-500/15"
-          >
-            <span class="flex items-center gap-2">
-              <span class="text-base">💳</span>
-              <span>Bayar via Saweria (QRIS / GoPay / OVO / Dana)</span>
-            </span>
-            <span id="saweria-amount-tag" class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-950/20">Rp 5.000 ↗</span>
-          </a>
-          
-          <a 
-            id="trakteer-btn" 
-            href="https://trakteer.id/mommyara" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            class="w-full flex items-center justify-between p-3.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 hover:text-white font-semibold text-xs transition-colors"
-          >
-            <span class="flex items-center gap-2">
-              <span class="text-base">💖</span>
-              <span>Dukung via Trakteer (Mommy Ara)</span>
-            </span>
-            <span class="text-[11px] font-mono text-zinc-500">trakteer.id/mommyara ↗</span>
-          </a>
-        </div>
-
-        <p class="text-[11px] text-zinc-500 mt-4 text-center font-mono">
-          Portal Saweria otomatis menyediakan QRIS dinamis untuk semua aplikasi mobile banking.
-        </p>
+      <span class="step">2. Lanjutkan Pembayaran</span>
+      <div class="pay">
+        <a id="saweria-btn" class="btn btn-accent" href="https://saweria.co/Kadokun404?amount=5000" target="_blank" rel="noopener noreferrer">
+          <span>Saweria (QRIS / E-Wallet)</span>
+          <span id="saweria-amount-tag" class="amount">Rp 5.000 ↗</span>
+        </a>
+        <a id="trakteer-btn" class="btn" href="https://trakteer.id/mommyara" target="_blank" rel="noopener noreferrer">
+          <span>Trakteer</span>
+          <span class="amount">trakteer.id/mommyara ↗</span>
+        </a>
       </div>
+      <p class="note">Portal Saweria menyediakan QRIS untuk semua aplikasi mobile banking.</p>
     </div>
   </div>
 
-  <!-- Scripts -->
   <script>
-    // 1. Fetch Real Health Status on Load (Honest Error Handling)
-    async function checkApiStatus() {
-      const heroContainer = document.getElementById('hero-status-container');
-      const heroDot = document.getElementById('hero-dot');
-      const heroPill = document.getElementById('hero-status-pill');
-      const navDot = document.getElementById('nav-dot');
-      const navText = document.getElementById('nav-status-text');
+    (function () {
+      'use strict';
 
-      try {
-        const res = await fetch('/api/status');
-        if (res.ok) {
-          const data = await res.json();
-          navDot.className = 'w-2 h-2 rounded-full bg-emerald-500 glow-dot';
-          navText.textContent = 'API Operational';
-          navText.className = 'text-zinc-200';
-
-          heroContainer.className = 'inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono mb-6 transition-all';
-          heroDot.className = 'w-2 h-2 rounded-full bg-emerald-400 glow-dot';
-          heroPill.textContent = `FastAPI • Uptime ${data.uptime_percentage}% • ${data.status}`;
-        } else {
-          throw new Error('Non-200 status');
-        }
-      } catch (err) {
-        navDot.className = 'w-2 h-2 rounded-full bg-rose-500';
-        navText.textContent = 'API Degraded';
-        navText.className = 'text-rose-400';
-
-        heroContainer.className = 'inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs font-mono mb-6 transition-all';
-        heroDot.className = 'w-2 h-2 rounded-full bg-rose-400';
-        heroPill.textContent = 'API Node Offline / Menghubungkan...';
-      }
-    }
-    checkApiStatus();
-
-    // 2. Real API Playground Execution & Latency Measurement
-    async function executeApiInspect() {
-      const inputEl = document.getElementById('playground-input');
-      const textVal = inputEl.value.trim();
-      if (!textVal) return;
-
-      const btnEl = document.getElementById('playground-btn');
-      const btnText = document.getElementById('btn-text');
-      const resCode = document.getElementById('res-code');
-      const resLatency = document.getElementById('res-latency');
-      const resStatus = document.getElementById('res-status');
-
-      btnEl.disabled = true;
-      btnText.textContent = 'Memproses...';
-      resStatus.textContent = 'STATUS: SENDING...';
-      resCode.textContent = '// Mengirim request ke /api/playground/inspect...';
-
-      const t0 = performance.now();
-
-      try {
-        const response = await fetch('/api/playground/inspect', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ text: textVal })
+      var $ = function (id) { return document.getElementById(id); };
+      function esc(s) {
+        return String(s).replace(/[&<>"']/g, function (c) {
+          return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
         });
-
-        const t1 = performance.now();
-        const latencyMs = Math.round(t1 - t0);
-        resLatency.textContent = `⚡ ${latencyMs} ms`;
-
-        if (response.ok) {
-          const json = await response.json();
-          resStatus.textContent = 'STATUS: 200 OK';
-          resCode.textContent = JSON.stringify(json, null, 2);
-
-          maybeShowCoffeeToast();
-        } else {
-          const errJson = await response.json();
-          resStatus.textContent = `STATUS: ${response.status} ERROR`;
-          resCode.textContent = JSON.stringify(errJson, null, 2);
-        }
-      } catch (error) {
-        const t1 = performance.now();
-        resLatency.textContent = `⚡ ${Math.round(t1 - t0)} ms`;
-        resStatus.textContent = 'STATUS: NETWORK ERROR';
-        resCode.textContent = `// Gagal menghubungi server: ${error.message}`;
-      } finally {
-        btnEl.disabled = false;
-        btnText.textContent = 'Kirim Request';
       }
-    }
+      function storageGet(k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } }
+      function storageSet(k, v) { try { sessionStorage.setItem(k, v); } catch (e) { /* ignore */ } }
 
-    document.getElementById('playground-input').addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') executeApiInspect();
-    });
+      /* 1. Real API health status */
+      function setStatus(state, navText, heroText) {
+        ['nav-status-badge', 'hero-status-container'].forEach(function (id) { $(id).dataset.state = state; });
+        $('nav-status-text').textContent = navText;
+        $('hero-status-pill').textContent = heroText;
+      }
 
-    // 3. Subtle Post-Success Coffee Toast
-    function maybeShowCoffeeToast() {
-      if (!sessionStorage.getItem('kado_coffee_prompt_shown')) {
-        sessionStorage.setItem('kado_coffee_prompt_shown', 'true');
-        setTimeout(() => {
-          const toast = document.getElementById('coffee-toast');
-          toast.classList.remove('translate-y-8', 'opacity-0', 'pointer-events-none');
+      async function checkApiStatus() {
+        var ctrl = new AbortController();
+        var timer = setTimeout(function () { ctrl.abort(); }, 8000);
+        try {
+          var res = await fetch('/api/status', { signal: ctrl.signal });
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          var data = await res.json();
+          var parts = ['FastAPI'];
+          if (data.uptime_percentage !== undefined && data.uptime_percentage !== null) parts.push('Uptime ' + data.uptime_percentage + '%');
+          if (data.status) parts.push(data.status);
+          setStatus('ok', 'API Operational', parts.join(' • '));
+        } catch (err) {
+          setStatus('bad', 'API Degraded', 'API offline / tidak terjangkau');
+        } finally {
+          clearTimeout(timer);
+        }
+      }
+      checkApiStatus();
+
+      /* 2. Playground with measured latency */
+      function setRes(state, text) {
+        var el = $('res-status');
+        el.dataset.state = state;
+        el.textContent = text;
+      }
+
+      async function executeApiInspect() {
+        var input = $('playground-input');
+        var text = input.value.trim();
+        if (!text) { input.focus(); return; }
+
+        var btn = $('playground-btn');
+        var btnText = $('btn-text');
+        var code = $('res-code');
+        var lat = $('res-latency');
+
+        btn.disabled = true;
+        btnText.textContent = 'Memproses...';
+        setRes('pending', 'STATUS: SENDING...');
+        code.textContent = '// Mengirim request ke /api/playground/inspect...';
+
+        var t0 = performance.now();
+        try {
+          var response = await fetch('/api/playground/inspect', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text: text })
+          });
+          lat.textContent = Math.round(performance.now() - t0) + ' ms';
+
+          var raw = await response.text();
+          var pretty;
+          try { pretty = JSON.stringify(JSON.parse(raw), null, 2); } catch (e) { pretty = raw; }
+
+          if (response.ok) {
+            setRes('ok', 'STATUS: ' + response.status + ' OK');
+            code.textContent = pretty;
+            maybeShowCoffeeToast();
+          } else {
+            setRes('bad', 'STATUS: ' + response.status + (response.status === 429 ? ' RATE LIMITED' : ' ERROR'));
+            code.textContent = pretty;
+          }
+        } catch (error) {
+          lat.textContent = Math.round(performance.now() - t0) + ' ms';
+          setRes('bad', 'STATUS: NETWORK ERROR');
+          code.textContent = '// Gagal menghubungi server: ' + error.message;
+        } finally {
+          btn.disabled = false;
+          btnText.textContent = 'Kirim Request';
+        }
+      }
+      $('playground-btn').addEventListener('click', executeApiInspect);
+      $('playground-input').addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') executeApiInspect();
+      });
+
+      /* 3. Coffee toast — once per session */
+      function maybeShowCoffeeToast() {
+        if (storageGet('kado_coffee_prompt_shown')) return;
+        storageSet('kado_coffee_prompt_shown', 'true');
+        setTimeout(function () {
+          if (!$('coffee-modal').classList.contains('is-open')) $('coffee-toast').classList.add('is-open');
         }, 1200);
       }
-    }
+      function dismissCoffeeToast() { $('coffee-toast').classList.remove('is-open'); }
 
-    function dismissCoffeeToast() {
-      const toast = document.getElementById('coffee-toast');
-      toast.classList.add('translate-y-8', 'opacity-0', 'pointer-events-none');
-    }
+      /* 4. Coffee modal */
+      var modal = $('coffee-modal');
+      var lastFocus = null;
 
-    // 4. Coffee Modal Logic
-    let selectedAmount = 5000;
-
-    function openCoffeeModal() {
-      const modal = document.getElementById('coffee-modal');
-      modal.classList.remove('opacity-0', 'pointer-events-none');
-    }
-
-    function closeCoffeeModal() {
-      const modal = document.getElementById('coffee-modal');
-      modal.classList.add('opacity-0', 'pointer-events-none');
-    }
-
-    function selectTier(amount, title, btnEl) {
-      selectedAmount = amount;
-      document.querySelectorAll('.tier-btn').forEach(b => {
-        b.classList.remove('border-emerald-500/40', 'bg-zinc-900');
-        b.classList.add('border-zinc-800', 'bg-zinc-900/60');
-      });
-      btnEl.classList.add('border-emerald-500/40', 'bg-zinc-900');
-      btnEl.classList.remove('border-zinc-800', 'bg-zinc-900/60');
-
-      const saweriaBtn = document.getElementById('saweria-btn');
-      const amountTag = document.getElementById('saweria-amount-tag');
-      const formatted = 'Rp ' + Number(amount).toLocaleString('id-ID');
-      
-      saweriaBtn.href = `https://saweria.co/Kadokun404?amount=${amount}`;
-      amountTag.textContent = `${formatted} ↗`;
-    }
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeCoffeeModal();
-    });
-
-    // 5. Interactive Terminal Logic
-    const termInput = document.getElementById('term-input');
-    const termHistory = document.getElementById('terminal-history');
-    const termBody = document.getElementById('terminal-body');
-
-    const COMMANDS = {
-      help: () => `Daftar perintah yang tersedia:
-  • <span class="text-emerald-400">about</span>     : Ringkasan profil developer
-  • <span class="text-emerald-400">skills</span>    : Tech stack & keahlian utama
-  • <span class="text-emerald-400">projects</span>  : Daftar sistem & repo aktif
-  • <span class="text-emerald-400">api</span>       : Informasi endpoint & docs
-  • <span class="text-emerald-400">coffee</span>    : Buka modal traktir kopi ☕
-  • <span class="text-emerald-400">clear</span>     : Bersihkan layar terminal`,
-      
-      about: () => `Nama        : Kadokun
-Role        : Full-Stack Developer & API Systems Builder
-Core Focus  : High-throughput REST APIs, WhatsApp Bot Engines, Python & Node.js
-Verified    : kadokunn.com & sang.ceo
-Email       : kado@kadokunn.com`,
-
-      skills: () => `Tech Stack & Weapon of Choice:
-  • Languages  : Python (FastAPI), TypeScript, JavaScript (Node.js), Bash, SQL
-  • Backend    : FastAPI, Express, REST APIs, SQLite, PostgreSQL, Redis
-  • DevOps     : Linux/VPS, Docker, Cloudflare, Vercel, Nginx
-  • Bot Engine : Baileys (WA Multi-Device), Plugin Architecture`,
-
-      projects: () => `Active Projects:
-  1. Arashi WhatsApp Engine  (https://github.com/Kadokun404/arashi)
-  2. Kaelyn Developer APIs   (/docs Swagger API Hub)
-  3. Kadokun Mail Workspace  (https://mail.kadokunn.com)`,
-
-      api: () => `FastAPI Status: Operational
-Endpoint: https://kadoisaceo.vercel.app/api/status
-Swagger : https://kadoisaceo.vercel.app/docs`,
-
-      coffee: () => {
-        openCoffeeModal();
-        return `Membuka modal donasi... Terima kasih atas dukungannya! ☕`;
-      },
-
-      clear: () => {
-        termHistory.innerHTML = '';
-        return '';
+      function openCoffeeModal() {
+        lastFocus = document.activeElement;
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        $('coffee-close').focus();
       }
-    };
+      function closeCoffeeModal() {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+      }
 
-    termInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
-        const raw = termInput.value.trim();
-        const cmd = raw.toLowerCase();
+      document.querySelectorAll('[data-open-coffee]').forEach(function (b) { b.addEventListener('click', openCoffeeModal); });
+      document.querySelectorAll('[data-close-coffee]').forEach(function (b) { b.addEventListener('click', closeCoffeeModal); });
+      document.querySelectorAll('[data-dismiss-toast]').forEach(function (b) { b.addEventListener('click', dismissCoffeeToast); });
+      document.querySelectorAll('[data-toast-coffee]').forEach(function (b) {
+        b.addEventListener('click', function () { dismissCoffeeToast(); openCoffeeModal(); });
+      });
+      modal.addEventListener('click', function (e) { if (e.target === modal) closeCoffeeModal(); });
+
+      // Keep keyboard focus inside the open modal
+      modal.addEventListener('keydown', function (e) {
+        if (e.key !== 'Tab') return;
+        var items = Array.prototype.filter.call(modal.querySelectorAll('button, a[href]'), function (el) { return !el.disabled; });
+        if (!items.length) return;
+        var first = items[0], last = items[items.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal.classList.contains('is-open')) closeCoffeeModal();
+      });
+
+      document.querySelectorAll('.tier').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var amount = Number(btn.dataset.amount);
+          document.querySelectorAll('.tier').forEach(function (b) { b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
+          $('saweria-btn').href = 'https://saweria.co/Kadokun404?amount=' + amount;
+          $('saweria-amount-tag').textContent = 'Rp ' + amount.toLocaleString('id-ID') + ' ↗';
+        });
+      });
+
+      /* 5. Interactive terminal */
+      var termInput = $('term-input');
+      var termHistory = $('terminal-history');
+      var termBody = $('terminal-body');
+      var history = [];
+      var histIdx = 0;
+
+      function c(name) { return '<span class="cmd">' + name + '</span>'; }
+
+      var COMMANDS = {
+        help: function () {
+          return [
+            'Daftar perintah yang tersedia:',
+            '  • ' + c('about') + '     : Ringkasan profil developer',
+            '  • ' + c('skills') + '    : Tech stack & keahlian utama',
+            '  • ' + c('projects') + '  : Daftar sistem & repo aktif',
+            '  • ' + c('api') + '       : Informasi endpoint & docs',
+            '  • ' + c('coffee') + '    : Buka modal traktir kopi',
+            '  • ' + c('clear') + '     : Bersihkan layar terminal'
+          ].join('\n');
+        },
+        about: function () {
+          return [
+            'Nama        : Kado',
+            'Role        : Full-Stack Developer & API Systems Builder',
+            'Core Focus  : High-throughput REST APIs, WhatsApp Bot Engines, Python & Node.js',
+            'Verified    : kadokunn.com & sang.ceo',
+            'Email       : kado@kadokunn.com'
+          ].join('\n');
+        },
+        skills: function () {
+          return [
+            'Tech Stack & Weapon of Choice:',
+            '  • Languages  : Python (FastAPI), TypeScript, JavaScript (Node.js), Bash, SQL',
+            '  • Backend    : FastAPI, Express, REST APIs, SQLite, PostgreSQL, Redis',
+            '  • DevOps     : Linux/VPS, Docker, Cloudflare, Vercel, Nginx',
+            '  • Bot Engine : Baileys (WA Multi-Device), Plugin Architecture'
+          ].join('\n');
+        },
+        projects: function () {
+          return [
+            'Active Projects:',
+            '  1. Arashi WhatsApp Engine  (https://github.com/Kadokun404/arashi)',
+            '  2. Arashi API              (https://kadokunn.com)',
+            '  3. Kadokun Mail Workspace  (https://mail.kadokunn.com)'
+          ].join('\n');
+        },
+        api: async function () {
+          var status;
+          try {
+            var r = await fetch('/api/status');
+            status = r.ok ? 'Operational' : 'Error ' + r.status;
+          } catch (e) {
+            status = 'Tidak terjangkau';
+          }
+          return [
+            'FastAPI Status: ' + esc(status),
+            'Endpoint: ' + esc(location.origin) + '/api/status',
+            'Swagger : ' + esc(location.origin) + '/docs'
+          ].join('\n');
+        },
+        coffee: function () {
+          openCoffeeModal();
+          return 'Membuka modal donasi... Terima kasih atas dukungannya!';
+        }
+      };
+
+      termBody.addEventListener('click', function () {
+        if (!window.getSelection || window.getSelection().toString() === '') termInput.focus();
+      });
+
+      termInput.addEventListener('keydown', async function (e) {
+        if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          if (history.length) { histIdx = Math.max(0, histIdx - 1); termInput.value = history[histIdx]; }
+          return;
+        }
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          histIdx = Math.min(history.length, histIdx + 1);
+          termInput.value = history[histIdx] || '';
+          return;
+        }
+        if (e.key !== 'Enter') return;
+
+        var raw = termInput.value.trim();
+        var cmd = raw.toLowerCase();
         termInput.value = '';
+        if (!raw) return;
 
-        if (!cmd) return;
+        history.push(raw);
+        histIdx = history.length;
 
-        const line = document.createElement('div');
-        line.innerHTML = `<span class="text-emerald-400 font-bold">kadokun@sang.ceo:~$</span> <span class="text-zinc-200">${raw}</span>`;
+        // Echo the typed line (textContent — never inject user input as HTML)
+        var line = document.createElement('div');
+        var p = document.createElement('span');
+        p.className = 'term-prompt';
+        p.textContent = 'kado@sang.ceo:~$';
+        var t = document.createElement('span');
+        t.textContent = ' ' + raw;
+        line.appendChild(p);
+        line.appendChild(t);
         termHistory.appendChild(line);
 
         if (cmd === 'clear') {
-          COMMANDS.clear();
-        } else if (COMMANDS[cmd]) {
-          const res = document.createElement('div');
-          res.className = 'text-zinc-300 whitespace-pre-wrap leading-relaxed pl-2 border-l border-zinc-800';
-          res.innerHTML = COMMANDS[cmd]();
-          termHistory.appendChild(res);
+          termHistory.innerHTML = '';
+        } else if (Object.prototype.hasOwnProperty.call(COMMANDS, cmd)) {
+          var out = document.createElement('div');
+          out.className = 'term-out';
+          out.innerHTML = await COMMANDS[cmd]();   // trusted, constant output only
+          termHistory.appendChild(out);
         } else {
-          const err = document.createElement('div');
-          err.className = 'text-rose-400 pl-2';
-          err.innerHTML = `Perintah tidak dikenali: '${raw}'. Ketik <span class="text-white font-bold">'help'</span> untuk melihat daftar perintah.`;
+          var err = document.createElement('div');
+          err.className = 'term-err';
+          err.textContent = "Perintah tidak dikenali: '" + raw + "'. Ketik 'help' untuk melihat daftar perintah.";
           termHistory.appendChild(err);
         }
 
         termBody.scrollTop = termBody.scrollHeight;
-      }
-    });
+      });
+    })();
   </script>
 </body>
 </html>

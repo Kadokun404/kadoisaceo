@@ -330,8 +330,11 @@
   <!-- Navigation -->
   <header class="topbar">
     <div class="wrap topbar-in">
-      <a href="/" class="logo" aria-label="kado.sang.ceo — beranda">
-        <span class="logo-k">KADO</span><span class="logo-d">.SANG.CEO</span>
+      <a href="/" class="logo" aria-label="kado.sang.ceo — beranda" style="display: inline-flex; align-items: center; gap: 10px;">
+        <img src="/static/avatar.png" alt="Kadokun" style="width: 32px; height: 32px; border: 2px solid var(--ink); border-radius: 8px; object-fit: cover; box-shadow: 2px 2px 0 var(--ink);" />
+        <div>
+          <span class="logo-k">KADO</span><span class="logo-d">.SANG.CEO</span>
+        </div>
       </a>
 
       <nav class="nav" aria-label="Navigasi utama">
@@ -358,7 +361,13 @@
         <span id="hero-status-pill">Menghubungkan ke API...</span>
       </div>
 
-      <h1 class="hero-title">Kado<span class="accent">.</span></h1>
+      <div class="hero-head-block" style="display: flex; align-items: flex-end; gap: 24px; margin: 20px 0 32px; flex-wrap: wrap;">
+        <div class="hero-avatar" style="position: relative; flex-shrink: 0; margin-bottom: 8px;">
+          <img src="/static/avatar.png" alt="Kadokun" style="width: 100px; height: 100px; border: var(--line); box-shadow: 6px 6px 0 var(--accent); border-radius: 22px; object-fit: cover; display: block; background: var(--white);" />
+          <span style="position: absolute; bottom: -3px; right: -3px; width: 18px; height: 18px; background: var(--ok); border: 2.5px solid var(--ink); border-radius: 50%;"></span>
+        </div>
+        <h1 class="hero-title" style="margin: 0; line-height: 0.82;">Kado<span class="accent">.</span></h1>
+      </div>
 
       <div class="hero-row">
         <div>
@@ -373,8 +382,14 @@
           </div>
         </div>
 
-        <aside class="card bio">
-          <span class="label">Kenalan</span>
+        <aside class="card bio" style="position: relative; overflow: hidden;">
+          <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 14px;">
+            <img src="/static/avatar.png" alt="Kadokun" style="width: 48px; height: 48px; border: 2px solid var(--ink); border-radius: 12px; object-fit: cover; box-shadow: 3px 3px 0 var(--ink); flex-shrink: 0;" />
+            <div>
+              <span class="label" style="margin: 0; display: block;">Kenalan</span>
+              <strong style="font-size: 15px; font-family: var(--mono); text-transform: uppercase;">Kadokun</strong>
+            </div>
+          </div>
           <p>
             <strong>Halo, aku Kado.</strong> Seorang backend developer dan automation enthusiast asal Indonesia
             yang gemar membangun REST API, otomasi bot WhatsApp yang praktis, serta infrastruktur web yang efisien

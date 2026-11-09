@@ -69,27 +69,27 @@ def get_html_content() -> str:
                 return f.read()
     return "<h1>kado.sang.ceo</h1><p>Template index.html sedang dimuat...</p>"
 
-@app.get("/", response_class=HTMLResponse)
+@app.api_route("/", methods=["GET", "HEAD"], response_class=HTMLResponse)
 async def serve_home():
     """Halaman utama portfolio kado.sang.ceo"""
     html = get_html_content()
     return HTMLResponse(content=html, status_code=200)
 
-@app.get("/favicon.ico", include_in_schema=False)
+@app.api_route("/favicon.ico", methods=["GET", "HEAD"], include_in_schema=False)
 async def serve_favicon_ico():
     ico_path = os.path.join(STATIC_DIR, "favicon.ico")
     if os.path.exists(ico_path):
-        return FileResponse(ico_path, media_type="image/x-icon")
+        return FileResponse(ico_path, media_type="image/x-icon", headers={"Cache-Control": "public, max-age=86400"})
     raise HTTPException(status_code=404)
 
-@app.get("/favicon.svg", include_in_schema=False)
+@app.api_route("/favicon.svg", methods=["GET", "HEAD"], include_in_schema=False)
 async def serve_favicon_svg():
     svg_path = os.path.join(STATIC_DIR, "favicon.svg")
     if os.path.exists(svg_path):
-        return FileResponse(svg_path, media_type="image/svg+xml")
+        return FileResponse(svg_path, media_type="image/svg+xml", headers={"Cache-Control": "public, max-age=86400"})
     raise HTTPException(status_code=404)
 
-@app.get("/api/status")
+@app.api_route("/api/status", methods=["GET", "HEAD"])
 async def get_system_status():
     """Live health-check endpoint untuk status server dan API"""
     uptime_seconds = int(time.time() - STARTUP_TIME)
@@ -159,7 +159,7 @@ async def inspect_text(payload: InspectRequest, request: Request):
         }
     }
 
-@app.get("/api/coffee")
+@app.api_route("/api/coffee", methods=["GET", "HEAD"])
 async def get_coffee_info():
     """Informasi paket dukungan dan donasi developer"""
     return {

@@ -12,20 +12,31 @@
   <meta name="author" content="Kado">
   <meta name="theme-color" content="#09090b">
   <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://kadoisaceo.vercel.app/">
 
-  <!-- Open Graph / Facebook / WhatsApp -->
+  <!-- Favicons -->
+  <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png">
+
+  <!-- Open Graph / Facebook / WhatsApp (1200x630 Verified) -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://kado.sang.ceo/">
+  <meta property="og:url" content="https://kadoisaceo.vercel.app/">
   <meta property="og:title" content="Kado — Full-Stack Developer & REST API Hub">
   <meta property="og:description" content="Building public REST APIs, modular WhatsApp bot engines, and high-performance backend systems.">
   <meta property="og:site_name" content="kado.sang.ceo">
   <meta property="og:locale" content="id_ID">
+  <meta property="og:image" content="https://kadoisaceo.vercel.app/static/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Kado — Full-Stack Developer & REST API Hub">
 
-  <!-- Twitter Card -->
+  <!-- Twitter Card (Summary Large Image) -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://kado.sang.ceo/">
+  <meta name="twitter:url" content="https://kadoisaceo.vercel.app/">
   <meta name="twitter:title" content="Kado — Full-Stack Developer & REST API Hub">
   <meta name="twitter:description" content="Building public REST APIs, modular WhatsApp bot engines, and high-performance backend systems.">
+  <meta name="twitter:image" content="https://kadoisaceo.vercel.app/static/og.png">
 
   <!-- Fonts: Inter & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -83,7 +94,6 @@
     .glow-dot {
       box-shadow: 0 0 10px #22c55e;
     }
-    /* Custom Scrollbar */
     ::-webkit-scrollbar {
       width: 8px;
     }
@@ -126,11 +136,11 @@
         </a>
       </nav>
 
-      <!-- Live API Status Badge -->
+      <!-- Live API Status Badge (Honest Fetch-Driven State) -->
       <div class="flex items-center gap-3">
-        <div id="nav-status-badge" class="flex items-center gap-2 text-xs font-mono px-3 py-1.5 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300">
-          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-          <span id="nav-status-text">Checking API...</span>
+        <div id="nav-status-badge" class="flex items-center gap-2 text-xs font-mono px-3 py-1.5 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400">
+          <span id="nav-dot" class="w-2 h-2 rounded-full bg-zinc-600 animate-pulse"></span>
+          <span id="nav-status-text">Memeriksa node...</span>
         </div>
       </div>
     </div>
@@ -140,10 +150,10 @@
 
     <!-- Hero Section -->
     <section class="max-w-3xl mb-20 sm:mb-28">
-      <!-- Status Pill -->
-      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono mb-6">
-        <span class="w-2 h-2 rounded-full bg-emerald-400 glow-dot"></span>
-        <span id="hero-status-pill">FastAPI 1.0 • Operational</span>
+      <!-- Status Pill (Honest Fetch-Driven State) -->
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 text-xs font-mono mb-6 transition-all" id="hero-status-container">
+        <span id="hero-dot" class="w-2 h-2 rounded-full bg-zinc-600"></span>
+        <span id="hero-status-pill">Menghubungkan ke API...</span>
       </div>
 
       <!-- Main Headline -->
@@ -155,9 +165,14 @@
         full-stack developer & api systems builder
       </p>
 
-      <!-- Concrete Bio (Claude's Recommendation) -->
-      <p class="text-base sm:text-lg text-zinc-400 leading-relaxed mb-8">
-        Membangun REST API publik, arsitektur bot WhatsApp modular, dan sistem backend berbasis Python serta Node.js. Berfokus pada keandalan sistem, dokumentasi rapi, dan latensi rendah.
+      <!-- Bio "Kenalan" Manusiawi (Claude's Recommendation) -->
+      <div class="mb-6 p-4 rounded-2xl bg-zinc-900/60 border border-zinc-800/80 text-sm text-zinc-300 leading-relaxed font-sans">
+        <span class="text-white font-semibold">Halo, aku Kado.</span> Seorang backend developer dan automation enthusiast asal Indonesia yang gemar membangun REST API, otomasi bot WhatsApp yang praktis, serta infrastruktur web yang efisien tanpa bloatware.
+      </div>
+
+      <!-- Concrete Technical Bio -->
+      <p class="text-sm sm:text-base text-zinc-400 leading-relaxed mb-8">
+        Fokus pada REST API publik berbasis Python (FastAPI), arsitektur bot WhatsApp modular berbasis Baileys, serta manajemen infrastruktur server mandiri. Mengutamakan latensi rendah dan dokumentasi yang rapi.
       </p>
 
       <!-- Single Focused CTA Button -->
@@ -174,57 +189,79 @@
       </div>
     </section>
 
-    <!-- Featured Projects Section -->
+    <!-- Featured Projects Section with Clickable Proof -->
     <section id="projects" class="mb-24 scroll-mt-24">
       <div class="flex items-center justify-between mb-8">
         <div>
           <h2 class="text-2xl font-bold text-white tracking-tight">Karya & Sistem Pilihan</h2>
-          <p class="text-sm text-zinc-400 mt-1">Sistem produksi yang aktif dikembangkan dan di-maintain.</p>
+          <p class="text-sm text-zinc-400 mt-1">Sistem nyata yang aktif dikembangkan, dapat diverifikasi langsung lewat repositori atau tautan.</p>
         </div>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- Project 1 -->
+        <!-- Project 1: Arashi WhatsApp Engine -->
         <div class="glass-card rounded-2xl p-6 flex flex-col justify-between transition-all">
           <div>
             <div class="flex items-center justify-between mb-4">
               <span class="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-md border border-emerald-500/20">Bot Architecture</span>
-              <span class="text-xs text-zinc-500 font-mono">v3.8 Production</span>
+              <span class="text-xs text-zinc-500 font-mono">Baileys v6</span>
             </div>
             <h3 class="text-lg font-bold text-white mb-2">Arashi WhatsApp Engine</h3>
             <p class="text-sm text-zinc-400 leading-relaxed mb-6">
-              Sistem bot WhatsApp berbasis Baileys dengan arsitektur plugin modular, persistent database SQLite, dan orkestrasi multi-agent AI.
+              Bot WhatsApp berbasis Baileys dengan arsitektur plugin modular terisolasi, persistensi database SQLite, dan integrasi LLM untuk percakapan otomatis.
             </p>
           </div>
-          <div class="flex flex-wrap gap-1.5 font-mono text-[11px] text-zinc-400 pt-4 border-t border-zinc-800/80">
-            <span class="px-2 py-0.5 rounded bg-zinc-800/80">Node.js</span>
-            <span class="px-2 py-0.5 rounded bg-zinc-800/80">Baileys</span>
-            <span class="px-2 py-0.5 rounded bg-zinc-800/80">SQLite</span>
-            <span class="px-2 py-0.5 rounded bg-zinc-800/80">AI Agents</span>
+          <div>
+            <div class="flex flex-wrap gap-1.5 font-mono text-[11px] text-zinc-400 mb-4">
+              <span class="px-2 py-0.5 rounded bg-zinc-800/80">Node.js</span>
+              <span class="px-2 py-0.5 rounded bg-zinc-800/80">Baileys</span>
+              <span class="px-2 py-0.5 rounded bg-zinc-800/80">SQLite</span>
+            </div>
+            <!-- Clickable Proof (Claude's Recommendation) -->
+            <a 
+              href="https://github.com/Kadokun404/arashi" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="inline-flex items-center gap-1.5 text-xs font-mono text-emerald-400 hover:text-emerald-300 font-medium transition-colors"
+            >
+              <span>Buka Repository GitHub</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
           </div>
         </div>
 
-        <!-- Project 2 -->
+        <!-- Project 2: Kaelyn Developer API -->
         <div class="glass-card rounded-2xl p-6 flex flex-col justify-between transition-all">
           <div>
             <div class="flex items-center justify-between mb-4">
               <span class="text-xs font-mono text-cyan-400 bg-cyan-500/10 px-2.5 py-1 rounded-md border border-cyan-500/20">REST API Hub</span>
-              <span class="text-xs text-zinc-500 font-mono">Public APIs</span>
+              <span class="text-xs text-zinc-500 font-mono">FastAPI</span>
             </div>
             <h3 class="text-lg font-bold text-white mb-2">Kaelyn Developer API</h3>
             <p class="text-sm text-zinc-400 leading-relaxed mb-6">
-              Rangkaian REST API publik untuk developer dengan OpenAPI Swagger docs otomatis, rate-limiting terdistribusi, dan endpoint serbaguna.
+              Koleksi REST API publik untuk developer dengan dokumentasi OpenAPI Swagger interaktif, rate-limiting memori, dan endpoint utilitas teks & kalkulasi.
             </p>
           </div>
-          <div class="flex flex-wrap gap-1.5 font-mono text-[11px] text-zinc-400 pt-4 border-t border-zinc-800/80">
-            <span class="px-2 py-0.5 rounded bg-zinc-800/80">Python</span>
-            <span class="px-2 py-0.5 rounded bg-zinc-800/80">FastAPI</span>
-            <span class="px-2 py-0.5 rounded bg-zinc-800/80">OpenAPI</span>
-            <span class="px-2 py-0.5 rounded bg-zinc-800/80">Vercel</span>
+          <div>
+            <div class="flex flex-wrap gap-1.5 font-mono text-[11px] text-zinc-400 mb-4">
+              <span class="px-2 py-0.5 rounded bg-zinc-800/80">Python</span>
+              <span class="px-2 py-0.5 rounded bg-zinc-800/80">FastAPI</span>
+              <span class="px-2 py-0.5 rounded bg-zinc-800/80">OpenAPI</span>
+            </div>
+            <!-- Clickable Proof -->
+            <a 
+              href="/docs" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="inline-flex items-center gap-1.5 text-xs font-mono text-cyan-400 hover:text-cyan-300 font-medium transition-colors"
+            >
+              <span>Buka Swagger Interactive Docs</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
           </div>
         </div>
 
-        <!-- Project 3 -->
+        <!-- Project 3: Workspace Mail Infrastructure -->
         <div class="glass-card rounded-2xl p-6 flex flex-col justify-between transition-all">
           <div>
             <div class="flex items-center justify-between mb-4">
@@ -233,13 +270,25 @@
             </div>
             <h3 class="text-lg font-bold text-white mb-2">Kadokun Workspace Mail</h3>
             <p class="text-sm text-zinc-400 leading-relaxed mb-6">
-              Infrastruktur email korporat white-label terintegrasi API manajemen multi-mailbox dengan penyiapan DKIM, SPF, dan SSL otomatis.
+              Infrastruktur webmail korporat mandiri di domain kadokunn.com terintegrasi backend Ruang.Email dengan konfigurasi record SPF, DKIM, dan SSL otomatis.
             </p>
           </div>
-          <div class="flex flex-wrap gap-1.5 font-mono text-[11px] text-zinc-400 pt-4 border-t border-zinc-800/80">
-            <span class="px-2 py-0.5 rounded bg-zinc-800/80">DNS Infra</span>
-            <span class="px-2 py-0.5 rounded bg-zinc-800/80">White-Label</span>
-            <span class="px-2 py-0.5 rounded bg-zinc-800/80">Ruang.Email</span>
+          <div>
+            <div class="flex flex-wrap gap-1.5 font-mono text-[11px] text-zinc-400 mb-4">
+              <span class="px-2 py-0.5 rounded bg-zinc-800/80">DKIM/SPF</span>
+              <span class="px-2 py-0.5 rounded bg-zinc-800/80">Webmail</span>
+              <span class="px-2 py-0.5 rounded bg-zinc-800/80">Ruang.Email</span>
+            </div>
+            <!-- Clickable Proof -->
+            <a 
+              href="https://mail.kadokunn.com" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="inline-flex items-center gap-1.5 text-xs font-mono text-violet-400 hover:text-violet-300 font-medium transition-colors"
+            >
+              <span>Buka Webmail Portal</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
           </div>
         </div>
       </div>
@@ -248,7 +297,6 @@
     <!-- Interactive API Playground Section -->
     <section id="api" class="mb-24 scroll-mt-24">
       <div class="glass border border-zinc-800 rounded-3xl p-6 sm:p-10 relative overflow-hidden">
-        <!-- Subtle Glow -->
         <div class="absolute -top-24 -right-24 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
         <div class="max-w-2xl mb-8">
@@ -270,8 +318,8 @@
                 type="text" 
                 id="playground-input" 
                 value="kado is a ceo" 
-                placeholder="Masukkan teks apa saja (contoh: kado is a ceo)..."
-                class="w-full bg-zinc-950 border border-zinc-800 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 text-sm font-mono text-zinc-200 rounded-xl px-4 py-3 outline-none transition-all"
+                placeholder="Masukkan teks apa saja..."
+                class="w-full bg-zinc-950 border border-zinc-800 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 text-base sm:text-sm font-mono text-zinc-200 rounded-xl px-4 py-3 outline-none transition-all"
               />
             </div>
             <button 
@@ -292,7 +340,7 @@
 
         <!-- Response Viewer -->
         <div class="rounded-2xl bg-zinc-950 border border-zinc-800/80 overflow-hidden font-mono text-xs">
-          <!-- Terminal-like Titlebar -->
+          <!-- Titlebar -->
           <div class="flex items-center justify-between px-4 py-2.5 border-b border-zinc-800 bg-zinc-900/60">
             <div class="flex items-center gap-3">
               <span class="flex items-center gap-1.5 text-zinc-400">
@@ -366,7 +414,7 @@
             <input 
               type="text" 
               id="term-input" 
-              class="flex-1 bg-transparent border-none outline-none text-zinc-100 font-mono text-sm focus:ring-0 p-0"
+              class="flex-1 bg-transparent border-none outline-none text-zinc-100 font-mono text-base sm:text-sm focus:ring-0 p-0"
               autocomplete="off"
               spellcheck="false"
               aria-label="Terminal input"
@@ -376,7 +424,7 @@
       </div>
     </section>
 
-    <!-- Buy Me a Coffee Subtle Strip (Footer Level) -->
+    <!-- Buy Me a Coffee Strip (Footer Level) -->
     <section class="glass rounded-2xl p-6 sm:p-8 border border-zinc-800/80 flex flex-col sm:flex-row items-center justify-between gap-6 mb-16">
       <div class="flex items-center gap-4 text-center sm:text-left">
         <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-2xl flex-shrink-0">
@@ -408,7 +456,7 @@
 
       <!-- Quick Clean Contact (Safe from spam) -->
       <div class="flex items-center gap-6">
-        <a href="mailto:kado@sang.ceo" class="hover:text-zinc-300 transition-colors">kado@sang.ceo</a>
+        <a href="mailto:kado@kadokunn.com" class="hover:text-zinc-300 transition-colors">kado@kadokunn.com</a>
         <a href="https://github.com/Kadokun404" target="_blank" rel="noopener noreferrer" class="hover:text-zinc-300 transition-colors">GitHub</a>
         <a href="/docs" target="_blank" rel="noopener noreferrer" class="hover:text-zinc-300 transition-colors">Docs</a>
       </div>
@@ -461,7 +509,7 @@
     </div>
   </div>
 
-  <!-- Buy Me a Coffee Modal (2-Step Fast Flow) -->
+  <!-- Buy Me a Coffee Modal (100% Functional Flow) -->
   <div 
     id="coffee-modal" 
     class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-200"
@@ -484,11 +532,12 @@
         <p class="text-xs text-zinc-400 mt-1">Dukunganmu langsung digunakan untuk biaya server & maintenance API.</p>
       </div>
 
-      <!-- Step 1: Select Tier -->
+      <!-- Step 1: Select Tier (Truly Functional) -->
       <div class="space-y-2 mb-6">
         <label class="text-xs font-mono text-zinc-400 block mb-1">1. Pilih Nominal:</label>
         
         <button 
+          id="tier-5000"
           onclick="selectTier(5000, '1 Cangkir Espresso', this)" 
           class="tier-btn w-full flex items-center justify-between p-3.5 rounded-xl bg-zinc-900 border border-emerald-500/40 text-left transition-all"
         >
@@ -500,6 +549,7 @@
         </button>
 
         <button 
+          id="tier-10000"
           onclick="selectTier(10000, '2 Cangkir Kopi Susu', this)" 
           class="tier-btn w-full flex items-center justify-between p-3.5 rounded-xl bg-zinc-900/60 border border-zinc-800 hover:border-zinc-700 text-left transition-all"
         >
@@ -511,6 +561,7 @@
         </button>
 
         <button 
+          id="tier-25000"
           onclick="selectTier(25000, '1 Pack Roasted Beans', this)" 
           class="tier-btn w-full flex items-center justify-between p-3.5 rounded-xl bg-zinc-900/60 border border-zinc-800 hover:border-zinc-700 text-left transition-all"
         >
@@ -522,66 +573,82 @@
         </button>
       </div>
 
-      <!-- Step 2: Instant Channels -->
+      <!-- Step 2: Instant Direct Channels -->
       <div>
-        <label class="text-xs font-mono text-zinc-400 block mb-2">2. Salurkan Langsung Via:</label>
-        <div class="grid grid-cols-2 gap-3">
+        <label class="text-xs font-mono text-zinc-400 block mb-2">2. Lanjutkan Pembayaran (Support QRIS/E-Wallet):</label>
+        
+        <div class="space-y-2.5">
           <a 
-            id="saweria-link" 
+            id="saweria-btn" 
             href="https://saweria.co/Kadokun404" 
             target="_blank" 
             rel="noopener noreferrer"
-            class="flex items-center justify-center gap-2 p-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold text-xs transition-colors"
+            class="w-full flex items-center justify-between p-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold text-xs transition-colors shadow-md shadow-amber-500/15"
           >
-            <span>Saweria</span>
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            <span class="flex items-center gap-2">
+              <span class="text-base">💳</span>
+              <span>Bayar via Saweria (QRIS / GoPay / OVO / Dana)</span>
+            </span>
+            <span id="saweria-amount-tag" class="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-950/20">Rp 5.000 ↗</span>
           </a>
           
           <a 
-            id="trakteer-link" 
+            id="trakteer-btn" 
             href="https://trakteer.id/kadokun" 
             target="_blank" 
             rel="noopener noreferrer"
-            class="flex items-center justify-center gap-2 p-3 rounded-xl bg-rose-500 hover:bg-rose-400 text-white font-bold text-xs transition-colors"
+            class="w-full flex items-center justify-between p-3.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 hover:text-white font-semibold text-xs transition-colors"
           >
-            <span>Trakteer</span>
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            <span class="flex items-center gap-2">
+              <span class="text-base">💖</span>
+              <span>Dukung via Trakteer</span>
+            </span>
+            <span class="text-[11px] font-mono text-zinc-500">trakteer.id/kadokun ↗</span>
           </a>
         </div>
 
-        <button 
-          onclick="toggleStaticQris()"
-          class="w-full mt-3 py-2 text-center text-xs font-mono text-zinc-400 hover:text-emerald-400 transition-colors"
-        >
-          [ Atau Scan QRIS Statis ]
-        </button>
-
-        <div id="qris-box" class="hidden mt-3 p-4 rounded-xl bg-zinc-950 border border-zinc-800 text-center">
-          <p class="text-xs text-zinc-300 font-mono mb-2">QRIS All Payment (Gopay/OVO/Dana/BCA):</p>
-          <div class="w-48 h-48 mx-auto bg-white rounded-lg p-2 flex items-center justify-center">
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://saweria.co/Kadokun404" alt="QRIS Kado" class="w-full h-full object-contain">
-          </div>
-          <p class="text-[11px] text-zinc-500 mt-2 font-mono">Buka aplikasi m-banking / e-wallet lalu scan QR di atas</p>
-        </div>
+        <p class="text-[11px] text-zinc-500 mt-4 text-center font-mono">
+          Portal Saweria otomatis menyediakan QRIS dinamis untuk semua aplikasi mobile banking.
+        </p>
       </div>
     </div>
   </div>
 
   <!-- Scripts -->
   <script>
-    // 1. Fetch Real Health Status on Load
+    // 1. Fetch Real Health Status on Load (Honest Error Handling)
     async function checkApiStatus() {
+      const heroContainer = document.getElementById('hero-status-container');
+      const heroDot = document.getElementById('hero-dot');
+      const heroPill = document.getElementById('hero-status-pill');
+      const navDot = document.getElementById('nav-dot');
+      const navText = document.getElementById('nav-status-text');
+
       try {
         const res = await fetch('/api/status');
         if (res.ok) {
           const data = await res.json();
-          document.getElementById('nav-status-text').textContent = 'API Operational';
-          document.getElementById('hero-status-pill').textContent = `FastAPI • Uptime ${data.uptime_percentage}%`;
+          // Update Nav Badge
+          navDot.className = 'w-2 h-2 rounded-full bg-emerald-500 glow-dot';
+          navText.textContent = 'API Operational';
+          navText.className = 'text-zinc-200';
+
+          // Update Hero Pill
+          heroContainer.className = 'inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono mb-6 transition-all';
+          heroDot.className = 'w-2 h-2 rounded-full bg-emerald-400 glow-dot';
+          heroPill.textContent = `FastAPI • Uptime ${data.uptime_percentage}% • ${data.status}`;
         } else {
-          document.getElementById('nav-status-text').textContent = 'API Degraded';
+          throw new Error('Non-200 status');
         }
       } catch (err) {
-        document.getElementById('nav-status-text').textContent = 'Live on Edge';
+        // Honest Error State
+        navDot.className = 'w-2 h-2 rounded-full bg-rose-500';
+        navText.textContent = 'API Degraded';
+        navText.className = 'text-rose-400';
+
+        heroContainer.className = 'inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs font-mono mb-6 transition-all';
+        heroDot.className = 'w-2 h-2 rounded-full bg-rose-400';
+        heroPill.textContent = 'API Node Offline / Menghubungkan...';
       }
     }
     checkApiStatus();
@@ -663,7 +730,9 @@
       toast.classList.add('translate-y-8', 'opacity-0', 'pointer-events-none');
     }
 
-    // 4. Coffee Modal Logic (2-Step Fast Flow)
+    // 4. Coffee Modal Logic (Truly Functional Tier Selection)
+    let selectedAmount = 5000;
+
     function openCoffeeModal() {
       const modal = document.getElementById('coffee-modal');
       modal.classList.remove('opacity-0', 'pointer-events-none');
@@ -675,17 +744,21 @@
     }
 
     function selectTier(amount, title, btnEl) {
+      selectedAmount = amount;
       document.querySelectorAll('.tier-btn').forEach(b => {
         b.classList.remove('border-emerald-500/40', 'bg-zinc-900');
         b.classList.add('border-zinc-800', 'bg-zinc-900/60');
       });
       btnEl.classList.add('border-emerald-500/40', 'bg-zinc-900');
       btnEl.classList.remove('border-zinc-800', 'bg-zinc-900/60');
-    }
 
-    function toggleStaticQris() {
-      const qrisBox = document.getElementById('qris-box');
-      qrisBox.classList.toggle('hidden');
+      // Update functional Saweria button link & badge
+      const saweriaBtn = document.getElementById('saweria-btn');
+      const amountTag = document.getElementById('saweria-amount-tag');
+      const formatted = 'Rp ' + Number(amount).toLocaleString('id-ID');
+      
+      saweriaBtn.href = `https://saweria.co/Kadokun404?amount=${amount}`;
+      amountTag.textContent = `${formatted} ↗`;
     }
 
     // Close modal on Escape
@@ -710,23 +783,23 @@
       about: () => `Nama        : Kado
 Role        : Full-Stack Developer & API Systems Builder
 Core Focus  : High-throughput REST APIs, WhatsApp Bot Engines, Python & Node.js
-Domain      : kado.sang.ceo & kadokunn.com
-Email       : kado@sang.ceo`,
+Verified    : kadokunn.com & sang.ceo
+Email       : kado@kadokunn.com`,
 
       skills: () => `Tech Stack & Weapon of Choice:
   • Languages  : Python (FastAPI), TypeScript, JavaScript (Node.js), Bash, SQL
   • Backend    : FastAPI, Express, REST APIs, SQLite, PostgreSQL, Redis
   • DevOps     : Linux/VPS, Docker, Cloudflare, Vercel, Nginx
-  • Bot Engine : Baileys (WA Multi-Device), Plugin Architecture, AI Agent Tools`,
+  • Bot Engine : Baileys (WA Multi-Device), Plugin Architecture`,
 
       projects: () => `Active Projects:
-  1. Arashi WhatsApp Engine  (Baileys, Modular Plugins, Multi-Agent AI)
-  2. Kaelyn Developer APIs   (FastAPI, OpenAPI Swagger, Utilities)
-  3. Kadokun Mail Workspace  (mail.kadokunn.com, White-Label Mail Infrastructure)`,
+  1. Arashi WhatsApp Engine  (https://github.com/Kadokun404/arashi)
+  2. Kaelyn Developer APIs   (/docs Swagger API Hub)
+  3. Kadokun Mail Workspace  (https://mail.kadokunn.com)`,
 
       api: () => `FastAPI Status: Operational
-Endpoint: https://kado.sang.ceo/api/status
-Swagger : https://kado.sang.ceo/docs (Tekan Enter di browser untuk membaca docs)`,
+Endpoint: https://kadoisaceo.vercel.app/api/status
+Swagger : https://kadoisaceo.vercel.app/docs`,
 
       coffee: () => {
         openCoffeeModal();
@@ -747,12 +820,10 @@ Swagger : https://kado.sang.ceo/docs (Tekan Enter di browser untuk membaca docs)
 
         if (!cmd) return;
 
-        // Render entered command
         const line = document.createElement('div');
         line.innerHTML = `<span class="text-emerald-400 font-bold">kado@sang.ceo:~$</span> <span class="text-zinc-200">${raw}</span>`;
         termHistory.appendChild(line);
 
-        // Execute command
         if (cmd === 'clear') {
           COMMANDS.clear();
         } else if (COMMANDS[cmd]) {

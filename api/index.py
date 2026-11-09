@@ -4,9 +4,14 @@ import time
 import hashlib
 from typing import Optional, Dict
 from fastapi import FastAPI, Request, HTTPException
-from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.responses import HTMLResponse, JSONResponse, FileResponse
+from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_DIR = os.path.join(BASE_DIR, "static")
+TEMPLATE_PATH = os.path.join(BASE_DIR, "templates", "index.html")
 
 # Inisialisasi FastAPI app
 app = FastAPI(
@@ -26,6 +31,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Mount static folder jika direktori ada
+if os.path.exists(STATIC_DIR):
+    app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
+
 # Startup timestamp untuk hitung uptime
 STARTUP_TIME = time.time()
 
@@ -36,7 +45,6 @@ MAX_REQUESTS_PER_MINUTE = 30
 def check_rate_limit(client_ip: str) -> bool:
     now = time.time()
     timestamps = RATE_LIMIT_STORE.get(client_ip, [])
-    # Filter hanya request dalam 60 detik terakhir
     timestamps = [t for t in timestamps if now - t < 60]
     if len(timestamps) >= MAX_REQUESTS_PER_MINUTE:
         return False
@@ -49,10 +57,9 @@ class InspectRequest(BaseModel):
     text: str = Field(..., min_length=1, max_length=1000, description="Teks yang akan diinspeksi")
 
 def get_html_content() -> str:
-    """Membaca file templates/index.html dengan fallback path resolver"""
     possible_paths = [
-        os.path.join(os.path.dirname(__file__), "..", "templates", "index.html"),
-        os.path.join(os.path.dirname(__file__), "templates", "index.html"),
+        TEMPLATE_PATH,
+        os.path.join(BASE_DIR, "..", "templates", "index.html"),
         os.path.join(os.getcwd(), "templates", "index.html"),
         "templates/index.html"
     ]
@@ -67,6 +74,20 @@ async def serve_home():
     """Halaman utama portfolio kado.sang.ceo"""
     html = get_html_content()
     return HTMLResponse(content=html, status_code=200)
+
+@app.get("/favicon.ico", include_in_schema=False)
+async def serve_favicon_ico():
+    ico_path = os.path.join(STATIC_DIR, "favicon.ico")
+    if os.path.exists(ico_path):
+        return FileResponse(ico_path, media_type="image/x-icon")
+    raise HTTPException(status_code=404)
+
+@app.get("/favicon.svg", include_in_schema=False)
+async def serve_favicon_svg():
+    svg_path = os.path.join(STATIC_DIR, "favicon.svg")
+    if os.path.exists(svg_path):
+        return FileResponse(svg_path, media_type="image/svg+xml")
+    raise HTTPException(status_code=404)
 
 @app.get("/api/status")
 async def get_system_status():
@@ -108,17 +129,12 @@ async def inspect_text(payload: InspectRequest, request: Request):
     char_count = len(raw_text)
     char_no_spaces = len(raw_text.replace(" ", ""))
 
-    # Buat slug yang bersih
     slug = re.sub(r"[^\w\s-]", "", raw_text.lower()).strip()
     slug = re.sub(r"[-\s]+", "-", slug)
 
-    # SHA-256 hash checksum
     sha256_hash = hashlib.sha256(raw_text.encode("utf-8")).hexdigest()
-
-    # Perkiraan waktu baca (asumsi rata-rata 200 kata per menit)
     reading_time_sec = round((word_count / 200) * 60, 2) if word_count > 0 else 0.0
 
-    # Cek palindrome sederhana
     cleaned_for_pal = re.sub(r"[^a-zA-Z0-9]", "", raw_text.lower())
     is_palindrome = len(cleaned_for_pal) > 1 and cleaned_for_pal == cleaned_for_pal[::-1]
 
@@ -149,11 +165,10 @@ async def get_coffee_info():
     """Informasi paket dukungan dan donasi developer"""
     return {
         "developer": "Kado",
-        "email": "kado@sang.ceo",
+        "email": "kado@kadokunn.com",
         "channels": {
             "saweria": "https://saweria.co/Kadokun404",
-            "trakteer": "https://trakteer.id/kadokun",
-            "qris": "available_on_modal"
+            "trakteer": "https://trakteer.id/kadokun"
         },
         "tiers": [
             {

@@ -168,7 +168,7 @@ async def get_coffee_info():
         "email": "kado@kadokunn.com",
         "channels": {
             "saweria": "https://saweria.co/Kadokun404",
-            "trakteer": "https://trakteer.id/kadokun"
+            "trakteer": "https://trakteer.id/mommyara"
         },
         "tiers": [
             {

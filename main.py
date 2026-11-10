@@ -70,8 +70,12 @@ def get_html_content() -> str:
     return "<h1>kado.sang.ceo</h1><p>Template index.html sedang dimuat...</p>"
 
 @app.api_route("/", methods=["GET", "HEAD"], response_class=HTMLResponse)
+@app.api_route("/projects", methods=["GET", "HEAD"], response_class=HTMLResponse)
+@app.api_route("/playground", methods=["GET", "HEAD"], response_class=HTMLResponse)
+@app.api_route("/terminal", methods=["GET", "HEAD"], response_class=HTMLResponse)
+@app.api_route("/about", methods=["GET", "HEAD"], response_class=HTMLResponse)
 async def serve_home():
-    """Halaman utama portfolio kado.sang.ceo"""
+    """Halaman portfolio kado.sang.ceo dengan multi-route support"""
     html = get_html_content()
     return HTMLResponse(content=html, status_code=200)
 
@@ -193,3 +197,4 @@ async def get_coffee_info():
             }
         ]
     }
+

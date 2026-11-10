@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="color-scheme" content="light">
+  <meta name="color-scheme" content="dark">
 
   <!-- Primary Meta Tags -->
   <title>Kado — Full-Stack Developer & REST API Hub | kado.sang.ceo</title>
@@ -11,7 +11,7 @@
   <meta name="description" content="Official portfolio & REST API hub by Kado. Public endpoints, modular WhatsApp bot engines, and high-performance Python & Node.js backends.">
   <meta name="keywords" content="Kado, kado.sang.ceo, Kadokun, Full-Stack Developer, FastAPI, Python, WhatsApp Bot, Baileys, REST API">
   <meta name="author" content="Kado">
-  <meta name="theme-color" content="#F1EEE6">
+  <meta name="theme-color" content="#08060b">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://kado.sang.ceo/">
 
@@ -96,28 +96,60 @@
     }
     .skip:focus { left: 12px; }
 
-    /* ───────── Top bar ───────── */
+    /* Top bar */
     .topbar {
       position: sticky; top: 0; z-index: 40;
-      background: rgba(8, 6, 11, 0.82);
+      background: rgba(8, 6, 11, 0.88);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-bottom: var(--line);
     }
-    .topbar-in { height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .topbar-in { min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
     .logo { text-decoration: none; display: inline-flex; align-items: baseline; gap: 2px; }
     .logo-k { font-weight: 900; font-size: 22px; letter-spacing: -0.03em; color: var(--ink); }
     .logo-d { font: 500 11px var(--mono); letter-spacing: 0.06em; color: var(--accent); font-weight: 700; }
-    .nav { display: none; gap: 28px; }
+    
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .nav::-webkit-scrollbar { display: none; }
     .nav a {
       font: 700 12px var(--mono); text-transform: uppercase; letter-spacing: 0.08em;
-      text-decoration: none; padding: 6px 0; border-bottom: 2px solid transparent;
-      color: var(--muted); transition: all .2s ease;
+      text-decoration: none; padding: 6px 4px; border-bottom: 2px solid transparent;
+      color: var(--muted); transition: all .2s ease; cursor: pointer;
     }
-    .nav a:hover { border-bottom-color: var(--accent); color: var(--ink); }
-    @media (min-width: 860px) { .nav { display: flex; } }
+    .nav a:hover, .nav a.active {
+      border-bottom-color: var(--accent);
+      color: var(--ink);
+      text-shadow: 0 0 12px rgba(255, 24, 93, 0.5);
+    }
 
-    /* ───────── Chips (status + tags) ───────── */
+    @media (max-width: 768px) {
+      .topbar-in {
+        height: auto;
+        padding: 10px 0;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .nav {
+        order: 3;
+        width: 100%;
+        gap: 16px;
+        padding-bottom: 4px;
+      }
+      #nav-status-badge {
+        font-size: 10px;
+        padding: 4px 10px;
+      }
+    }
+
+    /* Chips (status + tags) */
     .chip {
       display: inline-flex; align-items: center; gap: 8px;
       border: 1px solid rgba(255, 24, 93, 0.3); background: var(--paper-2);
@@ -138,226 +170,253 @@
     .chip[data-state="ok"] .dot { background: #ff185d; }
     .chip[data-state="bad"] { background: #ff185d; color: #fff; }
     .chip[data-state="bad"] .dot { background: #fff; }
-    .tag {
-      display: inline-block; border: 1px solid rgba(255, 24, 93, 0.22); background: var(--paper-2);
-      padding: 4px 10px; font: 600 11px var(--mono); text-transform: uppercase; letter-spacing: 0.04em;
-      border-radius: 6px; color: var(--text);
-    }
 
-    /* ───────── Buttons ───────── */
+    /* Buttons */
     .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-      border: 1px solid rgba(255, 24, 93, 0.3); background: var(--white); color: var(--ink);
-      padding: 13px 22px;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
       font: 700 13px var(--mono); text-transform: uppercase; letter-spacing: 0.06em;
-      text-decoration: none; cursor: pointer; border-radius: 8px;
-      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+      text-decoration: none; padding: 12px 20px;
+      border: 1px solid rgba(255, 24, 93, 0.3); background: var(--paper-2); color: var(--ink);
+      cursor: pointer; border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
       transition: all .2s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .btn:hover {
-      border-color: var(--accent);
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(255, 24, 93, 0.25);
+      border-color: var(--accent);
+      background: rgba(255, 24, 93, 0.12);
+      box-shadow: 0 6px 20px rgba(255, 24, 93, 0.25);
     }
-    .btn:active { transform: translateY(0); box-shadow: 0 2px 8px rgba(255, 24, 93, 0.15); }
-    .btn:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+    .btn:active { transform: translateY(0); }
     .btn-primary {
-      background: linear-gradient(135deg, #ff185d 0%, #e1124d 100%);
+      background: linear-gradient(135deg, #ff185d 0%, #ff4d8d 100%);
       color: #ffffff;
       border-color: #ff185d;
-      box-shadow: 0 4px 20px rgba(255, 24, 93, 0.4);
+      box-shadow: 0 0 20px rgba(255, 24, 93, 0.4);
     }
     .btn-primary:hover {
-      background: linear-gradient(135deg, #ff3371 0%, #ff185d 100%);
-      box-shadow: 0 6px 28px rgba(255, 24, 93, 0.6);
+      background: linear-gradient(135deg, #ff2d6e 0%, #ff629c 100%);
+      box-shadow: 0 0 28px rgba(255, 24, 93, 0.6);
+      color: #ffffff;
     }
-    .btn-accent {
-      background: linear-gradient(135deg, #ff185d 0%, #be123c 100%);
-      color: #fff;
-      border-color: #ff185d;
-    }
-    .btn-sm { padding: 9px 15px; font-size: 12px; border-radius: 6px; }
+    .btn-accent { background: var(--accent); color: #ffffff; border-color: var(--accent); }
+    .btn-accent:hover { background: var(--accent-light); color: #ffffff; }
+    .btn-sm { padding: 8px 14px; font-size: 11px; }
 
-    /* ───────── Cards / panels ───────── */
+    /* Multi-view SPA styling */
+    .page-view {
+      display: none;
+      animation: viewFade 0.26s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      padding-bottom: 40px;
+    }
+    .page-view.active-view {
+      display: block;
+    }
+    @keyframes viewFade {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .view-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font: 700 11px var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin: 20px 0 24px;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(255, 24, 93, 0.08);
+      border: 1px solid rgba(255, 24, 93, 0.25);
+      transition: all .2s;
+    }
+    .view-back-btn:hover {
+      background: var(--accent);
+      color: #ffffff;
+      transform: translateX(-3px);
+      box-shadow: 0 0 16px rgba(255, 24, 93, 0.4);
+    }
+
+    /* Hero section */
+    .hero { padding: 48px 0 40px; }
+    @media (min-width: 768px) { .hero { padding: 64px 0 48px; } }
+    .hero-title {
+      font-weight: 900;
+      font-size: clamp(52px, 12vw, 128px);
+      letter-spacing: -0.05em;
+      line-height: 0.85;
+      text-transform: uppercase;
+      color: #ffffff;
+      text-shadow: 0 0 35px rgba(255, 24, 93, 0.45);
+    }
+    .hero-title .accent { color: var(--accent); }
+    .hero-row { display: grid; gap: 32px; margin-top: 32px; }
+    @media (min-width: 960px) { .hero-row { grid-template-columns: 1.4fr 1fr; gap: 48px; } }
+    .hero-role {
+      font: 700 13px var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-light);
+      margin-bottom: 12px;
+    }
+    .lead { font-size: 17px; line-height: 1.6; color: var(--muted); margin-bottom: 24px; max-width: 580px; }
+    .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    /* Cards */
     .card {
+      border: 1px solid rgba(255, 24, 93, 0.22);
       background: var(--white);
-      border: var(--line);
+      padding: 24px;
       border-radius: 14px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 18px rgba(255, 24, 93, 0.06);
-      transition: all 0.25s ease;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      transition: all .25s ease;
     }
     .card:hover {
-      border-color: rgba(255, 24, 93, 0.45);
-      transform: translateY(-3px);
-      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.6), 0 0 24px rgba(255, 24, 93, 0.16);
+      border-color: rgba(255, 24, 93, 0.5);
+      box-shadow: 0 10px 30px rgba(255, 24, 93, 0.18);
     }
-    .label { font: 700 11px var(--mono); text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); }
+    .card .label {
+      font: 700 11px var(--mono); text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--accent-light); margin-bottom: 6px;
+    }
+    .card p { font-size: 14px; line-height: 1.6; color: var(--muted); }
 
-    /* ───────── Hero ───────── */
-    .hero { padding: 48px 0 64px; position: relative; }
-    .hero::before {
-      content: ""; position: absolute; top: 0; left: 10%; width: 500px; height: 350px;
-      background: radial-gradient(circle, rgba(255, 24, 93, 0.18) 0%, rgba(168, 85, 247, 0.12) 40%, transparent 70%);
-      pointer-events: none; filter: blur(50px); z-index: -1;
+    /* Section headers */
+    .section { padding: 48px 0; }
+    .sec-num {
+      display: inline-block; font: 700 11px var(--mono); text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--accent); margin-bottom: 8px;
     }
-    .hero-title {
-      font-weight: 900; text-transform: uppercase;
-      font-size: clamp(4.5rem, 21vw, 15rem);
-      line-height: 0.82; letter-spacing: -0.055em;
-      margin: 20px 0 32px;
-      background: linear-gradient(135deg, #ffffff 20%, #ff4d8d 60%, #c084fc 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 0 32px rgba(255, 24, 93, 0.25));
-    }
-    .hero-title .accent { color: var(--accent); -webkit-text-fill-color: var(--accent); }
-    .hero-row { display: grid; gap: 32px; }
-    @media (min-width: 860px) { .hero-row { grid-template-columns: 1.25fr 1fr; gap: 56px; align-items: start; } }
-    .hero-role {
-      font: 700 clamp(14px, 2.4vw, 20px) var(--mono); text-transform: uppercase; letter-spacing: 0.04em;
-      border-left: 6px solid var(--accent); padding-left: 14px; margin-bottom: 20px; color: var(--ink);
-    }
-    .lead { color: var(--muted); max-width: 56ch; margin-bottom: 28px; line-height: 1.7; }
-    .cta-row { display: flex; flex-wrap: wrap; gap: 16px; }
-    .bio { padding: 26px; }
-    .bio .label { margin-bottom: 10px; display: block; }
-    .bio p { font-size: 16px; line-height: 1.65; color: var(--muted); }
-    .bio p strong { color: var(--ink); }
-
-    /* ───────── Sections ───────── */
-    .section { border-top: var(--line); padding: 36px 0 76px; }
-    .sec-num { display: block; font: 700 12px var(--mono); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 14px; color: var(--accent); }
-    .sec-head { margin-bottom: 36px; max-width: 720px; }
+    .sec-head { margin-bottom: 28px; }
     .sec-head h2 {
-      font-weight: 900; text-transform: uppercase; letter-spacing: -0.03em; line-height: 0.95;
-      font-size: clamp(2rem, 6vw, 3.75rem); color: var(--ink);
+      font-weight: 900; font-size: clamp(28px, 5vw, 42px);
+      letter-spacing: -0.03em; line-height: 1.05; text-transform: uppercase;
+      color: #ffffff;
     }
-    .sec-head p { margin-top: 12px; color: var(--muted); }
+    .sec-head p { font-size: 15px; color: var(--muted); margin-top: 6px; max-width: 600px; }
 
-    /* Projects */
-    .grid-3 { display: grid; gap: 28px; }
-    @media (min-width: 900px) { .grid-3 { grid-template-columns: repeat(3, 1fr); gap: 32px; } }
-    .project { padding: 26px; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; }
-    .project-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
-    .project-num { font: 900 40px var(--sans); line-height: 1; letter-spacing: -0.04em; color: var(--accent); }
-    .project h3 { font-weight: 800; font-size: 22px; text-transform: uppercase; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 10px; color: var(--ink); }
-    .project p { color: var(--muted); font-size: 14.5px; line-height: 1.6; }
-    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
-    .meta { font: 500 11px var(--mono); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+    /* Grid */
+    .grid-3 { display: grid; gap: 20px; }
+    @media (min-width: 768px) { .grid-3 { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } }
 
-    /* Playground */
+    /* Project card */
+    .project { display: flex; flex-direction: column; justify-content: space-between; gap: 20px; }
+    .project-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .project-num { font: 700 12px var(--mono); color: var(--accent); }
+    .project h3 { font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-bottom: 8px; color: #ffffff; }
+    .project .tag {
+      font: 700 10px var(--mono); text-transform: uppercase; letter-spacing: 0.06em;
+      padding: 3px 8px; background: rgba(255, 24, 93, 0.12); color: var(--accent-light);
+      border: 1px solid rgba(255, 24, 93, 0.25); border-radius: 4px;
+    }
+    .project .tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+
+    /* API Panel */
     .panel {
-      background: var(--white); border: var(--line); border-radius: 16px;
-      box-shadow: 0 10px 32px rgba(0, 0, 0, 0.5); padding: 24px;
+      border: 1px solid rgba(255, 24, 93, 0.3); background: var(--white);
+      padding: 24px; border-radius: 16px;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 24, 93, 0.1);
     }
-    @media (min-width: 768px) { .panel { padding: 36px; } }
-    .form-row { display: flex; flex-direction: column; gap: 14px; margin-bottom: 14px; }
-    @media (min-width: 640px) { .form-row { flex-direction: row; } .form-row .input { flex: 1; } }
+    @media (min-width: 768px) { .panel { padding: 32px; } }
+    .form-row { display: flex; gap: 10px; flex-direction: column; }
+    @media (min-width: 640px) { .form-row { flex-direction: row; } }
     .input {
-      width: 100%; border: 1px solid rgba(255, 24, 93, 0.3); border-radius: 8px; background: var(--paper-2); color: var(--ink);
-      padding: 14px 18px; font: 500 15px var(--mono);
-      transition: all .2s ease;
+      flex: 1; border: 1px solid rgba(255, 24, 93, 0.35); background: var(--paper-2);
+      color: var(--ink); padding: 14px 16px; font: 500 14px var(--sans);
+      border-radius: 8px; transition: border-color .2s;
     }
-    .input:focus {
-      outline: none; border-color: var(--accent);
-      box-shadow: 0 0 16px rgba(255, 24, 93, 0.25);
+    .input:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 14px rgba(255, 24, 93, 0.3); }
+    .meta-row { display: flex; justify-content: space-between; font: 500 11px var(--mono); color: var(--muted); margin: 12px 0 16px; flex-wrap: wrap; gap: 6px; }
+    .viewer {
+      border: 1px solid rgba(255, 24, 93, 0.2); background: #050308;
+      border-radius: 10px; overflow: hidden;
     }
-    .input::placeholder { color: #6e5c70; }
-    .meta-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; margin-bottom: 24px; }
-    .viewer { border: 1px solid rgba(255, 24, 93, 0.25); border-radius: 10px; overflow: hidden; background: #060408; }
     .viewer-head {
-      display: flex; justify-content: space-between; align-items: center; gap: 12px;
-      padding: 10px 16px; border-bottom: 1px solid rgba(255, 24, 93, 0.2); background: var(--paper-2);
-      font: 700 11px var(--mono); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted);
+      display: flex; justify-content: space-between; align-items: center;
+      background: var(--paper-2); padding: 8px 14px;
+      font: 700 11px var(--mono); text-transform: uppercase; color: var(--muted);
+      border-bottom: 1px solid rgba(255, 24, 93, 0.15);
     }
-    #res-status { padding: 3px 9px; border-radius: 4px; font-weight: 700; }
-    #res-status[data-state="ok"] { background: var(--accent); color: #ffffff; }
-    #res-status[data-state="bad"] { background: #dc2626; color: #fff; }
+    .viewer-head [data-state="ok"] { color: var(--ok); }
+    .viewer-head [data-state="bad"] { color: var(--accent); }
     .viewer pre {
-      padding: 18px; font: 500 12.5px/1.65 var(--mono);
-      white-space: pre-wrap; word-break: break-word; max-height: 288px; overflow: auto;
-      color: #fcecf4;
+      padding: 16px; font: 500 13px/1.55 var(--mono); color: #f3d8e6;
+      max-height: 320px; overflow: auto;
     }
-    .panel-foot {
-      margin-top: 28px; padding-top: 20px; border-top: 1px solid rgba(255, 24, 93, 0.2);
-      display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 14px;
-    }
-    .panel-foot p { font-size: 14px; color: var(--muted); }
+    .panel-foot { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; font-size: 13px; color: var(--muted); flex-wrap: wrap; gap: 12px; }
 
-    /* Terminal */
+    /* Interactive Terminal */
     .term {
-      background: #060408; color: var(--ink); border: 1px solid rgba(255, 24, 93, 0.35);
-      border-radius: 14px; box-shadow: 0 12px 35px rgba(255, 24, 93, 0.15); font-family: var(--mono);
-      overflow: hidden;
+      border: 1px solid rgba(255, 24, 93, 0.3); background: #050308;
+      border-radius: 14px; overflow: hidden; box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
     }
     .term-bar {
-      display: flex; justify-content: space-between; align-items: center; gap: 12px;
-      padding: 11px 18px; border-bottom: 1px solid rgba(255, 24, 93, 0.2); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
-      background: #0f0a15; color: var(--muted);
+      display: flex; justify-content: space-between; align-items: center;
+      background: var(--paper-2); padding: 10px 16px;
+      font: 700 11px var(--mono); text-transform: uppercase; letter-spacing: 0.06em;
+      border-bottom: 1px solid rgba(255, 24, 93, 0.2); color: var(--muted);
     }
-    .term-bar .sq { display: inline-block; width: 10px; height: 10px; border-radius: 50%; border: 1px solid var(--accent); margin-right: 6px; }
-    .term-bar .sq:first-child { background: var(--accent); border-color: var(--accent); }
-    .term-body { padding: 22px; font-size: 14px; min-height: 260px; max-height: 420px; overflow-y: auto; cursor: text; }
-    .term-body > * + * { margin-top: 12px; }
-    .term-out { white-space: pre-wrap; line-height: 1.7; padding-left: 12px; border-left: 2px solid rgba(255, 24, 93, 0.4); word-break: break-word; color: #fcecf4; }
-    .term-err { color: var(--accent-light); padding-left: 12px; word-break: break-word; }
-    .term-prompt { color: var(--accent); font-weight: 700; }
+    .term-bar .sq { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; background: #ff185d; }
+    .term-bar .sq:nth-child(2) { background: #eab308; }
+    .term-bar .sq:nth-child(3) { background: #22c55e; }
+    .term-body {
+      padding: 20px; font: 500 13px/1.65 var(--mono); min-height: 280px; max-height: 480px;
+      overflow-y: auto; color: #fcecf4;
+    }
+    .term-line { display: flex; align-items: center; gap: 8px; margin-top: 10px; }
+    .term-prompt { color: var(--accent); font-weight: 700; white-space: nowrap; }
+    .term-body input {
+      flex: 1; background: transparent; border: none; color: #ffffff;
+      font: inherit; outline: none; padding: 0; margin: 0;
+    }
+    .term-out { margin: 6px 0 12px; color: var(--muted); white-space: pre-wrap; word-break: break-word; }
+    .term-err { margin: 6px 0 12px; color: var(--accent); white-space: pre-wrap; }
     .cmd { color: var(--accent-light); font-weight: 700; }
-    .term-line { display: flex; align-items: center; gap: 8px; }
-    .term-line input {
-      flex: 1; min-width: 0; background: transparent; border: 0; outline: 0; padding: 0;
-      color: var(--ink); font: 500 16px var(--mono); caret-color: var(--accent);
-    }
-    @media (min-width: 640px) { .term-line input { font-size: 14px; } }
-    .term-body :focus-visible { outline: none; }
 
     /* Support strip */
     .strip {
-      background: linear-gradient(135deg, #1c0f24 0%, #2a112c 50%, #150a1d 100%);
-      color: #fff; border: 1px solid rgba(255, 24, 93, 0.35); border-radius: 16px;
-      box-shadow: 0 8px 32px rgba(255, 24, 93, 0.16);
-      padding: 32px; display: flex; flex-direction: column; gap: 22px; align-items: flex-start;
+      border: 1px solid rgba(255, 24, 93, 0.3); background: var(--white);
+      padding: 28px; border-radius: 14px; display: flex;
+      justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;
     }
-    @media (min-width: 768px) { .strip { flex-direction: row; align-items: center; justify-content: space-between; padding: 36px; } }
-    .strip h3 { font-weight: 900; text-transform: uppercase; letter-spacing: -0.02em; font-size: clamp(1.4rem, 3.4vw, 2rem); line-height: 1.1; margin-bottom: 8px; color: #ffffff; }
-    .strip p { max-width: 52ch; color: rgba(255, 255, 255, 0.8); }
-    .strip .btn { background: var(--white); color: var(--ink); }
+    .strip h3 { font-weight: 900; font-size: 22px; text-transform: uppercase; color: #ffffff; }
+    .strip p { font-size: 14px; color: var(--muted); margin-top: 4px; }
 
     /* Footer */
-    .footer { border-top: var(--line); padding: 32px 0 44px; }
-    .footer-in { display: flex; flex-direction: column; gap: 16px; font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
-    @media (min-width: 860px) { .footer-in { flex-direction: row; justify-content: space-between; align-items: center; } }
-    .footer-links { display: flex; flex-wrap: wrap; gap: 20px; }
-    .footer-links a { text-decoration: none; border-bottom: 1px solid rgba(255, 24, 93, 0.3); transition: all .2s; }
-    .footer-links a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+    .footer { border-top: var(--line); padding: 36px 0; font-size: 13px; color: var(--muted); margin-top: 40px; }
+    .footer-in { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .footer-links { display: flex; gap: 20px; font: 700 12px var(--mono); text-transform: uppercase; }
+    .footer-links a:hover { color: var(--accent); }
 
-    /* Floating coffee button */
+    /* Floating button */
     .fab {
-      position: fixed; right: 16px; bottom: 16px; z-index: 30;
-      padding: 13px 18px; border-radius: 999px; box-shadow: 0 6px 25px rgba(255, 24, 93, 0.45);
+      position: fixed; right: 20px; bottom: 20px; z-index: 30;
+      border-radius: 999px; padding: 12px 20px; font-size: 12px;
+      box-shadow: 0 10px 28px rgba(255, 24, 93, 0.45);
     }
-    .fab .fab-label { display: none; }
-    @media (min-width: 640px) { .fab { right: 24px; bottom: 24px; padding: 13px 20px; } .fab .fab-label { display: inline; } }
+    @media (max-width: 480px) { .fab-label { display: none; } .fab { padding: 14px; } }
 
     /* Toast */
     .toast {
-      position: fixed; right: 16px; bottom: 76px; z-index: 40; width: calc(100% - 32px); max-width: 340px;
-      background: var(--white); border: 1px solid rgba(255, 24, 93, 0.35); border-radius: 12px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6); padding: 18px;
+      position: fixed; bottom: 84px; right: 20px; z-index: 45; max-width: 360px;
+      background: var(--white); border: 1px solid rgba(255, 24, 93, 0.4);
+      border-radius: 12px; padding: 18px; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.7);
       visibility: hidden; opacity: 0; transform: translateY(12px);
-      transition: opacity .18s ease, transform .18s ease, visibility .18s;
+      transition: all .25s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .toast.is-open { visibility: visible; opacity: 1; transform: none; }
-    .toast h4 { font: 800 14px var(--sans); text-transform: uppercase; letter-spacing: -0.01em; margin: 0 0 4px; color: var(--ink); }
+    .toast.is-open { visibility: visible; opacity: 1; transform: translateY(0); }
+    .toast h4 { font: 800 14px var(--sans); text-transform: uppercase; margin: 0 0 4px; color: #ffffff; }
     .toast p { font-size: 13px; color: var(--muted); }
-    .toast-actions { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
-    .toast .btn { padding: 8px 14px; font-size: 11px; border-radius: 6px; }
-    @media (min-width: 640px) { .toast { right: 24px; bottom: 90px; } }
+    .toast-actions { display: flex; gap: 10px; margin-top: 14px; }
+    .toast .btn { padding: 8px 14px; font-size: 11px; }
 
     /* Modal */
     .modal {
       position: fixed; inset: 0; z-index: 50; display: flex; align-items: center; justify-content: center; padding: 16px;
-      background: rgba(6, 4, 8, .82); backdrop-filter: blur(8px);
+      background: rgba(6, 4, 8, .85); backdrop-filter: blur(8px);
       visibility: hidden; opacity: 0; transition: opacity .15s ease, visibility .15s;
     }
     .modal.is-open { visibility: visible; opacity: 1; }
@@ -372,15 +431,14 @@
       font: 700 20px var(--mono); line-height: 1; cursor: pointer; border-radius: 8px;
     }
     .modal-close:hover { background: var(--accent); color: #fff; }
-    .modal h3 { font-weight: 900; text-transform: uppercase; letter-spacing: -0.03em; font-size: 26px; line-height: 1; margin: 0 40px 8px 0; color: var(--ink); }
+    .modal h3 { font-weight: 900; text-transform: uppercase; font-size: 24px; margin: 0 40px 8px 0; color: #ffffff; }
     .modal .sub { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
-    .step { display: block; font: 700 11px var(--mono); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; color: var(--accent); }
+    .step { display: block; font: 700 11px var(--mono); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; color: var(--accent-light); }
     .tiers { display: grid; gap: 10px; margin-bottom: 24px; }
     .tier {
       display: flex; justify-content: space-between; align-items: center; gap: 12px; width: 100%;
       border: 1px solid rgba(255, 24, 93, 0.25); background: var(--paper-2); color: var(--ink); padding: 14px; cursor: pointer; text-align: left;
-      font: 700 14px var(--sans); text-transform: uppercase; letter-spacing: 0.01em; border-radius: 8px;
-      transition: all .2s;
+      font: 700 13px var(--sans); text-transform: uppercase; border-radius: 8px; transition: all .2s;
     }
     .tier .price { font: 700 13px var(--mono); color: var(--accent); }
     .tier:hover { border-color: var(--accent); background: rgba(255, 24, 93, 0.08); }
@@ -398,14 +456,6 @@
       }
     }
   </style>
-
-    @media (prefers-reduced-motion: reduce) {
-      *, ::before, ::after {
-        animation-duration: 0.01ms !important; animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important; scroll-behavior: auto !important;
-      }
-    }
-  </style>
 </head>
 <body>
   <a class="skip" href="#main">Lewati ke konten</a>
@@ -413,17 +463,19 @@
   <!-- Navigation -->
   <header class="topbar">
     <div class="wrap topbar-in">
-      <a href="/" class="logo" aria-label="kado.sang.ceo — beranda" style="display: inline-flex; align-items: center; gap: 10px;">
-        <img src="/static/avatar.png" alt="Kadokun" style="width: 32px; height: 32px; border: 2px solid var(--ink); border-radius: 8px; object-fit: cover; box-shadow: 2px 2px 0 var(--ink);" />
+      <a href="/" data-route="/" class="logo" aria-label="kado.sang.ceo — beranda" style="display: inline-flex; align-items: center; gap: 10px;">
+        <img src="/static/avatar.png" alt="Kadokun" style="width: 32px; height: 32px; border: 2px solid var(--accent); border-radius: 8px; object-fit: cover; box-shadow: 0 0 10px rgba(255, 24, 93, 0.4);" />
         <div>
           <span class="logo-k">KADO</span><span class="logo-d">.SANG.CEO</span>
         </div>
       </a>
 
       <nav class="nav" aria-label="Navigasi utama">
-        <a href="#projects">Projects</a>
-        <a href="#api">API Playground</a>
-        <a href="#terminal">Terminal</a>
+        <a href="/" data-route="/" class="active">Home</a>
+        <a href="/projects" data-route="/projects">Projects</a>
+        <a href="/playground" data-route="/playground">Playground</a>
+        <a href="/terminal" data-route="/terminal">Terminal</a>
+        <a href="/about" data-route="/about">About</a>
         <a href="/docs" target="_blank" rel="noopener noreferrer">Docs ↗</a>
       </nav>
 
@@ -437,191 +489,333 @@
 
   <main id="main" class="wrap">
 
-    <!-- Hero -->
-    <section class="hero">
-      <div id="hero-status-container" class="chip" data-state="pending" role="status">
-        <span id="hero-dot" class="dot" aria-hidden="true"></span>
-        <span id="hero-status-pill">Menghubungkan ke API...</span>
-      </div>
-
-      <div class="hero-head-block" style="display: flex; align-items: flex-end; gap: 24px; margin: 20px 0 32px; flex-wrap: wrap;">
-        <div class="hero-avatar" style="position: relative; flex-shrink: 0; margin-bottom: 8px;">
-          <img src="/static/avatar.png" alt="Kadokun" style="width: 104px; height: 104px; border: 2px solid var(--accent); box-shadow: 0 0 24px rgba(255, 24, 93, 0.45); border-radius: 24px; object-fit: cover; display: block; background: var(--white);" />
-          <span style="position: absolute; bottom: -3px; right: -3px; width: 18px; height: 18px; background: #ff185d; border: 2.5px solid var(--paper); border-radius: 50%; box-shadow: 0 0 10px #ff185d;"></span>
+    <!-- ==================== VIEW 1: HOME ==================== -->
+    <div id="view-home" class="page-view active-view">
+      <!-- Hero -->
+      <section class="hero">
+        <div id="hero-status-container" class="chip" data-state="pending" role="status">
+          <span id="hero-dot" class="dot" aria-hidden="true"></span>
+          <span id="hero-status-pill">Menghubungkan ke API...</span>
         </div>
-        <h1 class="hero-title" style="margin: 0; line-height: 0.82;">Kado<span class="accent">.</span></h1>
-      </div>
 
-      <div class="hero-row">
-        <div>
-          <p class="hero-role">Full-Stack Architect &amp; Bot Master · Sensual System Builder</p>
-          <p class="lead">
-            Fokus pada REST API publik berkecepatan tinggi (Python &amp; Node.js), arsitektur modular WhatsApp bot engine (Baileys),
-            otomasi AI cerdas, serta infrastruktur server mandiri. Mengutamakan latensi ultra-rendah dan kode yang intim tanpa bloatware.
-          </p>
-          <div class="cta-row">
-            <a href="#api" class="btn btn-primary">Coba Live API Playground ↓</a>
-            <a href="https://github.com/Kadokun404" target="_blank" rel="noopener noreferrer" class="btn">GitHub ↗</a>
-            <a href="https://kadokunn.com" target="_blank" rel="noopener noreferrer" class="btn">Arashi API Hub ↗</a>
+        <div class="hero-head-block" style="display: flex; align-items: flex-end; gap: 24px; margin: 20px 0 32px; flex-wrap: wrap;">
+          <div class="hero-avatar" style="position: relative; flex-shrink: 0; margin-bottom: 8px;">
+            <img src="/static/avatar.png" alt="Kadokun" style="width: 104px; height: 104px; border: 2px solid var(--accent); box-shadow: 0 0 24px rgba(255, 24, 93, 0.45); border-radius: 24px; object-fit: cover; display: block; background: var(--white);" />
+            <span style="position: absolute; bottom: -3px; right: -3px; width: 18px; height: 18px; background: #ff185d; border: 2.5px solid var(--paper); border-radius: 50%; box-shadow: 0 0 10px #ff185d;"></span>
           </div>
+          <h1 class="hero-title" style="margin: 0; line-height: 0.82;">Kado<span class="accent">.</span></h1>
         </div>
 
-        <aside class="card bio" style="position: relative; overflow: hidden;">
-          <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 14px;">
-            <img src="/static/avatar.png" alt="Kadokun" style="width: 50px; height: 50px; border: 2px solid var(--accent); border-radius: 14px; object-fit: cover; box-shadow: 0 0 12px rgba(255, 24, 93, 0.35); flex-shrink: 0;" />
+        <div class="hero-row">
+          <div>
+            <p class="hero-role">Full-Stack Architect &amp; Bot Master · Sensual System Builder</p>
+            <p class="lead">
+              Fokus pada REST API publik berkecepatan tinggi (Python &amp; Node.js), arsitektur modular WhatsApp bot engine (Baileys),
+              otomasi AI cerdas, serta infrastruktur server mandiri. Mengutamakan latensi ultra-rendah dan kode yang intim tanpa bloatware.
+            </p>
+            <div class="cta-row">
+              <a href="/projects" data-route="/projects" class="btn btn-primary">Lihat Proyek →</a>
+              <a href="/playground" data-route="/playground" class="btn">API Playground →</a>
+              <a href="/terminal" data-route="/terminal" class="btn">Terminal Shell →</a>
+            </div>
+          </div>
+
+          <aside class="card bio" style="position: relative; overflow: hidden;">
+            <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 14px;">
+              <img src="/static/avatar.png" alt="Kadokun" style="width: 50px; height: 50px; border: 2px solid var(--accent); border-radius: 14px; object-fit: cover; box-shadow: 0 0 12px rgba(255, 24, 93, 0.35); flex-shrink: 0;" />
+              <div>
+                <span class="label" style="margin: 0; display: block;">Kenalan</span>
+                <strong style="font-size: 16px; font-family: var(--mono); text-transform: uppercase; color: var(--ink);">Kadokun</strong>
+              </div>
+            </div>
+            <p>
+              <strong>Halo, aku Kado.</strong> Seorang full-stack architect dan developer asal Indonesia
+              yang gemar membangun REST API berlatensi sub-100ms, bot WhatsApp bertenaga tinggi,
+              serta sistem web modern yang estetik, sensual, dan efisien tanpa kompromi.
+            </p>
+            <div style="margin-top: 14px;">
+              <a href="/about" data-route="/about" class="btn btn-sm">Baca Profil Lengkap →</a>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- Portals / Highlights Section -->
+      <section class="section">
+        <span class="sec-num">Pilihan Halaman / Portals</span>
+        <div class="sec-head">
+          <h2>Eksplorasi Ekosistem Kado</h2>
+          <p>Pilih halaman yang ingin kamu tuju untuk melihat detail karya, mencoba API langsung, atau bermain di shell terminal.</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card project">
             <div>
-              <span class="label" style="margin: 0; display: block;">Kenalan</span>
-              <strong style="font-size: 16px; font-family: var(--mono); text-transform: uppercase; color: var(--ink);">Kadokun</strong>
+              <div class="project-top">
+                <span class="project-num">01</span>
+                <span class="tag">Showcase</span>
+              </div>
+              <h3>Daftar Proyek &amp; Sistem</h3>
+              <p>Kumpulan bot engine Baileys, REST API berkecepatan tinggi, serta sistem webmail mandiri.</p>
+            </div>
+            <div>
+              <a class="btn btn-primary btn-sm" href="/projects" data-route="/projects">Buka Halaman Proyek →</a>
+            </div>
+          </article>
+
+          <article class="card project">
+            <div>
+              <div class="project-top">
+                <span class="project-num">02</span>
+                <span class="tag">Live Studio</span>
+              </div>
+              <h3>API Playground &amp; Inspector</h3>
+              <p>Uji langsung backend FastAPI di server ini secara interaktif dengan pengukuran latensi real-time.</p>
+            </div>
+            <div>
+              <a class="btn btn-primary btn-sm" href="/playground" data-route="/playground">Buka API Studio →</a>
+            </div>
+          </article>
+
+          <article class="card project">
+            <div>
+              <div class="project-top">
+                <span class="project-num">03</span>
+                <span class="tag">CLI Shell</span>
+              </div>
+              <h3>Interactive Terminal</h3>
+              <p>Lingkungan bash terminal cyberpunk kado@sang.ceo:~ untuk menjelajahi profil lewat baris perintah.</p>
+            </div>
+            <div>
+              <a class="btn btn-primary btn-sm" href="/terminal" data-route="/terminal">Buka Terminal Shell →</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Support -->
+      <section class="section" aria-labelledby="support-title">
+        <span class="sec-num">Dukungan</span>
+        <div class="strip">
+          <div>
+            <h3 id="support-title">Dukung Pengembangan &amp; Server</h3>
+            <p>Semua API publik &amp; tool berjalan berkat donasi secangkir kopi dari komunitas.</p>
+          </div>
+          <button type="button" class="btn" data-open-coffee>Traktir Secangkir Kopi ☕</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- ==================== VIEW 2: PROJECTS ==================== -->
+    <div id="view-projects" class="page-view">
+      <a href="/" data-route="/" class="view-back-btn">← Kembali ke Beranda</a>
+
+      <section class="section" style="padding-top: 0;">
+        <span class="sec-num">01 / Proyek</span>
+        <div class="sec-head">
+          <h2>Karya &amp; Sistem Pilihan</h2>
+          <p>Sistem nyata yang aktif dikembangkan, dapat diverifikasi langsung lewat repositori atau tautan.</p>
+        </div>
+
+        <div class="grid-3">
+          <!-- Project 1 -->
+          <article class="card project">
+            <div>
+              <div class="project-top">
+                <span class="project-num">01</span>
+                <span class="tag">Bot Architecture</span>
+              </div>
+              <h3>Arashi WhatsApp Engine</h3>
+              <p>Bot WhatsApp berbasis Baileys dengan arsitektur plugin modular terisolasi, persistensi database SQLite, dan integrasi LLM untuk percakapan otomatis.</p>
+            </div>
+            <div>
+              <div class="tags"><span class="tag">Node.js</span><span class="tag">Baileys</span><span class="tag">SQLite</span></div>
+              <a class="btn btn-sm" href="https://github.com/Kadokun404/arashi" target="_blank" rel="noopener noreferrer">Buka Repository GitHub ↗</a>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="card project">
+            <div>
+              <div class="project-top">
+                <span class="project-num">02</span>
+                <span class="tag">REST API Hub</span>
+              </div>
+              <h3>Arashi API</h3>
+              <p>Koleksi REST API publik untuk developer dengan dokumentasi OpenAPI Swagger interaktif, rate limiting in-memory, dan endpoint utilitas teks &amp; kalkulasi.</p>
+            </div>
+            <div>
+              <div class="tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">OpenAPI</span></div>
+              <a class="btn btn-sm" href="https://kadokunn.com" target="_blank" rel="noopener noreferrer">Buka Arashi API ↗</a>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="card project">
+            <div>
+              <div class="project-top">
+                <span class="project-num">03</span>
+                <span class="tag">Infrastructure</span>
+              </div>
+              <h3>Kadokun Workspace Mail</h3>
+              <p>Infrastruktur webmail korporat mandiri di domain kadokunn.com terintegrasi backend Ruang.Email dengan konfigurasi record SPF, DKIM, dan SSL otomatis.</p>
+            </div>
+            <div>
+              <div class="tags"><span class="tag">DKIM/SPF</span><span class="tag">Webmail</span><span class="tag">Ruang.Email</span></div>
+              <a class="btn btn-sm" href="https://mail.kadokunn.com" target="_blank" rel="noopener noreferrer">Buka Webmail Portal ↗</a>
+            </div>
+          </article>
+
+          <!-- Project 4 -->
+          <article class="card project">
+            <div>
+              <div class="project-top">
+                <span class="project-num">04</span>
+                <span class="tag">Design System</span>
+              </div>
+              <h3>Taste-Skill Cyber Velvet</h3>
+              <p>Portfolio dan API showcase bertema sensual cyberpunk velvet noir dengan filosofi desain taste-skill, zero AI slop, dan navigasi multi-view instan.</p>
+            </div>
+            <div>
+              <div class="tags"><span class="tag">HTML5</span><span class="tag">Vanilla JS</span><span class="tag">FastAPI</span></div>
+              <a class="btn btn-sm" href="https://github.com/Kadokun404/kadoisaceo" target="_blank" rel="noopener noreferrer">Source Code di GitHub ↗</a>
+            </div>
+          </article>
+        </div>
+      </section>
+    </div>
+
+    <!-- ==================== VIEW 3: PLAYGROUND ==================== -->
+    <div id="view-playground" class="page-view">
+      <a href="/" data-route="/" class="view-back-btn">← Kembali ke Beranda</a>
+
+      <section class="section" style="padding-top: 0;">
+        <span class="sec-num">02 / API Studio</span>
+        <div class="sec-head">
+          <h2>Live FastAPI Playground</h2>
+          <p>Uji coba langsung backend Python FastAPI yang berjalan di server ini. Masukkan teks di bawah untuk melihat hasil inspeksi dan latensi real-time.</p>
+        </div>
+
+        <div class="panel">
+          <div class="form-row">
+            <input
+              type="text" id="playground-input" class="input"
+              value="kado is a ceo" placeholder="Masukkan teks apa saja..."
+              maxlength="500" autocomplete="off" spellcheck="false"
+              aria-label="Teks untuk dikirim ke endpoint inspect"
+            />
+            <button id="playground-btn" type="button" class="btn btn-primary">
+              <span id="btn-icon" aria-hidden="true">→</span>
+              <span id="btn-text">Kirim Request</span>
+            </button>
+          </div>
+
+          <div class="meta-row meta">
+            <span>Method: <strong>POST</strong> &nbsp;|&nbsp; Target: <strong>/api/playground/inspect</strong></span>
+            <span>Rate limit: 30 req/min</span>
+          </div>
+
+          <div class="viewer">
+            <div class="viewer-head">
+              <span id="res-status" data-state="pending" role="status">STATUS: READY</span>
+              <span>Latency: <span id="res-latency">-- ms</span></span>
+            </div>
+            <pre id="res-code" aria-live="polite">// Klik tombol 'Kirim Request' di atas untuk menguji endpoint secara langsung...</pre>
+          </div>
+
+          <div class="panel-foot">
+            <p>Butuh endpoint yang lebih lengkap untuk production?</p>
+            <a href="/docs" target="_blank" rel="noopener noreferrer" class="btn btn-sm">Dokumentasi Swagger (/docs) ↗</a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ==================== VIEW 4: TERMINAL ==================== -->
+    <div id="view-terminal" class="page-view">
+      <a href="/" data-route="/" class="view-back-btn">← Kembali ke Beranda</a>
+
+      <section class="section" style="padding-top: 0;">
+        <span class="sec-num">03 / Terminal Shell</span>
+        <div class="sec-head">
+          <h2>Interactive Cyberpunk Terminal</h2>
+          <p>Eksplorasi profil, keahlian, dan sistem kado.sang.ceo lewat konsol perintah.</p>
+        </div>
+
+        <div class="term" style="min-height: 480px;">
+          <div class="term-bar">
+            <span><span class="sq"></span><span class="sq"></span><span class="sq"></span>kado@sang.ceo:~ (bash)</span>
+            <span>FastAPI Shell</span>
+          </div>
+          <div id="terminal-body" class="term-body" style="min-height: 420px;">
+            <div>
+              Welcome to <strong>kado.sang.ceo</strong> terminal [Version 1.0.0]<br>
+              Ketik <span class="cmd">'help'</span> untuk melihat daftar perintah yang tersedia.
+            </div>
+            <div id="terminal-history"></div>
+            <div class="term-line">
+              <span class="term-prompt">kado@sang.ceo:~$</span>
+              <input type="text" id="term-input" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Terminal input" />
             </div>
           </div>
-          <p>
-            <strong>Halo, aku Kado.</strong> Seorang full-stack architect dan developer asal Indonesia
-            yang gemar membangun REST API berlatensi sub-100ms, bot WhatsApp bertenaga tinggi,
-            serta sistem web modern yang estetik, sensual, dan efisien tanpa kompromi.
-          </p>
-        </aside>
-      </div>
-    </section>
+        </div>
+      </section>
+    </div>
 
-    <!-- 01 Projects -->
-    <section id="projects" class="section">
-      <span class="sec-num">01 / Proyek</span>
-      <div class="sec-head">
-        <h2>Karya &amp; Sistem Pilihan</h2>
-        <p>Sistem nyata yang aktif dikembangkan, dapat diverifikasi langsung lewat repositori atau tautan.</p>
-      </div>
+    <!-- ==================== VIEW 5: ABOUT ==================== -->
+    <div id="view-about" class="page-view">
+      <a href="/" data-route="/" class="view-back-btn">← Kembali ke Beranda</a>
 
-      <div class="grid-3">
-        <!-- Project 1 -->
-        <article class="card project">
-          <div>
-            <div class="project-top">
-              <span class="project-num">01</span>
-              <span class="tag">Bot Architecture</span>
+      <section class="section" style="padding-top: 0;">
+        <span class="sec-num">04 / Tentang Developer</span>
+        <div class="sec-head">
+          <h2>Kadokun — Profile &amp; Stack</h2>
+          <p>Full-Stack Architect &amp; Bot Master · Sensual System Builder</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;">
+          <aside class="card bio">
+            <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+              <img src="/static/avatar.png" alt="Kadokun" style="width: 64px; height: 64px; border: 2px solid var(--accent); border-radius: 16px; object-fit: cover; box-shadow: 0 0 16px rgba(255, 24, 93, 0.4); flex-shrink: 0;" />
+              <div>
+                <span class="label" style="margin: 0; display: block;">Developer &amp; Creator</span>
+                <strong style="font-size: 20px; font-family: var(--mono); text-transform: uppercase; color: #ffffff;">Kadokun</strong>
+              </div>
             </div>
-            <h3>Arashi WhatsApp Engine</h3>
-            <p>Bot WhatsApp berbasis Baileys dengan arsitektur plugin modular terisolasi, persistensi database SQLite, dan integrasi LLM untuk percakapan otomatis.</p>
-          </div>
-          <div>
-            <div class="tags"><span class="tag">Node.js</span><span class="tag">Baileys</span><span class="tag">SQLite</span></div>
-            <a class="btn btn-sm" href="https://github.com/Kadokun404/arashi" target="_blank" rel="noopener noreferrer">Buka Repository GitHub ↗</a>
-          </div>
-        </article>
+            <p style="margin-bottom: 14px;">
+              Seorang full-stack developer dan arsitek sistem asal Indonesia yang berfokus pada otomasi bot WhatsApp, arsitektur REST API berlatensi sub-100ms, serta integrasi AI cerdas.
+            </p>
+            <p style="font-size: 13px; color: var(--muted); line-height: 1.7;">
+              Email resmi: <a href="mailto:kado@kadokunn.com" style="color: var(--accent);">kado@kadokunn.com</a><br>
+              Website: <a href="https://kadokunn.com" target="_blank" style="color: var(--accent);">kadokunn.com</a> &amp; <a href="https://kado.sang.ceo" style="color: var(--accent);">kado.sang.ceo</a>
+            </p>
+          </aside>
 
-        <!-- Project 2 -->
-        <article class="card project">
-          <div>
-            <div class="project-top">
-              <span class="project-num">02</span>
-              <span class="tag">REST API Hub</span>
+          <div class="card" style="background: var(--paper-2); border: 1px solid rgba(255, 24, 93, 0.25);">
+            <h3 style="font-size: 16px; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent);">Tech Stack &amp; Senjata Utama</h3>
+            <div style="display: grid; gap: 14px; font-size: 14px;">
+              <div>
+                <strong style="color: #ffffff; display: block; font-family: var(--mono); font-size: 12px; margin-bottom: 2px;">LANGUAGES</strong>
+                <span style="color: var(--muted);">Python, TypeScript, JavaScript (Node.js), Bash Shell, SQL</span>
+              </div>
+              <div>
+                <strong style="color: #ffffff; display: block; font-family: var(--mono); font-size: 12px; margin-bottom: 2px;">BACKEND &amp; APIS</strong>
+                <span style="color: var(--muted);">FastAPI, Express.js, OpenAPI / Swagger, SQLite, Redis</span>
+              </div>
+              <div>
+                <strong style="color: #ffffff; display: block; font-family: var(--mono); font-size: 12px; margin-bottom: 2px;">BOT &amp; AUTOMATION</strong>
+                <span style="color: var(--muted);">Baileys (WA Multi-Device), Plugin Modular Architecture, LLM Tool Calling</span>
+              </div>
+              <div>
+                <strong style="color: #ffffff; display: block; font-family: var(--mono); font-size: 12px; margin-bottom: 2px;">DEVOPS &amp; CLOUD</strong>
+                <span style="color: var(--muted);">Linux / Ubuntu VPS, Docker, Cloudflare, Vercel, Oracle Cloud</span>
+              </div>
             </div>
-            <h3>Arashi API</h3>
-            <p>Koleksi REST API publik untuk developer dengan dokumentasi OpenAPI Swagger interaktif, rate limiting in-memory, dan endpoint utilitas teks &amp; kalkulasi.</p>
-          </div>
-          <div>
-            <div class="tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">OpenAPI</span></div>
-            <a class="btn btn-sm" href="https://kadokunn.com" target="_blank" rel="noopener noreferrer">Buka Arashi API ↗</a>
-          </div>
-        </article>
-
-        <!-- Project 3 -->
-        <article class="card project">
-          <div>
-            <div class="project-top">
-              <span class="project-num">03</span>
-              <span class="tag">Infrastructure</span>
-            </div>
-            <h3>Kadokun Workspace Mail</h3>
-            <p>Infrastruktur webmail korporat mandiri di domain kadokunn.com terintegrasi backend Ruang.Email dengan konfigurasi record SPF, DKIM, dan SSL otomatis.</p>
-          </div>
-          <div>
-            <div class="tags"><span class="tag">DKIM/SPF</span><span class="tag">Webmail</span><span class="tag">Ruang.Email</span></div>
-            <a class="btn btn-sm" href="https://mail.kadokunn.com" target="_blank" rel="noopener noreferrer">Buka Webmail Portal ↗</a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- 02 API Playground -->
-    <section id="api" class="section">
-      <span class="sec-num">02 / API</span>
-      <div class="sec-head">
-        <h2>API Playground</h2>
-        <p>Uji coba langsung backend Python FastAPI yang berjalan di server ini. Masukkan teks di bawah untuk melihat hasil inspeksi dan latensi real-time.</p>
-      </div>
-
-      <div class="panel">
-        <div class="form-row">
-          <input
-            type="text" id="playground-input" class="input"
-            value="kado is a ceo" placeholder="Masukkan teks apa saja..."
-            maxlength="500" autocomplete="off" spellcheck="false"
-            aria-label="Teks untuk dikirim ke endpoint inspect"
-          />
-          <button id="playground-btn" type="button" class="btn btn-primary">
-            <span id="btn-icon" aria-hidden="true">→</span>
-            <span id="btn-text">Kirim Request</span>
-          </button>
-        </div>
-
-        <div class="meta-row meta">
-          <span>Method: <strong>POST</strong> &nbsp;|&nbsp; Target: <strong>/api/playground/inspect</strong></span>
-          <span>Rate limit: 30 req/min</span>
-        </div>
-
-        <div class="viewer">
-          <div class="viewer-head">
-            <span id="res-status" data-state="pending" role="status">STATUS: READY</span>
-            <span>Latency: <span id="res-latency">-- ms</span></span>
-          </div>
-          <pre id="res-code" aria-live="polite">// Klik tombol 'Kirim Request' di atas untuk menguji endpoint secara langsung...</pre>
-        </div>
-
-        <div class="panel-foot">
-          <p>Butuh endpoint yang lebih lengkap untuk production?</p>
-          <a href="/docs" target="_blank" rel="noopener noreferrer" class="btn btn-sm">Dokumentasi Swagger (/docs) ↗</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 03 Terminal -->
-    <section id="terminal" class="section">
-      <span class="sec-num">03 / Terminal</span>
-      <div class="sec-head">
-        <h2>Interactive Terminal</h2>
-        <p>Eksplorasi profil, keahlian, dan sistem lewat konsol perintah.</p>
-      </div>
-
-      <div class="term">
-        <div class="term-bar">
-          <span><span class="sq"></span><span class="sq"></span><span class="sq"></span>kado@sang.ceo:~ (bash)</span>
-          <span>FastAPI Shell</span>
-        </div>
-        <div id="terminal-body" class="term-body">
-          <div>
-            Welcome to <strong>kado.sang.ceo</strong> terminal [Version 1.0.0]<br>
-            Ketik <span class="cmd">'help'</span> untuk melihat daftar perintah yang tersedia.
-          </div>
-          <div id="terminal-history"></div>
-          <div class="term-line">
-            <span class="term-prompt">kado@sang.ceo:~$</span>
-            <input type="text" id="term-input" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Terminal input" />
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
-    <!-- 04 Support -->
-    <section class="section" aria-labelledby="support-title">
-      <span class="sec-num">04 / Dukungan</span>
-      <div class="strip">
-        <div>
-          <h3 id="support-title">Dukung Pengembangan &amp; Server</h3>
-          <p>Semua API publik &amp; tool berjalan berkat donasi secangkir kopi dari komunitas.</p>
-        </div>
-        <button type="button" class="btn" data-open-coffee>Traktir Secangkir Kopi ☕</button>
-      </div>
-    </section>
   </main>
 
   <!-- Footer -->
@@ -703,9 +897,14 @@
 
       /* 1. Real API health status */
       function setStatus(state, navText, heroText) {
-        ['nav-status-badge', 'hero-status-container'].forEach(function (id) { $(id).dataset.state = state; });
-        $('nav-status-text').textContent = navText;
-        $('hero-status-pill').textContent = heroText;
+        ['nav-status-badge', 'hero-status-container'].forEach(function (id) {
+          var el = $(id);
+          if (el) el.dataset.state = state;
+        });
+        var navTextEl = $('nav-status-text');
+        var heroTextEl = $('hero-status-pill');
+        if (navTextEl) navTextEl.textContent = navText;
+        if (heroTextEl) heroTextEl.textContent = heroText;
       }
 
       async function checkApiStatus() {
@@ -730,12 +929,14 @@
       /* 2. Playground with measured latency */
       function setRes(state, text) {
         var el = $('res-status');
+        if (!el) return;
         el.dataset.state = state;
         el.textContent = text;
       }
 
       async function executeApiInspect() {
         var input = $('playground-input');
+        if (!input) return;
         var text = input.value.trim();
         if (!text) { input.focus(); return; }
 
@@ -779,10 +980,15 @@
           btnText.textContent = 'Kirim Request';
         }
       }
-      $('playground-btn').addEventListener('click', executeApiInspect);
-      $('playground-input').addEventListener('keydown', function (e) {
-        if (e.key === 'Enter') executeApiInspect();
-      });
+
+      var playBtn = $('playground-btn');
+      var playInput = $('playground-input');
+      if (playBtn) playBtn.addEventListener('click', executeApiInspect);
+      if (playInput) {
+        playInput.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter') executeApiInspect();
+        });
+      }
 
       /* 3. Coffee toast — once per session */
       function maybeShowCoffeeToast() {
@@ -818,7 +1024,6 @@
       });
       modal.addEventListener('click', function (e) { if (e.target === modal) closeCoffeeModal(); });
 
-      // Keep keyboard focus inside the open modal
       modal.addEventListener('keydown', function (e) {
         if (e.key !== 'Tab') return;
         var items = Array.prototype.filter.call(modal.querySelectorAll('button, a[href]'), function (el) { return !el.disabled; });
@@ -884,7 +1089,8 @@
             'Active Projects:',
             '  1. Arashi WhatsApp Engine  (https://github.com/Kadokun404/arashi)',
             '  2. Arashi API              (https://kadokunn.com)',
-            '  3. Kadokun Mail Workspace  (https://mail.kadokunn.com)'
+            '  3. Kadokun Mail Workspace  (https://mail.kadokunn.com)',
+            '  4. Taste-Skill Velvet Hub  (https://kado.sang.ceo)'
           ].join('\n');
         },
         api: async function () {
@@ -907,59 +1113,121 @@
         }
       };
 
-      termBody.addEventListener('click', function () {
-        if (!window.getSelection || window.getSelection().toString() === '') termInput.focus();
+      if (termBody && termInput) {
+        termBody.addEventListener('click', function () {
+          if (!window.getSelection || window.getSelection().toString() === '') termInput.focus();
+        });
+
+        termInput.addEventListener('keydown', async function (e) {
+          if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            if (history.length) { histIdx = Math.max(0, histIdx - 1); termInput.value = history[histIdx]; }
+            return;
+          }
+          if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            histIdx = Math.min(history.length, histIdx + 1);
+            termInput.value = history[histIdx] || '';
+            return;
+          }
+          if (e.key !== 'Enter') return;
+
+          var raw = termInput.value.trim();
+          var cmd = raw.toLowerCase();
+          termInput.value = '';
+          if (!raw) return;
+
+          history.push(raw);
+          histIdx = history.length;
+
+          var line = document.createElement('div');
+          var p = document.createElement('span');
+          p.className = 'term-prompt';
+          p.textContent = 'kado@sang.ceo:~$';
+          var t = document.createElement('span');
+          t.textContent = ' ' + raw;
+          line.appendChild(p);
+          line.appendChild(t);
+          termHistory.appendChild(line);
+
+          if (cmd === 'clear') {
+            termHistory.innerHTML = '';
+          } else if (Object.prototype.hasOwnProperty.call(COMMANDS, cmd)) {
+            var out = document.createElement('div');
+            out.className = 'term-out';
+            out.innerHTML = await COMMANDS[cmd]();
+            termHistory.appendChild(out);
+          } else {
+            var err = document.createElement('div');
+            err.className = 'term-err';
+            err.textContent = "Perintah tidak dikenali: '" + raw + "'. Ketik 'help' untuk melihat daftar perintah.";
+            termHistory.appendChild(err);
+          }
+
+          termBody.scrollTop = termBody.scrollHeight;
+        });
+      }
+
+      /* 6. Multi-page SPA Router */
+      var routes = {
+        '/': 'view-home',
+        '/projects': 'view-projects',
+        '/playground': 'view-playground',
+        '/api': 'view-playground',
+        '/terminal': 'view-terminal',
+        '/about': 'view-about'
+      };
+
+      function switchView(pathname, pushState) {
+        var cleanPath = (pathname || '/').replace(/\/+$/, '') || '/';
+        var targetViewId = routes[cleanPath] || 'view-home';
+
+        // Toggle page views
+        document.querySelectorAll('.page-view').forEach(function (v) {
+          if (v.id === targetViewId) {
+            v.classList.add('active-view');
+          } else {
+            v.classList.remove('active-view');
+          }
+        });
+
+        // Update nav active link
+        document.querySelectorAll('.nav a[data-route]').forEach(function (link) {
+          var route = link.getAttribute('data-route');
+          if (route === cleanPath || (cleanPath === '/api' && route === '/playground')) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+
+        // If target is terminal, focus input
+        if (targetViewId === 'view-terminal' && $('term-input')) {
+          setTimeout(function () { $('term-input').focus(); }, 150);
+        }
+
+        if (pushState && window.location.pathname !== cleanPath) {
+          history.pushState({ path: cleanPath }, '', cleanPath);
+        }
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      document.addEventListener('click', function (e) {
+        var link = e.target.closest('a[data-route]');
+        if (link) {
+          e.preventDefault();
+          var route = link.getAttribute('data-route');
+          switchView(route, true);
+        }
       });
 
-      termInput.addEventListener('keydown', async function (e) {
-        if (e.key === 'ArrowUp') {
-          e.preventDefault();
-          if (history.length) { histIdx = Math.max(0, histIdx - 1); termInput.value = history[histIdx]; }
-          return;
-        }
-        if (e.key === 'ArrowDown') {
-          e.preventDefault();
-          histIdx = Math.min(history.length, histIdx + 1);
-          termInput.value = history[histIdx] || '';
-          return;
-        }
-        if (e.key !== 'Enter') return;
-
-        var raw = termInput.value.trim();
-        var cmd = raw.toLowerCase();
-        termInput.value = '';
-        if (!raw) return;
-
-        history.push(raw);
-        histIdx = history.length;
-
-        // Echo the typed line (textContent — never inject user input as HTML)
-        var line = document.createElement('div');
-        var p = document.createElement('span');
-        p.className = 'term-prompt';
-        p.textContent = 'kado@sang.ceo:~$';
-        var t = document.createElement('span');
-        t.textContent = ' ' + raw;
-        line.appendChild(p);
-        line.appendChild(t);
-        termHistory.appendChild(line);
-
-        if (cmd === 'clear') {
-          termHistory.innerHTML = '';
-        } else if (Object.prototype.hasOwnProperty.call(COMMANDS, cmd)) {
-          var out = document.createElement('div');
-          out.className = 'term-out';
-          out.innerHTML = await COMMANDS[cmd]();   // trusted, constant output only
-          termHistory.appendChild(out);
-        } else {
-          var err = document.createElement('div');
-          err.className = 'term-err';
-          err.textContent = "Perintah tidak dikenali: '" + raw + "'. Ketik 'help' untuk melihat daftar perintah.";
-          termHistory.appendChild(err);
-        }
-
-        termBody.scrollTop = termBody.scrollHeight;
+      window.addEventListener('popstate', function () {
+        switchView(window.location.pathname, false);
       });
+
+      // Initialize view based on current URL path
+      switchView(window.location.pathname, false);
     })();
   </script>
 </body>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS base-select Demo — kado.sang.ceo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: #090a0f;
+      color: #e6edf3;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 680px;
+      width: 100%;
+    }
+    .header {
+      margin-bottom: 28px;
+    }
+    h1 {
+      font-size: 26px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    p.desc {
+      color: #8b949e;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+    .card {
+      background: #141722;
+      border: 1px solid #252d40;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    .card h2 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 14px;
+      color: #f0f6fc;
+    }
+    .code-box {
+      background: #0d1117;
+      border: 1px solid #30363d;
+      border-radius: 10px;
+      padding: 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: #79c0ff;
+      overflow-x: auto;
+      margin-bottom: 18px;
+      line-height: 1.6;
+    }
+
+    /* KODE ASLI CSS WOLEP */
+    select.wolep-select,
+    ::picker(select) {
+      appearance: base-select;
+    }
+
+    select.wolep-select {
+      padding: 12px 18px;
+      border-radius: 10px;
+      border: 1px solid #3b82f6;
+      background: #1e293b;
+      color: #ffffff;
+      font-size: 15px;
+      cursor: pointer;
+      outline: none;
+      width: 100%;
+      max-width: 360px;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    ::picker(select) {
+      border: 1px solid #334155;
+      border-radius: 12px;
+      background-color: #0f172a;
+      padding: 6px;
+      margin-top: 6px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6);
+    }
+
+    select.wolep-select option {
+      padding: 10px 14px;
+      border-radius: 6px;
+      color: #e2e8f0;
+      cursor: pointer;
+    }
+
+    select.wolep-select option:hover {
+      background-color: #2563eb;
+      color: #ffffff;
+    }
+
+    .info-box {
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-size: 13px;
+      color: #fbbf24;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <span class="badge">OpenUI / CSS Spec Testing</span>
+      <h1>Customizable &lt;select&gt; Playground</h1>
+      <p class="desc">Uji coba langsung kode CSS Wolep: <code>appearance: base-select</code> &amp; pseudo-elemen <code>::picker(select)</code>.</p>
+    </div>
+
+    <div class="card">
+      <h2>1. Live Preview (Klik Dropdown Di Bawah)</h2>
+      <select class="wolep-select">
+        <option value="1">🔥 Arashi Multi Device</option>
+        <option value="2">👑 Miechyy Multi Device</option>
+        <option value="3">⚡ High-Performance Rust</option>
+        <option value="4">✨ Customizable Base Select</option>
+      </select>
+    </div>
+
+    <div class="card">
+      <h2>2. Source Code CSS yang Diuji</h2>
+      <pre class="code-box">/* Aktifkan mode kustomisasi penuh */
+select,
+::picker(select) {
+  appearance: base-select;
+}
+
+/* Kotak dropdown popup yang muncul */
+::picker(select) {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #ffffff;
+  padding: 4px;
+  margin-top: 4px;
+}
+
+option {
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+
+option:hover {
+  background-color: #f0f4ff;
+}</pre>
+      <div class="info-box">
+        💡 <strong>Catatan Kompatibilitas Browser:</strong><br>
+        Fitur ini adalah spesifikasi resmi terbaru OpenUI / W3C. Sudah aktif di Chromium 130+ (Chrome / Edge / Brave) atau via flag <code>chrome://flags#enable-experimental-web-platform-features</code>. Pada browser yang belum support, browser tetap menampilkan select bawaan secara graceful tanpa error.
+      </div>
+    </div>
+  </div>
+</body>
+</html>

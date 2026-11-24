@@ -86,6 +86,21 @@ async def serve_kisi_kisi():
                 return HTMLResponse(content=f.read(), status_code=200)
     raise HTTPException(status_code=404, detail="Template kisi-kisi.html tidak ditemukan")
 
+@app.api_route("/select", methods=["GET", "HEAD"], response_class=HTMLResponse)
+async def serve_select():
+    """Halaman demo CSS base-select wolep"""
+    possible_paths = [
+        os.path.join(BASE_DIR, "templates", "select.html"),
+        os.path.join(BASE_DIR, "..", "templates", "select.html"),
+        os.path.join(os.getcwd(), "templates", "select.html"),
+        "templates/select.html"
+    ]
+    for p in possible_paths:
+        if os.path.exists(p):
+            with open(p, "r", encoding="utf-8") as f:
+                return HTMLResponse(content=f.read(), status_code=200)
+    raise HTTPException(status_code=404, detail="Template select.html tidak ditemukan")
+
 @app.api_route("/", methods=["GET", "HEAD"], response_class=HTMLResponse)
 @app.api_route("/projects", methods=["GET", "HEAD"], response_class=HTMLResponse)
 @app.api_route("/playground", methods=["GET", "HEAD"], response_class=HTMLResponse)

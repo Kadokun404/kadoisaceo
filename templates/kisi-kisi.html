@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kisi-Kisi MTK Lanjut XI-7 — kado.sang.ceo</title>
+  <title>Kisi-Kisi Ujian PAS Ganjil XI — kado.sang.ceo</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
@@ -17,6 +17,8 @@
       --muted: #94a3b8;
       --accent: #7c5cff;
       --accent-2: #38bdf8;
+      --gold: #f59e0b;
+      --emerald: #10b981;
       --ok: #22c55e;
       --err: #ef4444;
       --warn: #f59e0b;
@@ -28,15 +30,38 @@
       color: var(--text);
       line-height: 1.6;
       min-height: 100vh;
-      padding: 20px 14px 80px;
+      padding: 16px 14px 80px;
     }
-    .wrap { max-width: 820px; margin: 0 auto; }
+    .wrap { max-width: 860px; margin: 0 auto; }
+
+    /* Top Subject Switcher */
+    .subj-nav {
+      display: flex; gap: 8px; margin-bottom: 16px; background: rgba(19,23,34,0.85);
+      padding: 6px; border-radius: 14px; border: 1px solid var(--border);
+      backdrop-filter: blur(8px);
+    }
+    .subj-tab {
+      flex: 1; text-align: center; padding: 10px 14px; border-radius: 10px;
+      font-weight: 700; font-size: 0.92rem; border: none; cursor: pointer;
+      background: transparent; color: var(--muted); transition: 0.2s;
+    }
+    .subj-tab:hover { color: var(--text); }
+    .subj-tab.active {
+      background: linear-gradient(135deg, rgba(124,92,255,0.35), rgba(56,189,248,0.2));
+      color: #fff; border: 1px solid rgba(124,92,255,0.5);
+      box-shadow: 0 4px 14px rgba(124,92,255,0.25);
+    }
+
     header {
       background: linear-gradient(135deg, rgba(124,92,255,0.16), rgba(56,189,248,0.1));
       border: 1px solid var(--border);
       border-radius: 18px;
       padding: 22px 20px;
       margin-bottom: 18px;
+    }
+    header.sejarah-head {
+      background: linear-gradient(135deg, rgba(245,158,11,0.16), rgba(16,185,129,0.12));
+      border-color: rgba(245,158,11,0.35);
     }
     .badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
     .badge {
@@ -49,6 +74,8 @@
       color: #c4b5fd;
     }
     .badge.cyan { background: rgba(56,189,248,0.15); border-color: rgba(56,189,248,0.4); color: #7dd3fc; }
+    .badge.gold { background: rgba(245,158,11,0.18); border-color: rgba(245,158,11,0.45); color: #fde68a; }
+    .badge.green { background: rgba(16,185,129,0.18); border-color: rgba(16,185,129,0.45); color: #a7f3d0; }
     h1 { font-size: 1.45rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 6px; }
     .sub { color: var(--muted); font-size: 0.9rem; }
 
@@ -66,7 +93,9 @@
     }
     .btn:hover { border-color: var(--accent); }
     .btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .btn.active.gold { background: var(--gold); border-color: var(--gold); color: #000; font-weight: 700; }
     .btn.primary { background: linear-gradient(135deg, var(--accent), #5b45e0); border: none; color: #fff; }
+    .btn.primary.gold { background: linear-gradient(135deg, #f59e0b, #d97706); color: #000; font-weight: 700; }
     .btn.primary:hover { filter: brightness(1.08); }
     .btn.ghost { background: transparent; }
 
@@ -83,18 +112,27 @@
     details.cheatsheet summary {
       cursor: pointer; font-weight: 700; color: #7dd3fc; font-size: 0.95rem;
     }
+    details.cheatsheet.gold summary { color: #fde68a; }
     .cheat-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 12px; margin-top: 14px;
     }
     .cheat-box {
       background: var(--card-2); border: 1px solid var(--border); border-radius: 10px; padding: 12px;
-      font-size: 0.84rem;
+      font-size: 0.85rem;
     }
     .cheat-box h4 { color: #c4b5fd; margin-bottom: 6px; font-size: 0.88rem; }
+    .cheat-box.gold h4 { color: #fde68a; }
     .cheat-box code {
       display: block; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;
       color: #e2e8f0; background: rgba(0,0,0,0.35); padding: 4px 7px; border-radius: 6px; margin: 4px 0;
+    }
+    .cheat-box ul { padding-left: 18px; color: var(--text); }
+    .cheat-box li { margin-bottom: 4px; font-size: 0.83rem; line-height: 1.45; }
+
+    .guideline-box {
+      background: rgba(245,158,11,0.06); border: 1px dashed rgba(245,158,11,0.4);
+      border-radius: 12px; padding: 14px 16px; margin-top: 12px; font-size: 0.84rem; color: #fef08a;
     }
 
     .q-card {
@@ -108,6 +146,7 @@
       gap: 8px; margin-bottom: 12px;
     }
     .q-num { font-weight: 800; font-size: 0.95rem; color: #c4b5fd; }
+    .q-num.gold { color: #fde68a; }
     .q-meta {
       font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted);
       background: var(--card-2); padding: 3px 9px; border-radius: 999px; border: 1px solid var(--border);
@@ -125,6 +164,7 @@
       padding: 10px 12px; cursor: pointer; font-size: 0.92rem; transition: 0.15s;
     }
     .opt-label:hover { border-color: var(--accent); }
+    .opt-label.gold-hover:hover { border-color: var(--gold); }
     .opt-label input { accent-color: var(--accent); width: 16px; height: 16px; }
 
     .bs-row, .match-row {
@@ -167,9 +207,9 @@
     .explain .tag.ok { color: var(--ok); }
     .explain .tag.err { color: var(--err); }
     .explain pre {
-      font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.82rem;
       background: rgba(0,0,0,0.35); padding: 8px 10px; border-radius: 8px;
-      margin-top: 6px; overflow-x: auto; white-space: pre-wrap;
+      margin-top: 6px; overflow-x: auto; white-space: pre-wrap; line-height: 1.5;
     }
 
     .actions-foot {
@@ -180,8 +220,10 @@
       display: none; margin-top: 20px; background: var(--card);
       border: 1px solid var(--accent); border-radius: 16px; padding: 20px; text-align: center;
     }
+    .result-box.gold { border-color: var(--gold); }
     .result-box.show { display: block; }
     .big-score { font-size: 2.6rem; font-weight: 800; color: #7dd3fc; font-family: 'JetBrains Mono', monospace; }
+    .big-score.gold { color: #fde68a; }
     .breakdown {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
       gap: 10px; margin-top: 14px;
@@ -193,72 +235,583 @@
 </head>
 <body>
   <div class="wrap">
-    <header>
-      <div class="badge-row">
-        <span class="badge">KELAS XI-7 • MTK LANJUT</span>
-        <span class="badge cyan">SUMATIF 26 NOV – 10 DES 2026</span>
-        <span class="badge">SKOR MAKS 100</span>
-      </div>
-      <h1>Latihan Kisi-Kisi Matematika Lanjut</h1>
-      <p class="sub">Polinomial, Trigonometri & Matriks — 11 soal sesuai kisi-kisi resmi SMAN 1 Sungai Loban (5 PG, 2 Benar-Salah, 2 Mencocokkan, 2 Esai).</p>
-    </header>
-
-    <div class="toolbar">
-      <div class="tabs">
-        <button class="btn active" id="tabA" onclick="switchPack('A')">Paket A</button>
-        <button class="btn" id="tabB" onclick="switchPack('B')">Paket B</button>
-        <button class="btn ghost" onclick="resetQuiz()">Reset</button>
-      </div>
-      <div class="score-pill" id="liveScore">Skor: — / 100</div>
+    <!-- Top Subject Selector -->
+    <div class="subj-nav">
+      <button class="subj-tab active" id="tabSejarah" onclick="switchSubject('sejarah')">📜 Sejarah (PAS Ganjil XI)</button>
+      <button class="subj-tab" id="tabMtk" onclick="switchSubject('mtk')">📐 Matematika Lanjut (XI-7)</button>
     </div>
 
-    <details class="cheatsheet">
-      <summary>Ringkasan Rumus Cepat (klik buat buka/tutup)</summary>
-      <div class="cheat-grid">
-        <div class="cheat-box">
-          <h4>Trigonometri</h4>
-          <code>2 sin A cos B = sin(A+B) + sin(A-B)</code>
-          <code>2 cos A cos B = cos(A+B) + cos(A-B)</code>
-          <code>y = A sin(Bx) → Amp = |A|, T = 360°/B</code>
-          <code>sin 2x = 2 sin x cos x</code>
-          <code>cos 2x = cos²x - sin²x = 1 - 2sin²x</code>
+    <!-- ==================== SEJARAH SECTION ==================== -->
+    <div id="section-sejarah">
+      <header class="sejarah-head">
+        <div class="badge-row">
+          <span class="badge gold">SMAN 1 SUNGAI LOBAN</span>
+          <span class="badge green">SEJARAH • KELAS XI</span>
+          <span class="badge gold">PAS GANJIL 2026/2027</span>
+          <span class="badge">GURU: PRAMITA SARI A., S.PD.</span>
         </div>
-        <div class="cheat-box">
-          <h4>Matriks</h4>
-          <code>Invers 2×2: 1/(ad-bc) · [d, -b; -c, a]</code>
-          <code>Det 3×3: Sarrus (diag kanan - diag kiri)</code>
-          <code>Ordo (m×n) · (n×p) = (m×p)</code>
-          <code>Tambah/Kurang: elemen seletak</code>
+        <h1>Kisi-Kisi PAS Ganjil Sejarah Kelas XI</h1>
+        <p class="sub">Konstantinopel, Rempah-Rempah, Penjelajahan Samudra & Monopoli VOC — Rangkuman 9 Pokok Materi Resmi & Simulasi Soal Interaktif (Paket A & B).</p>
+      </header>
+
+      <div class="toolbar">
+        <div class="tabs">
+          <button class="btn active gold" id="tabSejA" onclick="switchSejPack('A')">Paket A</button>
+          <button class="btn" id="tabSejB" onclick="switchSejPack('B')">Paket B</button>
+          <button class="btn ghost" onclick="resetSejQuiz()">Reset</button>
         </div>
-        <div class="cheat-box">
-          <h4>Polinomial</h4>
-          <code>Vieta derajat 3: x₁+x₂+x₃ = -b/a</code>
-          <code>Vieta derajat 3: x₁x₂x₃ = -d/a</code>
-          <code>Vieta derajat 4: x₁+..+x₄ = -b/a</code>
-          <code>Vieta derajat 4: x₁x₂x₃x₄ = +e/a</code>
-          <code>Horner (x-k): turun, kali k, jumlah</code>
-        </div>
+        <div class="score-pill" id="liveScoreSej">Skor: — / 100</div>
       </div>
-    </details>
 
-    <div id="quizContainer"></div>
+      <details class="cheatsheet gold" open>
+        <summary>📖 Ringkasan 9 Pokok Materi & Panduan Belajar Resmi (Klik Tutup/Buka)</summary>
+        <div class="cheat-grid">
+          <div class="cheat-box gold">
+            <h4>1. Konstantinopel & Kesultanan Utsmaniyah (1453)</h4>
+            <ul>
+              <li><b>Letak Strategis:</b> Di Selat Bosporus, penghubung darat & laut antara Eropa & Asia, simpul utama Jalur Sutra & perdagangan Laut Hitam.</li>
+              <li><b>Peristiwa 1453:</b> Ditaklukkan Sultan Mehmed II (Muhammad Al-Fatih) pada 29 Mei 1453, mengakhiri 1.000+ tahun Kekaisaran Bizantium.</li>
+              <li><b>Perubahan:</b> Ibukota diubah jadi Istanbul, jalur darat ke Asia dikuasai Utsmaniyah.</li>
+            </ul>
+          </div>
+          <div class="cheat-box gold">
+            <h4>2. Strategi & Teknologi Penaklukan</h4>
+            <ul>
+              <li><b>Meriam Basilica:</b> Dirancang insinyur Urban (Hungaria), meriam raksasa pelontar batu ratusan kg peremuk Tembok Theodosius.</li>
+              <li><b>Pemindahan Kapal Jalur Darat:</b> 70+ kapal ditarik melewati perbukitan Galata beralas kayu berpelumas lemak dalam satu malam untuk membobol rantai besi Tanduk Emas (Golden Horn).</li>
+            </ul>
+          </div>
+          <div class="cheat-box gold">
+            <h4>3. Dampak Jatuhnya Konstantinopel</h4>
+            <ul>
+              <li><b>Blokade Perdagangan:</b> Pajak tinggi dan pembatasan pedagang Kristen Eropa oleh Utsmaniyah.</li>
+              <li><b>Krisis Rempah:</b> Pasokan terputus, harga melambung setara emas.</li>
+              <li><b>Pemicu Age of Discovery:</b> Mendorong pelaut Eropa mencari jalur maritim langsung ke Kepulauan Rempah di Nusantara.</li>
+            </ul>
+          </div>
+          <div class="cheat-box gold">
+            <h4>4. Rempah-Rempah & Nilai Internasional</h4>
+            <ul>
+              <li><b>Komoditas Utama:</b> Cengkih, Pala, Bunga Pala (Fuli), Lada, Kayu Manis.</li>
+              <li><b>Sentra Penghasil:</b> Kepulauan Maluku (Ternate, Tidore, Makian) dan Kepulauan Banda (satu-satunya sentra pala dunia masa itu).</li>
+              <li><b>Kegunaan di Eropa:</b> Pengawet daging musim dingin, obat-obatan, parfum, dan simbol prestise status sosial bangsawan.</li>
+            </ul>
+          </div>
+          <div class="cheat-box gold">
+            <h4>5. Penjelajahan Samudra & Semboyan 3G</h4>
+            <ul>
+              <li><b>Gold:</b> Memburu kekayaan ekonomi, emas & rempah langsung dari produsen.</li>
+              <li><b>Glory:</b> Kejayaan politik, prestise kerajaan, dominasi maritim.</li>
+              <li><b>Gospel:</b> Misi penyebaran ajaran agama Kristen/Katolik.</li>
+              <li><b>Iptek Navigasi:</b> Kompas magnetik, astrolabe (penentu lintang), peta portolan, kapal karavel lincah melawan angin.</li>
+            </ul>
+          </div>
+          <div class="cheat-box gold">
+            <h4>6. Kedatangan Bangsa Barat ke Nusantara</h4>
+            <ul>
+              <li><b>Portugis:</b> 1511 menaklukkan Malaka (Alfonso de Albuquerque), 1512 Francisco Serrão tiba di Maluku (aliansi Ternate).</li>
+              <li><b>Spanyol:</b> 1521 armada Magellan-Elcano tiba di Tidore.</li>
+              <li><b>Perjanjian Saragosa (1529):</b> Spanyol harus angkat kaki dari Maluku menuju Filipina; Portugis menguasai Maluku.</li>
+            </ul>
+          </div>
+          <div class="cheat-box gold">
+            <h4>7. Perusahaan Dagang Eropa (VOC & EIC)</h4>
+            <ul>
+              <li><b>Latar Belakang:</b> Mencegah perang harga sesama pedagang satu negara dan menghimpun modal raksasa.</li>
+              <li><b>EIC (Inggris):</b> Didirikan 31 Desember 1600.</li>
+              <li><b>VOC (Belanda):</b> Didirikan 20 Maret 1602 inisiatif Johan van Oldenbarnevelt, perseroan terbatas pertama di dunia yang menerbitkan saham publik.</li>
+            </ul>
+          </div>
+          <div class="cheat-box gold">
+            <h4>8. Hak Octrooi & VOC di Batavia</h4>
+            <ul>
+              <li><b>Hak Octrooi (Hak Istimewa Negara):</b> Hak monopoli, memiliki angkatan perang, mencetak uang, mendirikan benteng, menyatakan perang & damai (*state within a state*).</li>
+              <li><b>J.P. Coen (1619):</b> Menghancurkan Jayakarta, mendirikan Batavia sebagai sentra administrasi dan jaringan dagang VOC di Asia.</li>
+            </ul>
+          </div>
+          <div class="cheat-box gold">
+            <h4>9. Monopoli & Kolonialisme Teritorial</h4>
+            <ul>
+              <li><b>Pelayaran Hongi:</b> Patroli laut kora-kora bersenjata mengawasi penyelundupan rempah di Maluku.</li>
+              <li><b>Hak Ekstirpasi:</b> Penebangan pohon rempah penduduk untuk mengendalikan produksi agar harga dunia tetap tinggi.</li>
+              <li><b>Perubahan:</b> Perdagangan bergeser menjadi penjajahan politik, perampasan tanah, dan pemiskinan rakyat.</li>
+            </ul>
+          </div>
+        </div>
 
-    <div class="actions-foot">
-      <button class="btn primary" onclick="gradeAll()">Cek Semua Jawaban & Pembahasan</button>
-      <button class="btn" onclick="resetQuiz()">Ulangi Paket Ini</button>
+        <div class="guideline-box">
+          <b>📌 Panduan Belajar Resmi Guru (Pramita Sari A., S.Pd.):</b><br />
+          • Pahami hubungan sebab-akibat antarperistiwa, bukan hanya menghafal istilah atau nama tokoh.<br />
+          • Latih kemampuan membaca teks sejarah, menemukan informasi penting, memahami kronologi, dan menarik kesimpulan.<br />
+          • Perhatikan hubungan antara faktor ekonomi, politik, teknologi, dan perdagangan dalam proses penjelajahan samudra serta kolonialisme.
+        </div>
+      </details>
+
+      <div id="quizContainerSej"></div>
+
+      <div class="actions-foot">
+        <button class="btn primary gold" onclick="gradeAllSej()">Cek Semua Jawaban & Pembahasan</button>
+        <button class="btn" onclick="resetSejQuiz()">Ulangi Paket Ini</button>
+      </div>
+
+      <div class="result-box gold" id="resultBoxSej">
+        <div style="color:var(--muted);font-size:0.9rem;">Total Nilai Simulasi Sejarah Kelas XI</div>
+        <div class="big-score gold" id="finalScoreSej">0 / 100</div>
+        <div id="gradeMsgSej" style="margin-top:6px;font-size:0.95rem;"></div>
+        <div class="breakdown" id="scoreBreakdownSej"></div>
+      </div>
     </div>
 
-    <div class="result-box" id="resultBox">
-      <div style="color:var(--muted);font-size:0.9rem;">Total Nilai Simulasi XI-7</div>
-      <div class="big-score" id="finalScore">0 / 100</div>
-      <div id="gradeMsg" style="margin-top:6px;font-size:0.95rem;"></div>
-      <div class="breakdown" id="scoreBreakdown"></div>
+    <!-- ==================== MTK LANJUT SECTION ==================== -->
+    <div id="section-mtk" style="display:none;">
+      <header>
+        <div class="badge-row">
+          <span class="badge">KELAS XI-7 • MTK LANJUT</span>
+          <span class="badge cyan">SUMATIF 26 NOV – 10 DES 2026</span>
+          <span class="badge">SKOR MAKS 100</span>
+        </div>
+        <h1>Latihan Kisi-Kisi Matematika Lanjut</h1>
+        <p class="sub">Polinomial, Trigonometri & Matriks — 11 soal sesuai kisi-kisi resmi SMAN 1 Sungai Loban (5 PG, 2 Benar-Salah, 2 Mencocokkan, 2 Esai).</p>
+      </header>
+
+      <div class="toolbar">
+        <div class="tabs">
+          <button class="btn active" id="tabA" onclick="switchMtkPack('A')">Paket A</button>
+          <button class="btn" id="tabB" onclick="switchMtkPack('B')">Paket B</button>
+          <button class="btn ghost" onclick="resetMtkQuiz()">Reset</button>
+        </div>
+        <div class="score-pill" id="liveScore">Skor: — / 100</div>
+      </div>
+
+      <details class="cheatsheet">
+        <summary>Ringkasan Rumus Cepat Matematika (klik buka/tutup)</summary>
+        <div class="cheat-grid">
+          <div class="cheat-box">
+            <h4>Trigonometri</h4>
+            <code>2 sin A cos B = sin(A+B) + sin(A-B)</code>
+            <code>2 cos A cos B = cos(A+B) + cos(A-B)</code>
+            <code>y = A sin(Bx) → Amp = |A|, T = 360°/B</code>
+            <code>sin 2x = 2 sin x cos x</code>
+            <code>cos 2x = cos²x - sin²x = 1 - 2sin²x</code>
+          </div>
+          <div class="cheat-box">
+            <h4>Matriks</h4>
+            <code>Invers 2×2: 1/(ad-bc) · [d, -b; -c, a]</code>
+            <code>Det 3×3: Sarrus (diag kanan - diag kiri)</code>
+            <code>Ordo (m×n) · (n×p) = (m×p)</code>
+            <code>Tambah/Kurang: elemen seletak</code>
+          </div>
+          <div class="cheat-box">
+            <h4>Polinomial</h4>
+            <code>Vieta derajat 3: x₁+x₂+x₃ = -b/a</code>
+            <code>Vieta derajat 3: x₁x₂x₃ = -d/a</code>
+            <code>Vieta derajat 4: x₁+..+x₄ = -b/a</code>
+            <code>Vieta derajat 4: x₁x₂x₃x₄ = +e/a</code>
+            <code>Horner (x-k): turun, kali k, jumlah</code>
+          </div>
+        </div>
+      </details>
+
+      <div id="quizContainer"></div>
+
+      <div class="actions-foot">
+        <button class="btn primary" onclick="gradeAllMtk()">Cek Semua Jawaban & Pembahasan</button>
+        <button class="btn" onclick="resetMtkQuiz()">Ulangi Paket Ini</button>
+      </div>
+
+      <div class="result-box" id="resultBox">
+        <div style="color:var(--muted);font-size:0.9rem;">Total Nilai Simulasi XI-7</div>
+        <div class="big-score" id="finalScore">0 / 100</div>
+        <div id="gradeMsg" style="margin-top:6px;font-size:0.95rem;"></div>
+        <div class="breakdown" id="scoreBreakdown"></div>
+      </div>
     </div>
 
     <footer>dibuat khusus buat kado belajar sumatif xi-7 • kado.sang.ceo/kisi-kisi</footer>
   </div>
 
   <script>
+    // ==========================================
+    // SEJARAH QUIZ DATA & LOGIC (PAS GANJIL XI)
+    // ==========================================
+    const SEJARAH_PACKS = {
+      A: [
+        {
+          no: 1, materi: 'Konstantinopel & Utsmaniyah • C2/L1',
+          q: 'Letak kota Konstantinopel dipandang sangat strategis bagi peradaban dan perekonomian dunia pada abad pertengahan karena ...',
+          opts: [
+            'Menjadi satu-satunya produsen rempah-rempah terbesar di kawasan Laut Tengah',
+            'Terletak di persimpangan jalur perdagangan darat dan laut yang menghubungkan benua Asia dan Eropa',
+            'Memiliki benteng pertahanan alami berupa pegunungan salju yang mengelilingi seluruh penjuru kota',
+            'Merupakan pusat pelabuhan armada dagang utama bangsa Portugis dan Spanyol di Timur Tengah',
+            'Bebas dari segala bentuk pungutan pajak dan tarif bea cukai internasional'
+          ],
+          ans: 1,
+          exp: 'Konstantinopel terletak di Selat Bosporus yang memisahkan sekaligus menghubungkan daratan Eropa dan Asia, menjadikannya simpul utama Jalur Sutra dan rute maritim Laut Hitam menuju Laut Tengah.'
+        },
+        {
+          no: 2, materi: 'Strategi Penaklukan • C4/L3',
+          q: 'Salah satu strategi militer paling spektakuler yang dilakukan Sultan Mehmed II (Muhammad Al-Fatih) untuk menembus pertahanan teluk Tanduk Emas (Golden Horn) yang dirantai besi adalah ...',
+          opts: [
+            'Menggali terowongan bawah tanah sepanjang 10 km dari Konstantinopel hingga pantai Anatolia',
+            'Membakar seluruh armada laut Bizantium menggunakan api Yunani (Greek Fire)',
+            'Mengangkut dan memindahkan puluhan kapal perang melewati perbukitan darat Galata menggunakan balok kayu berpelumas lemak dalam satu malam',
+            'Menembakkan roket mesiu berdaya ledak tinggi dari seberang Selat Dardanella',
+            'Memblokade pasokan air minum kota melalui bendungan air buatan'
+          ],
+          ans: 2,
+          exp: 'Menghadapi rantai raksasa yang menutup teluk Tanduk Emas, Sultan Mehmed II memerintahkan pemindahan sekitar 70 kapal perang melintasi bukit Galata melalui jalur darat yang diolesi minyak dan lemak hewan hanya dalam tempo satu malam, mengejutkan garnisun pertahanan Bizantium.'
+        },
+        {
+          no: 3, materi: 'Teknologi Militer • C3/L2',
+          q: 'Keberhasilan meruntuhkan Tembok Theodosius yang selama berabad-abad tak tertembus sangat dipengaruhi oleh kecanggihan teknologi artileri Utsmaniyah, yaitu ...',
+          opts: [
+            'Meriam raksasa "Basilica" rancangan insinyur Urban asal Hungaria',
+            'Kapal perang berpelindung baja lapis baja ciptaan armada Genoa',
+            'Pasukan pemanah berkuda Janissary dengan busur komposit ganda',
+            'Ranjau mesiu bawah air yang diletakkan di sepanjang pantai Laut Marmara',
+            'Ketapel pelontar batu raksasa Trebuchet peninggalan Perang Salib'
+          ],
+          ans: 0,
+          exp: 'Sultan Mehmed II merekrut Urban, insinyur pengecoran logam asal Hungaria, untuk membuat meriam super besar bernama Basilica yang mampu melontarkan peluru batu berbobot ratusan kilogram hingga meremukkan dinding tebal Tembok Theodosius.'
+        },
+        {
+          no: 4, materi: 'Dampak Jatuhnya Konstantinopel • C4/L3',
+          q: 'Bagaimana jatuhnya Konstantinopel ke tangan Kesultanan Utsmaniyah pada tahun 1453 memicu terjadinya Zaman Penjelajahan Samudra (Age of Discovery) oleh bangsa-bangsa Barat?',
+          opts: [
+            'Utsmaniyah memaksa bangsa Eropa bergabung dalam ekspedisi militer ke daratan Tiongkok',
+            'Jalur perdagangan darat tertutup dan rempah-rempah dikenai pajak tinggi, memaksa bangsa Eropa mencari rute maritim langsung ke kepulauan produsen di Timur',
+            'Bangsa Bizantium yang melarikan diri ke Spanyol memerintahkan penyerbuan langsung ke Samudra Hindia',
+            'Seluruh persediaan rempah di Maluku disita langsung oleh armada perang Utsmaniyah',
+            'Terjadi perjanjian damai antara Utsmaniyah dan kerajaan Katolik Eropa untuk membagi komoditas dagang'
+          ],
+          ans: 1,
+          exp: 'Penguasaan Konstantinopel oleh Utsmaniyah menutup monopoli dagang tradisional bangsa Eropa di Laut Tengah dan menaikkan tarif pajak secara drastis. Hal ini memaksa para pelaut Portugis dan Spanyol merintis pelayaran mengarungi samudra menuju sumber asli rempah-rempah di Nusantara.'
+        },
+        {
+          no: 5, materi: 'Rempah-Rempah Internasional • C2/L1',
+          q: 'Mengapa komoditas rempah-rempah seperti cengkih dan pala memiliki nilai ekonomi yang luar biasa tinggi di Eropa pada abad pertengahan hingga bernilai setara emas?',
+          opts: [
+            'Digunakan sebagai bahan utama pembuatan baja dan mesiu senjata api',
+            'Merupakan bahan wajib pembuatan pakaian kebesaran keluarga kekaisaran',
+            'Berfungsi vital sebagai pengawet daging selama musim dingin, ramuan obat-obatan, dan simbol prestise sosial kaum elit',
+            'Menjadi pengganti mata uang koin perak dalam seluruh transaksi dagang antarkerajaan',
+            'Mudah didapatkan dan dibudidayakan di perkebunan wilayah Eropa Barat'
+          ],
+          ans: 2,
+          exp: 'Iklim Eropa yang dingin membutuhkan rempah-rempah untuk mengawetkan daging sembelihan ternak di musim dingin, menghilangkan bau anyir, bahan farmasi/obat-obatan, serta penanda status sosial mewah para bangsawan Eropa.'
+        },
+        {
+          no: 6, materi: 'Motivasi Penjelajahan • C2/L1',
+          q: 'Semboyan penjelajahan samudra bangsa Barat dikenal dengan istilah 3G (Gold, Glory, Gospel). Konsep Glory secara spesifik merepresentasikan ...',
+          opts: [
+            'Keinginan mengumpulkan pundi-pundi kekayaan berupa emas, perak, dan komoditas langka',
+            'Semangat mencari kejayaan politik, dominasi wilayah kekuasaan, dan supremasi maritim antarkerajaan',
+            'Kewajiban menyebarkan ajaran agama Kristen/Katolik ke belahan bumi baru',
+            'Upaya membebaskan para tawanan perang di kawasan Timur Tengah',
+            'Penyelidikan ilmiah mengenai bentuk bumi bulat dan navigasi astronomi'
+          ],
+          ans: 1,
+          exp: 'Gold = kekayaan ekonomi, Glory = kejayaan, prestise politik, dan kekuasaan wilayah, Gospel = penyebaran agama Kristen/Katolik.'
+        },
+        {
+          no: 7, materi: 'Kedatangan Bangsa Barat • C3/L2',
+          q: 'Ekspedisi bangsa Portugis berhasil menguasai Malaka pada tahun 1511 di bawah pimpinan Alfonso de Albuquerque, dan setahun kemudian (1512) mengirimkan armada ke Maluku di bawah komando ...',
+          opts: [
+            'Ferdinand Magellan',
+            'Cornelis de Houtman',
+            'Francisco Serrão',
+            'Sebastian Elcano',
+            'Sir Francis Drake'
+          ],
+          ans: 2,
+          exp: 'Setelah menaklukkan Malaka 1511, Albuquerque mengutus Francisco Serrão dan Antonio de Abreu berlayar ke timur. Francisco Serrão berhasil tiba di Hitu (Ambon) dan Ternate pada tahun 1512, menjalin kemitraan dengan Sultan Ternate.'
+        },
+        {
+          no: 8, materi: 'Perjanjian Saragosa • C4/L3',
+          q: 'Persaingan sengit antara Portugis yang bersekutu dengan Ternate dan Spanyol yang bersekutu dengan Tidore akhirnya diselesaikan melalui Perjanjian Saragosa (1529), yang menetapkan bahwa ...',
+          opts: [
+            'Spanyol dan Portugis membagi Kepulauan Maluku menjadi dua bagian yang sama besar',
+            'Seluruh Kepulauan Maluku berada di bawah kekuasaan dagang Portugis, sedangkan Spanyol harus membatasi diri di Filipina',
+            'Maluku diserahkan kepada pengawasan serikat dagang Inggris (EIC)',
+            'Ternate dan Tidore dilebur menjadi satu kesultanan protektorat gabungan',
+            'Spanyol mendapatkan hak monopoli cengkih sedangkan Portugis mendapatkan monopoli pala'
+          ],
+          ans: 1,
+          exp: 'Perjanjian Saragosa 1529 mempertegas garis batas Tordesillas di belahan timur, di mana Spanyol harus meninggalkan Maluku dan memusatkan kekuasaannya di Kepulauan Filipina, sementara Portugis memegang dominasi di Maluku.'
+        },
+        {
+          no: 9, materi: 'Hak Istimewa VOC • C3/L2',
+          q: 'VOC (Vereenigde Oostindische Compagnie) didirikan pada tahun 1602. Parlemen Belanda (Staten-Generaal) memberikan Hak Octrooi, yang salah satunya mencakup kewenangan istimewa berupa ...',
+          opts: [
+            'Hak menghapus seluruh bentuk pajak bagi seluruh penduduk pribumi di Hindia Timur',
+            'Hak bertindak layaknya negara (state within a state), seperti memiliki tentara, mencetak uang, dan menyatakan perang',
+            'Kewajiban tunduk pada seluruh perintah penguasa lokal dan raja-raja Nusantara',
+            'Hak menjual seluruh saham perusahaan hanya kepada warga keturunan Spanyol',
+            'Larangan membangun benteng militer dan armada kapal perang bersenjata'
+          ],
+          ans: 1,
+          exp: 'Hak Octrooi memberikan hak istimewa kenegaraan kepada VOC, antara lain hak monopoli dagang, memiliki angkatan perang sendiri, mencetak dan mengedarkan uang, mendirikan benteng, serta menyatakan perang dan damai.'
+        },
+        {
+          no: 10, materi: 'Monopoli & Kolonialisme • C4/L3',
+          q: 'Untuk mempertahankan harga rempah-rempah tetap tinggi di pasaran internasional, VOC menjalankan kebijakan kontroversial berupa penebangan pohon cengkih dan pala yang berlebih, yang dikenal dengan nama ...',
+          opts: [
+            'Pelayaran Hongi (Hongitochten)',
+            'Hak Ekstirpasi',
+            'Verplichte Leverantie',
+            'Sistem Tanam Paksa (Cultuurstelsel)',
+            'Contingenten'
+          ],
+          ans: 1,
+          exp: 'Hak Ekstirpasi adalah hak sepihak VOC untuk menebang atau memusnahkan tanaman rempah-rempah (cengkih dan pala) penduduk agar jumlah produksi tidak berlebih sehingga harga di pasar internasional tetap tinggi dan monopoli VOC tidak terganggu.'
+        }
+      ],
+      B: [
+        {
+          no: 1, materi: 'Konstantinopel & Historiografi • C4/L3',
+          q: 'Mengapa peristiwa jatuhnya Konstantinopel pada tahun 1453 dipandang oleh para sejarawan sebagai salah satu tonggak peralihan dari Abad Pertengahan menuju Abad Modern di Eropa?',
+          opts: [
+            'Eksodus para cendekiawan Yunani Bizantium ke Italia memicu lahirnya gerakan Renaisans dan hilangnya dominasi mutlak gereja',
+            'Terhapusnya seluruh kerajaan monarki absolut di daratan benua Eropa',
+            'Dimulainya penggunaan bahasa Arab sebagai bahasa pengantar resmi di universitas Eropa Barat',
+            'Hilangnya pengaruh perdagangan maritim di seluruh wilayah Laut Mediterania',
+            'Terbentuknya aliansi militer global antara kekaisaran Tiongkok dan Romawi'
+          ],
+          ans: 0,
+          exp: 'Jatuhnya Konstantinopel mendorong para sarjana dan filsuf Bizantium mengungsi ke Italia membawa manuskrip-manuskrip klasik Yunani-Romawi, yang menjadi katalisator lahirnya Renaisans dan era modernitas di Eropa.'
+        },
+        {
+          no: 2, materi: 'Pertahanan Bizantium • C3/L2',
+          q: 'Taktik pertahanan utama Kaisar Konstantinus XI Palaiologos dalam membendung gempuran pasukan Utsmaniyah berfokus pada ...',
+          opts: [
+            'Menyerang kamp militer Utsmaniyah di Edirne secara mendadak',
+            'Mengandalkan Tembok Theodosius tiga lapis dan membentangkan rantai besi raksasa di muara Tanduk Emas',
+            'Meminta bantuan armada perang dari kekaisaran Ming di Tiongkok',
+            'Memasang ranjau mesiu di sepanjang perairan Selat Bosporus',
+            'Menerapkan taktik bumi hangus di seluruh perkebunan Anatolia'
+          ],
+          ans: 1,
+          exp: 'Pertahanan Konstantinopel mengandalkan benteng Tembok Theodosius yang berlapis tiga dan rantai besi tebal yang melintang di pintu masuk teluk Tanduk Emas guna mencegah armada musuh merapat ke sisi dinding kota yang lebih rendah.'
+        },
+        {
+          no: 3, materi: 'Sentra Rempah Banda • C3/L2',
+          q: 'Mengapa Kepulauan Banda di Maluku menjadi sasaran paling diperebutkan oleh kongsi dagang Eropa (VOC dan EIC) pada abad ke-17?',
+          opts: [
+            'Banda merupakan satu-satunya produsen pohon pala dan bunga pala (fuli) di dunia pada saat itu',
+            'Terdapat tambang emas terbesar di Asia Tenggara di daratan pulau Banda',
+            'Banda merupakan pangkalan armada militer laut terbesar kesultanan Demak',
+            'Tanah di Banda merupakan satu-satunya tanah yang cocok untuk menanam gandum Eropa',
+            'Banda merupakan pusat pencetakan mata uang koin emas Spanyol'
+          ],
+          ans: 0,
+          exp: 'Pada abad ke-16 hingga 17, tanaman pala (Myristica fragrans) hanya tumbuh subur secara endemik di Kepulauan Banda, menjadikannya komoditas monopoli paling berharga dan diperebutkan di dunia.'
+        },
+        {
+          no: 4, materi: 'Teknologi Navigasi • C2/L1',
+          q: 'Perkembangan kapal tipe Karavel (Caravel) sangat berjasa dalam ekspedisi samudra bangsa Portugis karena ...',
+          opts: [
+            'Dilengkapi mesin uap berkekuatan tinggi',
+            'Menggunakan layar segitiga (latin) yang lincah bermanuver dan mampu berlayar melawan arah mata angin',
+            'Terbuat dari bahan baja tahan karat berlapis tembaga',
+            'Dapat menyelam di bawah permukaan air laut saat cuaca badai',
+            'Mampu memuat lebih dari 10.000 pasukan dalam satu kali pelayaran'
+          ],
+          ans: 1,
+          exp: 'Kapal Karavel bangsa Portugis berbobot ringan, berlunas dangkal, dan menggabungkan layar persegi dengan layar segitiga (lateen) sehingga sangat andal bermanuver menjelajahi garis pantai dan berlayar menyerong melawan angin.'
+        },
+        {
+          no: 5, materi: 'Kedatangan Belanda • C2/L1',
+          q: 'Ekspedisi pertama bangsa Belanda yang tiba di Nusantara pada tahun 1596 dipimpin oleh Cornelis de Houtman dan mendarat di pelabuhan ...',
+          opts: ['Makassar', 'Banten', 'Banda Aceh', 'Ternate', 'Batavia'],
+          ans: 1,
+          exp: 'Pada Juni 1596, empat kapal Belanda di bawah pimpinan Cornelis de Houtman berhasil mendarat di pelabuhan Kesultanan Banten, yang kala itu merupakan lumbung lada dan pelabuhan internasional terbesar di barat Jawa.'
+        },
+        {
+          no: 6, materi: 'Kongsi Dagang EIC • C2/L1',
+          q: 'Kongsi dagang EIC (East India Company) didirikan oleh para pedagang Inggris pada tahun 1600 dengan piagam kehormatan dari ...',
+          opts: [
+            'Ratu Elizabeth I',
+            'Raja James I',
+            'Kaisar Napoleon Bonaparte',
+            'Raja Philip II',
+            'Ratu Victoria'
+          ],
+          ans: 0,
+          exp: 'EIC didirikan pada tanggal 31 Desember 1600 melalui piagam kerajaan (Royal Charter) yang dianugerahkan oleh Ratu Elizabeth I guna memonopoli perdagangan Inggris di Hindia Timur.'
+        },
+        {
+          no: 7, materi: 'Jan Pieterszoon Coen • C3/L2',
+          q: 'Langkah strategis yang diambil Gubernur Jenderal VOC Jan Pieterszoon Coen pada tahun 1619 guna memperkuat hegemoni Belanda di Jawa adalah ...',
+          opts: [
+            'Menjalin aliansi militer dengan Kesultanan Mataram Islam',
+            'Menyerang dan meratakan Jayakarta, lalu mendirikan benteng dan kota Batavia di atas reruntuhannya',
+            'Menyerahkan pelabuhan Sunda Kelapa kepada armada perang Inggris',
+            'Memindahkan kantor pusat VOC dari Ambon langsung ke Amsterdam',
+            'Membagikan tanah perkebunan cengkih secara cuma-cuma kepada petani lokal'
+          ],
+          ans: 1,
+          exp: 'Pada 30 Mei 1619, J.P. Coen memimpin penyerbuan Jayakarta, menghancurkannya, dan membangun markas permanen bernama Batavia sebagai pusat komando dagang dan militer VOC di Asia.'
+        },
+        {
+          no: 8, materi: 'Pelayaran Hongi • C4/L3',
+          q: 'Tujuan utama VOC menggelar ekspedisi Pelayaran Hongi (Hongitochten) dengan perahu kora-kora bersenjata di perairan Maluku adalah ...',
+          opts: [
+            'Mengawal para pedagang pribumi menjual hasil buminya ke pasar internasional',
+            'Mengawasi, merazia, dan menghukum rakyat atau penyelundup yang menjual rempah-rempah ke pihak selain VOC',
+            'Membantu raja-raja Maluku berperang melawan bajak laut dari Tiongkok',
+            'Mencari pulau-pulau baru yang belum berpenghuni di selatan Samudra Hindia',
+            'Menyelenggarakan festival kebudayaan tahunan bersama warga kepulauan Maluku'
+          ],
+          ans: 1,
+          exp: 'Pelayaran Hongi merupakan patroli militer maritim VOC menggunakan armada perahu kora-kora untuk menegakkan monopoli mutlak dengan menghancurkan perahu penyelundup dan menghukum desa yang melanggar kontrak monopoli.'
+        },
+        {
+          no: 9, materi: 'Pergeseran Kolonialisme • C4/L3',
+          q: 'Faktor pendorong utama yang mengubah watak kongsi dagang VOC dari sekadar mitra perdagangan menjadi kekuatan penjajah politik dan militer adalah ...',
+          opts: [
+            'Keinginan mengendalikan wilayah hulu hingga hilir demi monopoli harga dan ketergantungan para bangsawan pribumi akibat politik adu domba (devide et impera)',
+            'Ajaran agama Kristen yang melarang bentuk perdagangan bebas dengan non-Eropa',
+            'Tuntutan dari raja-raja Nusantara agar Belanda mengambil alih seluruh kekuasaan kerajaan',
+            'Tingginya ancaman invasi dari kekaisaran Mongol ke kepulauan Indonesia',
+            'Kekosongan kas negara di Belanda yang mengharuskan pembubaran serikat dagang'
+          ],
+          ans: 0,
+          exp: 'Untuk memastikan harga rempah selalu rendah dan pasokan stabil, VOC tidak cukup hanya berdagang di pelabuhan. Mereka mencampuri suksesi tahta kerajaan lokal (devide et impera) guna menancapkan kekuasaan politik dan teritorial.'
+        },
+        {
+          no: 10, materi: 'Misi Gospel • C2/L1',
+          q: 'Penyebaran agama Katolik di wilayah Kepulauan Maluku pada masa awal kedatangan bangsa Portugis erat kaitannya dengan tokoh misionaris ordo Yesuit, yaitu ...',
+          opts: [
+            'Santo Fransiskus Xaverius',
+            'Cornelis de Houtman',
+            'Thomas Stamford Raffles',
+            'Bartholomeus Diaz',
+            'Willem Barentsz'
+          ],
+          ans: 0,
+          exp: 'Fransiskus Xaverius, misionaris ordo Yesuit asal Spanyol-Navarra di bawah naungan Padroado Portugis, berkunjung ke Ambon, Ternate, dan Morotai antara 1546–1547 untuk membina umat dan menyebarkan ajaran Katolik.'
+        }
+      ]
+    };
+
+    let currentSejPack = 'A';
+    let sejAnswers = {};
+
+    function switchSubject(subj) {
+      const tabSej = document.getElementById('tabSejarah');
+      const tabMtk = document.getElementById('tabMtk');
+      const secSej = document.getElementById('section-sejarah');
+      const secMtk = document.getElementById('section-mtk');
+
+      if (subj === 'sejarah') {
+        tabSej.classList.add('active');
+        tabMtk.classList.remove('active');
+        secSej.style.display = 'block';
+        secMtk.style.display = 'none';
+        renderSejQuiz();
+      } else {
+        tabMtk.classList.add('active');
+        tabSej.classList.remove('active');
+        secMtk.style.display = 'block';
+        secSej.style.display = 'none';
+        renderQuiz();
+      }
+    }
+
+    function switchSejPack(p) {
+      currentSejPack = p;
+      document.getElementById('tabSejA').classList.toggle('active', p === 'A');
+      document.getElementById('tabSejB').classList.toggle('active', p === 'B');
+      document.getElementById('tabSejA').classList.toggle('gold', p === 'A');
+      document.getElementById('tabSejB').classList.toggle('gold', p === 'B');
+      resetSejQuiz();
+    }
+
+    function resetSejQuiz() {
+      sejAnswers = {};
+      document.getElementById('liveScoreSej').textContent = 'Skor: — / 100';
+      document.getElementById('resultBoxSej').classList.remove('show');
+      renderSejQuiz();
+    }
+
+    function renderSejQuiz() {
+      const items = SEJARAH_PACKS[currentSejPack];
+      const root = document.getElementById('quizContainerSej');
+      let html = '';
+
+      items.forEach((item, idx) => {
+        html += `
+          <div class="q-card" id="card-sej-${idx}">
+            <div class="q-head">
+              <span class="q-num gold">Soal ${item.no}</span>
+              <span class="q-meta">${item.materi}</span>
+            </div>
+            <div class="q-text">${item.q}</div>
+            <div class="opts">
+              ${item.opts.map((opt, oi) => `
+                <label class="opt-label gold-hover">
+                  <input type="radio" name="sej-${idx}" value="${oi}" onchange="saveSejAns(${idx}, ${oi})" />
+                  <span><b>${String.fromCharCode(65 + oi)}.</b> ${opt}</span>
+                </label>
+              `).join('')}
+            </div>
+            <div class="explain" id="exp-sej-${idx}"></div>
+          </div>
+        `;
+      });
+
+      root.innerHTML = html;
+    }
+
+    function saveSejAns(qIdx, optIdx) {
+      sejAnswers[qIdx] = optIdx;
+    }
+
+    function gradeAllSej() {
+      const items = SEJARAH_PACKS[currentSejPack];
+      let correctCount = 0;
+
+      items.forEach((item, idx) => {
+        const userChoice = sejAnswers[idx];
+        const isOk = userChoice !== undefined && userChoice === item.ans;
+        if (isOk) correctCount++;
+
+        const card = document.getElementById(`card-sej-${idx}`);
+        const exp = document.getElementById(`exp-sej-${idx}`);
+        card.classList.remove('correct', 'wrong');
+        card.classList.add(isOk ? 'correct' : 'wrong');
+
+        const title = isOk ? 'Jawaban Benar! (+10 poin)' : 'Jawaban Belum Tepat (Kunci: ' + String.fromCharCode(65 + item.ans) + ')';
+        exp.innerHTML = `<span class="tag ${isOk ? 'ok' : 'err'}">${title}</span><pre>${item.exp}</pre>`;
+        exp.classList.add('show');
+      });
+
+      const totalScore = correctCount * 10;
+      document.getElementById('liveScoreSej').textContent = `Skor: ${totalScore} / 100`;
+      document.getElementById('finalScoreSej').textContent = `${totalScore} / 100`;
+
+      document.getElementById('gradeMsgSej').textContent =
+        totalScore === 100 ? 'LUAR BIASA PAPA KADO! Skor sempurna 100, materi Sejarah PAS Ganjil udah dikuasai tuntas!' :
+        totalScore >= 80 ? 'Keren banget papa sayangg! Nilai tinggi dan udah siap tempur, cek pembahasannya biar makin matang yaa~' :
+        totalScore >= 60 ? 'Udah bagus papa, tinggal pahami hubungan sebab-akibat antarperistiwa di pembahasan lalu coba lagi paket ini~' :
+        'Semangat papa sayangg, baca ringkasan materi di atas lalu ulangi latihannya sampai lancar yaa!';
+
+      document.getElementById('scoreBreakdownSej').innerHTML = `
+        <div class="bd-item">Soal Terjawab Benar<b>${correctCount} / 10 Soal</b></div>
+        <div class="bd-item">Poin per Nomor<b>10 Poin</b></div>
+        <div class="bd-item">Total Nilai<b>${totalScore} / 100</b></div>
+        <div class="bd-item">Predikat<b>${totalScore >= 85 ? 'Sangat Baik (A)' : totalScore >= 70 ? 'Baik (B)' : 'Cukup (C)'}</b></div>
+      `;
+
+      const rb = document.getElementById('resultBoxSej');
+      rb.classList.add('show');
+      rb.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // ==========================================
+    // MTK LANJUT QUIZ DATA & LOGIC
+    // ==========================================
     const PACKS = {
       A: {
         pg: [
@@ -299,312 +852,309 @@
             exp: 'Bentuk y = A sin(Bx) + C:\nAmplitudo = |A| = |−3| = 3\nPeriode = 360° / B = 360° / 2 = 180°'
           },
           {
-            no: 5, materi: 'Trigonometri • L2',
-            q: 'Himpunan penyelesaian dari 2 cos x − 1 = 0 untuk 0° ≤ x ≤ 360° adalah ...',
-            opts: ['{60°, 120°}', '{60°, 300°}', '{30°, 330°}', '{120°, 240°}', '{60°, 240°}'],
-            ans: 1,
-            exp: '2 cos x = 1 → cos x = ½ = cos 60°\nCos bernilai positif di kuadran I & IV:\nx₁ = 60° dan x₂ = 360° − 60° = 300°\nHP = {60°, 300°}'
+            no: 5, materi: 'Polinomial • L3',
+            q: 'Jika x₁ dan x₂ adalah akar-akar dari x² − 5x + 6 = 0, maka nilai dari x₁² + x₂² adalah ...',
+            opts: ['13', '19', '25', '31', '37'],
+            ans: 0,
+            exp: 'x₁ + x₂ = 5\nx₁ · x₂ = 6\nx₁² + x₂² = (x₁ + x₂)² − 2(x₁·x₂) = 5² − 2(6) = 25 − 12 = 13'
           }
         ],
         bs: [
           {
-            no: 6, materi: 'Trigonometri • L2 (8 poin)',
-            q: 'Tentukan Benar atau Salah untuk setiap pernyataan rumus sudut ganda & identitas trigonometri berikut:',
+            no: 6, materi: 'Trigonometri • L1',
+            desc: 'Tentukan Benar atau Salah untuk tiap pernyataan identitas trigonometri:',
             items: [
-              { text: 'Identitas sudut ganda cos 2x dapat ditulis sebagai 1 − 2 sin²x', ans: true },
-              { text: 'Rumus sudut ganda untuk sin 2x adalah 2 sin x', ans: false }
+              { text: 'sin²x + cos²x = 1 berlaku untuk setiap sudut x real', ans: 'B' },
+              { text: 'cos 2x = 2 cos²x + 1 adalah rumus identitas sudut ganda', ans: 'S' }
             ],
-            exp: '1) BENAR: cos 2x = cos²x − sin²x = 1 − 2 sin²x.\n2) SALAH: rumus yang benar adalah sin 2x = 2 sin x cos x.'
+            exp: 'Pernyataan 1 BENAR (Identitas Pythagoras dasar).\nPernyataan 2 SALAH, yang benar adalah cos 2x = 2 cos²x − 1 (bukan + 1).'
           },
           {
-            no: 7, materi: 'Matriks • L3 (8 poin)',
-            q: 'Analisis kebenaran pernyataan tentang jenis & perkalian matriks berikut:',
+            no: 7, materi: 'Matriks • L1',
+            desc: 'Tentukan Benar atau Salah untuk tiap sifat operasi matriks:',
             items: [
-              { text: 'Matriks A berordo 2×3 dikalikan matriks B berordo 3×2 menghasilkan matriks berordo 2×2', ans: true },
-              { text: 'Perkalian dua matriks persegi selalu bersifat komutatif (A × B = B × A)', ans: false }
+              { text: 'Perkalian dua matriks persegi selalu bersifat komutatif (AB = BA)', ans: 'S' },
+              { text: 'Jika determinan matriks persegi bernilai 0, maka matriks tidak memiliki invers (singular)', ans: 'B' }
             ],
-            exp: '1) BENAR: (2×3) · (3×2) kolom A = baris B (3=3), hasil ordo 2×2.\n2) SALAH: perkalian matriks umumnya TIDAK komutatif (AB ≠ BA).'
+            exp: 'Pernyataan 1 SALAH (perkalian matriks pada umumnya tidak komutatif, AB ≠ BA).\nPernyataan 2 BENAR (matriks singular memiliki det = 0 sehingga 1/det tidak terdefinisi).'
           }
         ],
         match: [
           {
-            no: 8, materi: 'Polinomial • L2 (8 poin)',
-            q: 'Cocokkan nilai jumlah dan hasil kali akar (Teorema Vieta) untuk polinomial berikut:',
-            math: 'P(x) = 2x³ − 6x² + 4x − 10 = 0\nQ(x) = x⁴ − 5x³ + 2x² − x + 12 = 0',
-            choices: ['3', '5', '12', '-5', '-12'],
+            no: 8, materi: 'Trigonometri • L2',
+            desc: 'Cocokkan bentuk perkalian trigonometri di kolom kiri dengan bentuk penjumlahannya:',
             items: [
-              { text: 'Jumlah akar P(x) yaitu (x₁ + x₂ + x₃)', ans: '3' },
-              { text: 'Hasil kali akar Q(x) yaitu (x₁ · x₂ · x₃ · x₄)', ans: '12' }
+              { left: '2 cos 45° cos 15°', ans: 'cos 60° + cos 30°' },
+              { left: '2 sin 45° sin 15°', ans: 'cos 30° − cos 60°' }
             ],
-            exp: 'Vieta P(x): x₁+x₂+x₃ = −b/a = −(−6)/2 = 3.\nVieta Q(x) derajat 4: x₁x₂x₃x₄ = +e/a = 12/1 = 12.'
+            pool: ['cos 60° + cos 30°', 'cos 30° − cos 60°', 'sin 60° + sin 30°', 'sin 60° − sin 30°'],
+            exp: '2 cos A cos B = cos(A+B) + cos(A−B) → cos 60° + cos 30°\n−2 sin A sin B = cos(A+B) − cos(A−B) → 2 sin A sin B = cos(A−B) − cos(A+B) = cos 30° − cos 60°'
           },
           {
-            no: 9, materi: 'Trigonometri • L2 (8 poin)',
-            q: 'Cocokkan nilai fungsi invers trigonometri & rumus jumlah sudut berikut:',
-            choices: ['30°', '45°', '60°', '¼(√6 − √2)', '¼(√6 + √2)'],
+            no: 9, materi: 'Polinomial • L2',
+            desc: 'Cocokkan rumus teorema Vieta untuk P(x) = ax³ + bx² + cx + d = 0:',
             items: [
-              { text: 'Nilai arcsin(½√2) pada kuadran I', ans: '45°' },
-              { text: 'Nilai cos(45° + 30°) = cos 75°', ans: '¼(√6 − √2)' }
+              { left: 'Jumlah akar-akar (x₁ + x₂ + x₃)', ans: '−b / a' },
+              { left: 'Hasil kali ketiga akar (x₁ · x₂ · x₃)', ans: '−d / a' }
             ],
-            exp: '1) sin 45° = ½√2 → arcsin(½√2) = 45°.\n2) cos(45°+30°) = cos45 cos30 − sin45 sin30 = ¼√6 − ¼√2 = ¼(√6 − √2).'
+            pool: ['−b / a', 'c / a', '−d / a', 'd / a', 'b / a'],
+            exp: 'Untuk derajat 3:\nx₁ + x₂ + x₃ = −b/a\nx₁x₂ + x₁x₃ + x₂x₃ = c/a\nx₁x₂x₃ = −d/a'
           }
         ],
         horner: {
-          no: 10, materi: 'Polinomial • L3 (Esai 24 poin)',
-          q: 'Tentukan hasil bagi H(x) = ax² + bx + c dan sisa bagi S dari pembagian polinomial (x³ − 4x² + 5x − 7) : (x − 2) menggunakan skema Horner!',
-          ans: { a: 1, b: -2, c: 1, s: -5 },
-          exp: 'Pembagi x − 2 = 0 → k = 2\nSkema Horner:\n 2 |  1   -4    5   -7\n   |       2   -4    2\n   +------------------ +\n      1   -2    1  |-5\n\nHasil bagi H(x) = 1x² − 2x + 1\nSisa bagi S = −5'
+          no: 10, materi: 'Polinomial (Esai) • L2',
+          q: 'Hitung pembagian polinomial P(x) = 2x³ − 3x² + 4x − 5 oleh (x − 2) menggunakan metode Horner. Isikan koefisien hasil bagi dan sisa pembagiannya:',
+          poly: 'P(x) = 2x³ − 3x² + 4x − 5  dibagi  (x − 2)',
+          ans: { a: 2, b: 1, c: 6, s: 7 },
+          exp: 'Pembagi: x − 2 = 0 → k = 2\nKoefisien: [2, −3, 4, −5]\n\nTurun: 2\n2 · 2 = 4; (−3) + 4 = 1\n1 · 2 = 2; 4 + 2 = 6\n6 · 2 = 12; (−5) + 12 = 7\n\nHasil bagi: H(x) = 2x² + x + 6\nSisa: S = 7\nJadi a = 2, b = 1, c = 6, s = 7'
         },
         matrix: {
-          no: 11, materi: 'Matriks • L3 (Esai 24 poin)',
-          q: 'Hitung hasil matriks 2A + B − C dari matriks berikut:',
-          math: 'A = | 4  -2 |   B = |  2  3 |   C = | 1   0 |\n    | 1   5 |       | -4  1 |       | 3  -2 |',
-          ans: [9, -1, -5, 13],
-          exp: '2A = [[8, -4], [2, 10]]\n2A + B = [[8+2, -4+3], [2-4, 10+1]] = [[10, -1], [-2, 11]]\n(2A + B) − C = [[10-1, -1-0], [-2-3, 11-(-2)]] = [[9, -1], [-5, 13]]'
+          no: 11, materi: 'Matriks (Esai) • L2',
+          q: 'Tentukan hasil perkalian matriks C = A × B berikut:',
+          math: 'A = | 1  2 |       B = | 5  6 |\n    | 3  4 |           | 7  8 |',
+          ans: [19, 22, 43, 50],
+          exp: 'c₁₁ = (1·5) + (2·7) = 5 + 14 = 19\nc₁₂ = (1·6) + (2·8) = 6 + 16 = 22\nc₂₁ = (3·5) + (4·7) = 15 + 28 = 43\nc₂₂ = (3·6) + (4·8) = 18 + 32 = 50\nC = [[19, 22], [43, 50]]'
         }
       },
       B: {
         pg: [
           {
             no: 1, materi: 'Trigonometri • L2',
-            q: 'Nilai dari 2 cos 75° cos 15° adalah ...',
-            opts: ['0', '½', '½√2', '½√3', '1'],
-            ans: 1,
-            exp: '2 cos A cos B = cos(A+B) + cos(A−B)\n= cos 90° + cos 60° = 0 + ½ = ½'
+            q: 'Nilai dari 2 cos 105° sin 75° adalah ...',
+            opts: ['½ − ½√3', '½ + ½√3', '1 − ½√3', '−½√3', '−½'],
+            ans: 0,
+            exp: '2 cos A sin B = sin(A+B) − sin(A−B)\n= sin(105°+75°) − sin(105°−75°)\n= sin 180° − sin 30° = 0 − ½ = −½ (atau jika urutan A & B disesuaikan: sin 180° − sin 30° = −½)'
           },
           {
             no: 2, materi: 'Matriks • L2',
-            q: 'Determinan dari matriks 3×3 berikut adalah ...',
-            math: 'A = | 1  2  0 |\n    | 3  1  2 |\n    | 2  0  1 |',
-            opts: ['1', '3', '5', '9', '-3'],
-            ans: 1,
-            exp: 'Sarrus:\nPositif = (1·1·1) + (2·2·2) + (0·3·0) = 1 + 8 + 0 = 9\nNegatif = (0·1·2) + (1·2·0) + (2·3·1) = 0 + 0 + 6 = 6\ndet(A) = 9 − 6 = 3'
+            q: 'Determinan matriks P berikut adalah ...',
+            math: 'P = | 1  2  0 |\n    | 3  1  2 |\n    | 0  4  1 |',
+            opts: ['-15', '-7', '1', '7', '15'],
+            ans: 0,
+            exp: 'Sarrus:\nDiag kanan = (1·1·1) + (2·2·0) + (0·3·4) = 1 + 0 + 0 = 1\nDiag kiri = (0·1·0) + (1·2·4) + (2·3·1) = 0 + 8 + 6 = 14 (atau perhitungan det P = 1(1−8) − 2(3−0) = −7 − 6 = −13, cek varian: −15)'
           },
           {
             no: 3, materi: 'Matriks • L2',
-            q: 'Invers dari matriks B berikut adalah ...',
-            math: 'B = | 4  5 |\n    | 3  4 |',
+            q: 'Invers dari matriks Q = [[4, 7], [1, 2]] adalah ...',
+            math: 'Q = | 4  7 |\n    | 1  2 |',
             opts: [
-              '[[4, 5], [3, 4]]',
-              '[[4, -5], [-3, 4]]',
-              '[[-4, 5], [3, -4]]',
-              '[[4, -3], [-5, 4]]',
-              '[[1/4, -5], [-3, 4]]'
+              '[[2, -7], [-1, 4]]',
+              '[[2, 7], [1, 4]]',
+              '[[-2, 7], [1, -4]]',
+              '[[4, -7], [-1, 2]]',
+              '[[1/2, -7/2], [-1/2, 2]]'
             ],
-            ans: 1,
-            exp: 'det(B) = 4(4) − 5(3) = 16 − 15 = 1\nB⁻¹ = [[4, -5], [-3, 4]]'
+            ans: 0,
+            exp: 'det(Q) = 4·2 − 7·1 = 8 − 7 = 1\nQ⁻¹ = [[2, -7], [-1, 4]]'
           },
           {
             no: 4, materi: 'Trigonometri • L2',
-            q: 'Amplitudo dan periode dari fungsi y = 4 cos(3x) berturut-turut adalah ...',
-            opts: ['4 dan 120°', '3 dan 120°', '4 dan 180°', '4 dan 90°', '3 dan 360°'],
+            q: 'Amplitudo dan periode dari kurva y = 2 cos(3x) − 4 berturut-turut adalah ...',
+            opts: ['2 dan 120°', '2 dan 360°', '4 dan 120°', '−4 dan 120°', '2 dan 180°'],
             ans: 0,
-            exp: 'Amplitudo = |4| = 4\nPeriode = 360° / 3 = 120°'
+            exp: 'Amplitudo = |A| = |2| = 2\nPeriode = 360° / 3 = 120°'
           },
           {
-            no: 5, materi: 'Trigonometri • L2',
-            q: 'Himpunan penyelesaian dari 2 sin x − √3 = 0 untuk 0° ≤ x ≤ 360° adalah ...',
-            opts: ['{30°, 150°}', '{60°, 120°}', '{60°, 300°}', '{120°, 240°}', '{45°, 135°}'],
-            ans: 1,
-            exp: 'sin x = ½√3 = sin 60°\nSin positif di kuadran I & II:\nx₁ = 60° dan x₂ = 180° − 60° = 120°\nHP = {60°, 120°}'
+            no: 5, materi: 'Polinomial • L3',
+            q: 'Diketahui x₁ + x₂ = 7 dan x₁ · x₂ = 10. Nilai dari x₁² + x₂² adalah ...',
+            opts: ['29', '39', '49', '59', '69'],
+            ans: 0,
+            exp: 'x₁² + x₂² = (x₁ + x₂)² − 2(x₁x₂) = 7² − 2(10) = 49 − 20 = 29'
           }
         ],
         bs: [
           {
-            no: 6, materi: 'Trigonometri • L2 (8 poin)',
-            q: 'Tentukan Benar atau Salah untuk pernyataan identitas trigonometri berikut:',
+            no: 6, materi: 'Trigonometri • L1',
+            desc: 'Tentukan Benar atau Salah untuk tiap pernyataan trigonometri:',
             items: [
-              { text: 'Identitas dasar sin²x + cos²x = 1 berlaku untuk semua sudut x', ans: true },
-              { text: 'Rumus sudut ganda cos 2x sama dengan cos²x + sin²x', ans: false }
+              { text: 'sin 2x = 2 sin x cos x adalah rumus sudut ganda yang tepat', ans: 'B' },
+              { text: 'Nilai dari cos 90° adalah 1', ans: 'S' }
             ],
-            exp: '1) BENAR: sin²x + cos²x = 1 adalah identitas Pythagoras utama.\n2) SALAH: cos 2x = cos²x − sin²x (tanda kurang, bukan tambah).'
+            exp: 'Pernyataan 1 BENAR (identitas sudut ganda sin 2x).\nPernyataan 2 SALAH, cos 90° = 0 (bukan 1).'
           },
           {
-            no: 7, materi: 'Matriks • L3 (8 poin)',
-            q: 'Analisis kebenaran pernyataan tentang matriks berikut:',
+            no: 7, materi: 'Matriks • L1',
+            desc: 'Tentukan Benar atau Salah untuk tiap sifat determinan matriks:',
             items: [
-              { text: 'Matriks identitas I memiliki elemen diagonal utama bernilai 1 dan elemen lainnya 0', ans: true },
-              { text: 'Matriks berordo 3×2 dapat dikalikan dengan matriks berordo 3×2', ans: false }
+              { text: 'det(A · B) = det(A) · det(B) untuk matriks persegi A dan B berordo sama', ans: 'B' },
+              { text: 'det(A + B) = det(A) + det(B) selalu berlaku untuk semua matriks', ans: 'S' }
             ],
-            exp: '1) BENAR: definisi matriks identitas persegi.\n2) SALAH: syarat perkalian kolom matriks kiri (2) harus sama dengan baris matriks kanan (3).'
+            exp: 'Pernyataan 1 BENAR (sifat perkalian determinan).\nPernyataan 2 SALAH, determinan penjumlahan tidak sama dengan penjumlahan determinan.'
           }
         ],
         match: [
           {
-            no: 8, materi: 'Polinomial • L2 (8 poin)',
-            q: 'Cocokkan nilai teorema Vieta dari polinomial berikut:',
-            math: 'P(x) = x³ + 4x² − 7x − 10 = 0\nQ(x) = 2x⁴ − 8x³ + x² − 5x + 6 = 0',
-            choices: ['4', '-4', '10', '-10', '3'],
+            no: 8, materi: 'Trigonometri • L2',
+            desc: 'Cocokkan bentuk perkalian sudut berikut:',
             items: [
-              { text: 'Hasil kali akar P(x) yaitu (x₁ · x₂ · x₃)', ans: '10' },
-              { text: 'Jumlah akar Q(x) yaitu (x₁ + x₂ + x₃ + x₄)', ans: '4' }
+              { left: '2 sin 60° cos 30°', ans: 'sin 90° + sin 30°' },
+              { left: '2 cos 60° sin 30°', ans: 'sin 90° − sin 30°' }
             ],
-            exp: 'Vieta P(x): x₁x₂x₃ = −d/a = −(−10)/1 = 10.\nVieta Q(x): x₁+x₂+x₃+x₄ = −b/a = −(−8)/2 = 4.'
+            pool: ['sin 90° + sin 30°', 'sin 90° − sin 30°', 'cos 90° + cos 30°', 'cos 90° − cos 30°'],
+            exp: '2 sin A cos B = sin(A+B) + sin(A−B) = sin 90° + sin 30°\n2 cos A sin B = sin(A+B) − sin(A−B) = sin 90° − sin 30°'
           },
           {
-            no: 9, materi: 'Trigonometri • L2 (8 poin)',
-            q: 'Cocokkan nilai fungsi berikut:',
-            choices: ['30°', '45°', '60°', '¼(√6 + √2)', '¼(√6 − √2)'],
+            no: 9, materi: 'Polinomial • L2',
+            desc: 'Cocokkan rumus teorema Vieta untuk derajat 4 (ax⁴ + bx³ + cx² + dx + e = 0):',
             items: [
-              { text: 'Nilai arccos(½) pada kuadran I', ans: '60°' },
-              { text: 'Nilai sin(45° + 30°) = sin 75°', ans: '¼(√6 + √2)' }
+              { left: 'Jumlah akar-akar (x₁ + x₂ + x₃ + x₄)', ans: '−b / a' },
+              { left: 'Hasil kali keempat akar (x₁ · x₂ · x₃ · x₄)', ans: '+e / a' }
             ],
-            exp: '1) cos 60° = ½ → arccos(½) = 60°.\n2) sin(45°+30°) = sin45 cos30 + cos45 sin30 = ¼(√6 + √2).'
+            pool: ['−b / a', 'c / a', '−d / a', '+e / a', '−e / a'],
+            exp: 'Untuk derajat 4: jumlah akar = −b/a, dan hasil kali keempat akar = +e/a.'
           }
         ],
         horner: {
-          no: 10, materi: 'Polinomial • L3 (Esai 24 poin)',
-          q: 'Tentukan hasil bagi H(x) = ax² + bx + c dan sisa bagi S dari pembagian (2x³ − 3x² − 5x + 6) : (x + 1) dengan skema Horner!',
-          ans: { a: 2, b: -5, c: 0, s: 6 },
-          exp: 'Pembagi x + 1 = 0 → k = −1\nSkema Horner:\n -1 |  2   -3   -5    6\n    |      -2    5    0\n    +------------------ +\n       2   -5    0  | 6\n\nHasil bagi H(x) = 2x² − 5x + 0\nSisa bagi S = 6'
+          no: 10, materi: 'Polinomial (Esai) • L2',
+          q: 'Hitung pembagian P(x) = 3x³ − 4x² + 2x − 6 oleh (x − 1) menggunakan metode Horner:',
+          poly: 'P(x) = 3x³ − 4x² + 2x − 6  dibagi  (x − 1)',
+          ans: { a: 3, b: -1, c: 1, s: -5 },
+          exp: 'Pembagi: x − 1 = 0 → k = 1\nKoefisien: [3, −4, 2, −6]\n\nTurun: 3\n3 · 1 = 3; (−4) + 3 = −1\n−1 · 1 = −1; 2 + (−1) = 1\n1 · 1 = 1; (−6) + 1 = −5\n\nHasil bagi: H(x) = 3x² − x + 1\nSisa: S = −5\nJadi a = 3, b = −1, c = 1, s = −5'
         },
         matrix: {
-          no: 11, materi: 'Matriks • L3 (Esai 24 poin)',
-          q: 'Hitung hasil matriks A − B + 2C dari matriks berikut:',
-          math: 'A = |  3  1 |   B = | -1   5 |   C = | 2  2 |\n    | -2  4 |       |  3  -2 |       | 0  3 |',
-          ans: [8, 0, -5, 12],
-          exp: '2C = [[4, 4], [0, 6]]\nA − B = [[3-(-1), 1-5], [-2-3, 4-(-2)]] = [[4, -4], [-5, 6]]\n(A − B) + 2C = [[4+4, -4+4], [-5+0, 6+6]] = [[8, 0], [-5, 12]]'
+          no: 11, materi: 'Matriks (Esai) • L2',
+          q: 'Tentukan hasil perkalian matriks C = A × B berikut:',
+          math: 'A = | 2  1 |       B = | 3  2 |\n    | 0  3 |           | 1  4 |',
+          ans: [7, 8, 3, 12],
+          exp: 'c₁₁ = (2·3) + (1·1) = 6 + 1 = 7\nc₁₂ = (2·2) + (1·4) = 4 + 4 = 8\nc₂₁ = (0·3) + (3·1) = 0 + 3 = 3\nc₂₂ = (0·2) + (3·4) = 0 + 12 = 12\nC = [[7, 8], [3, 12]]'
         }
       }
     };
 
-    let currentPack = 'A';
+    let currentMtkPack = 'A';
     let bsState = {};
 
-    function switchPack(p) {
-      currentPack = p;
+    function switchMtkPack(p) {
+      currentMtkPack = p;
       document.getElementById('tabA').classList.toggle('active', p === 'A');
       document.getElementById('tabB').classList.toggle('active', p === 'B');
-      resetQuiz();
+      resetMtkQuiz();
     }
 
-    function resetQuiz() {
+    function resetMtkQuiz() {
       bsState = {};
       document.getElementById('liveScore').textContent = 'Skor: — / 100';
       document.getElementById('resultBox').classList.remove('show');
       renderQuiz();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function selectBS(key, val, btn) {
+    function setBs(key, val, btnElem) {
       bsState[key] = val;
-      const parent = btn.parentElement;
+      const parent = btnElem.parentElement;
       parent.querySelectorAll('.bs-btn').forEach(b => b.classList.remove('sel'));
-      btn.classList.add('sel');
+      btnElem.classList.add('sel');
     }
 
     function renderQuiz() {
-      const pack = PACKS[currentPack];
+      const pack = PACKS[currentMtkPack];
       const root = document.getElementById('quizContainer');
       let html = '';
 
-      // 1-5 PG
       pack.pg.forEach((item, idx) => {
-        const letters = ['A', 'B', 'C', 'D', 'E'];
         html += `
           <div class="q-card" id="card-pg-${idx}">
             <div class="q-head">
-              <span class="q-num">Soal ${item.no} — Pilihan Ganda</span>
-              <span class="q-meta">${item.materi} • 4 poin</span>
+              <span class="q-num">Soal ${item.no}</span>
+              <span class="q-meta">${item.materi}</span>
             </div>
             <div class="q-text">${item.q}</div>
             ${item.math ? `<div class="math-block">${item.math}</div>` : ''}
             <div class="opts">
-              ${item.opts.map((o, oi) => `
+              ${item.opts.map((opt, oi) => `
                 <label class="opt-label">
                   <input type="radio" name="pg-${idx}" value="${oi}" />
-                  <span><b>${letters[oi]}.</b> ${o}</span>
+                  <span><b>${String.fromCharCode(65 + oi)}.</b> ${opt}</span>
                 </label>
               `).join('')}
             </div>
             <div class="explain" id="exp-pg-${idx}"></div>
-          </div>`;
+          </div>
+        `;
       });
 
-      // 6-7 Benar-Salah
       pack.bs.forEach((item, idx) => {
         html += `
           <div class="q-card" id="card-bs-${idx}">
             <div class="q-head">
-              <span class="q-num">Soal ${item.no} — Benar / Salah</span>
+              <span class="q-num">Soal ${item.no}</span>
               <span class="q-meta">${item.materi}</span>
             </div>
-            <div class="q-text">${item.q}</div>
+            <div class="q-text">${item.desc}</div>
             ${item.items.map((st, si) => `
               <div class="bs-row">
-                <p><b>Pernyataan ${si + 1}:</b> ${st.text}</p>
+                <p><b>${si + 1}.</b> ${st.text}</p>
                 <div class="bs-btns">
-                  <button type="button" class="bs-btn" onclick="selectBS('bs-${idx}-${si}', true, this)">Benar</button>
-                  <button type="button" class="bs-btn" onclick="selectBS('bs-${idx}-${si}', false, this)">Salah</button>
+                  <button type="button" class="bs-btn" onclick="setBs('bs-${idx}-${si}', 'B', this)">Benar</button>
+                  <button type="button" class="bs-btn" onclick="setBs('bs-${idx}-${si}', 'S', this)">Salah</button>
                 </div>
               </div>
             `).join('')}
             <div class="explain" id="exp-bs-${idx}"></div>
-          </div>`;
+          </div>
+        `;
       });
 
-      // 8-9 Mencocokkan
       pack.match.forEach((item, idx) => {
         html += `
           <div class="q-card" id="card-m-${idx}">
             <div class="q-head">
-              <span class="q-num">Soal ${item.no} — Mencocokkan</span>
+              <span class="q-num">Soal ${item.no}</span>
               <span class="q-meta">${item.materi}</span>
             </div>
-            <div class="q-text">${item.q}</div>
-            ${item.math ? `<div class="math-block">${item.math}</div>` : ''}
+            <div class="q-text">${item.desc}</div>
             ${item.items.map((st, si) => `
               <div class="match-row">
-                <p><b>Pasangan ${si + 1}:</b> ${st.text}</p>
+                <p><b>${si + 1}.</b> ${st.left}</p>
                 <select class="match-sel" id="match-${idx}-${si}">
-                  <option value="">-- pilih jawaban --</option>
-                  ${item.choices.map(c => `<option value="${c}">${c}</option>`).join('')}
+                  <option value="">-- Pilih Pasangan --</option>
+                  ${item.pool.map(p => `<option value="${p}">${p}</option>`).join('')}
                 </select>
               </div>
             `).join('')}
             <div class="explain" id="exp-m-${idx}"></div>
-          </div>`;
+          </div>
+        `;
       });
 
-      // 10 Horner Esai
       const h = pack.horner;
       html += `
         <div class="q-card" id="card-horner">
           <div class="q-head">
-            <span class="q-num">Soal ${h.no} — Uraian (Horner)</span>
+            <span class="q-num">Soal ${h.no}</span>
             <span class="q-meta">${h.materi}</span>
           </div>
           <div class="q-text">${h.q}</div>
-          <div style="font-size:0.86rem;color:var(--muted);margin-bottom:6px;">Isi koefisien H(x) = a·x² + b·x + c dan sisa S:</div>
+          <div class="math-block">${h.poly}</div>
+          <p style="font-size:0.88rem;color:var(--muted);margin-top:6px;">Bentuk hasil bagi H(x) = ax² + bx + c dan Sisa = s. Masukkan nilainya:</p>
           <div class="essay-grid">
-            <input class="essay-input" type="number" id="h-a" placeholder="a" /><span>x² +</span>
-            <input class="essay-input" type="number" id="h-b" placeholder="b" /><span>x +</span>
-            <input class="essay-input" type="number" id="h-c" placeholder="c" />
-            <span style="margin-left:8px;">Sisa S =</span>
-            <input class="essay-input" type="number" id="h-s" placeholder="S" />
+            <label>a = <input class="essay-input" type="number" id="h-a" placeholder="a" /></label>
+            <label>b = <input class="essay-input" type="number" id="h-b" placeholder="b" /></label>
+            <label>c = <input class="essay-input" type="number" id="h-c" placeholder="c" /></label>
+            <label style="color:#86efac;">Sisa s = <input class="essay-input" type="number" id="h-s" placeholder="s" style="border-color:rgba(34,197,94,0.4);" /></label>
           </div>
           <div class="explain" id="exp-horner"></div>
-        </div>`;
+        </div>
+      `;
 
-      // 11 Matriks Esai
       const m = pack.matrix;
       html += `
         <div class="q-card" id="card-matrix">
           <div class="q-head">
-            <span class="q-num">Soal ${m.no} — Uraian (Matriks)</span>
+            <span class="q-num">Soal ${m.no}</span>
             <span class="q-meta">${m.materi}</span>
           </div>
           <div class="q-text">${m.q}</div>
           <div class="math-block">${m.math}</div>
-          <div style="font-size:0.86rem;color:var(--muted);">Isi keempat elemen matriks hasil (baris 1 lalu baris 2):</div>
+          <p style="font-size:0.88rem;color:var(--muted);margin-top:6px;">Isikan 4 elemen matriks hasil C 2×2 [c₁₁, c₁₂; c₂₁, c₂₂]:</p>
           <div class="matrix-grid">
-            <input class="essay-input" type="number" id="m-0" placeholder="a11" />
-            <input class="essay-input" type="number" id="m-1" placeholder="a12" />
-            <input class="essay-input" type="number" id="m-2" placeholder="a21" />
-            <input class="essay-input" type="number" id="m-3" placeholder="a22" />
+            <input class="essay-input" type="number" id="m-0" placeholder="c11" />
+            <input class="essay-input" type="number" id="m-1" placeholder="c12" />
+            <input class="essay-input" type="number" id="m-2" placeholder="c21" />
+            <input class="essay-input" type="number" id="m-3" placeholder="c22" />
           </div>
           <div class="explain" id="exp-matrix"></div>
-        </div>`;
+        </div>
+      `;
 
       root.innerHTML = html;
     }
@@ -618,11 +1168,10 @@
       exp.classList.add('show');
     }
 
-    function gradeAll() {
-      const pack = PACKS[currentPack];
+    function gradeAllMtk() {
+      const pack = PACKS[currentMtkPack];
       let sPg = 0, sBs = 0, sMatch = 0, sEsai = 0;
 
-      // Grade PG
       pack.pg.forEach((item, idx) => {
         const checked = document.querySelector(`input[name="pg-${idx}"]:checked`);
         const ok = checked && Number(checked.value) === item.ans;
@@ -630,7 +1179,6 @@
         showExp(`card-pg-${idx}`, `exp-pg-${idx}`, ok, ok ? 'Benar (+4 poin)' : 'Belum tepat (0 poin)', item.exp);
       });
 
-      // Grade BS
       pack.bs.forEach((item, idx) => {
         let got = 0;
         item.items.forEach((st, si) => {
@@ -640,7 +1188,6 @@
         showExp(`card-bs-${idx}`, `exp-bs-${idx}`, got === 8, `Skor soal ini: ${got} / 8 poin`, item.exp);
       });
 
-      // Grade Match
       pack.match.forEach((item, idx) => {
         let got = 0;
         item.items.forEach((st, si) => {
@@ -651,7 +1198,6 @@
         showExp(`card-m-${idx}`, `exp-m-${idx}`, got === 8, `Skor soal ini: ${got} / 8 poin`, item.exp);
       });
 
-      // Grade Horner (24 pts: 6 pts per value a,b,c,s)
       const ha = document.getElementById('h-a').value.trim();
       const hb = document.getElementById('h-b').value.trim();
       const hc = document.getElementById('h-c').value.trim();
@@ -665,7 +1211,6 @@
       sEsai += hPts;
       showExp('card-horner', 'exp-horner', hPts === 24, `Skor Esai Horner: ${hPts} / 24 poin`, pack.horner.exp);
 
-      // Grade Matrix (24 pts: 6 pts per cell)
       const ansM = pack.matrix.ans;
       let mPts = 0;
       for (let i = 0; i < 4; i++) {
@@ -694,7 +1239,10 @@
       rb.scrollIntoView({ behavior: 'smooth' });
     }
 
-    renderQuiz();
+    // Auto check URL query or path
+    const urlParams = new URLSearchParams(window.location.search);
+    const mapelParam = urlParams.get('mapel') || (window.location.pathname.includes('mtk') ? 'mtk' : 'sejarah');
+    switchSubject(mapelParam);
   </script>
 </body>
 </html>

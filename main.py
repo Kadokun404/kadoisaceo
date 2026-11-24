@@ -70,8 +70,10 @@ def get_html_content() -> str:
     return "<h1>kado.sang.ceo</h1><p>Template index.html sedang dimuat...</p>"
 
 @app.api_route("/kisi-kisi", methods=["GET", "HEAD"], response_class=HTMLResponse)
+@app.api_route("/kisi-kisi/sejarah", methods=["GET", "HEAD"], response_class=HTMLResponse)
+@app.api_route("/kisi-kisi/mtk", methods=["GET", "HEAD"], response_class=HTMLResponse)
 async def serve_kisi_kisi():
-    """Halaman latihan kisi-kisi sumatif MTK Lanjut XI-7"""
+    """Halaman latihan kisi-kisi PAS Sejarah & MTK Lanjut XI"""
     possible_paths = [
         os.path.join(BASE_DIR, "templates", "kisi-kisi.html"),
         os.path.join(BASE_DIR, "..", "templates", "kisi-kisi.html"),

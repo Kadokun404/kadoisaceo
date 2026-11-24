@@ -69,6 +69,21 @@ def get_html_content() -> str:
                 return f.read()
     return "<h1>kado.sang.ceo</h1><p>Template index.html sedang dimuat...</p>"
 
+@app.api_route("/kisi-kisi", methods=["GET", "HEAD"], response_class=HTMLResponse)
+async def serve_kisi_kisi():
+    """Halaman latihan kisi-kisi sumatif MTK Lanjut XI-7"""
+    possible_paths = [
+        os.path.join(BASE_DIR, "templates", "kisi-kisi.html"),
+        os.path.join(BASE_DIR, "..", "templates", "kisi-kisi.html"),
+        os.path.join(os.getcwd(), "templates", "kisi-kisi.html"),
+        "templates/kisi-kisi.html"
+    ]
+    for p in possible_paths:
+        if os.path.exists(p):
+            with open(p, "r", encoding="utf-8") as f:
+                return HTMLResponse(content=f.read(), status_code=200)
+    raise HTTPException(status_code=404, detail="Template kisi-kisi.html tidak ditemukan")
+
 @app.api_route("/", methods=["GET", "HEAD"], response_class=HTMLResponse)
 @app.api_route("/projects", methods=["GET", "HEAD"], response_class=HTMLResponse)
 @app.api_route("/playground", methods=["GET", "HEAD"], response_class=HTMLResponse)

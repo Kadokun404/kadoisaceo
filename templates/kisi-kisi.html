@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kisi-Kisi MTK Lanjut XI-7 — kado.sang.ceo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0b0d12;
+      --card: #131722;
+      --card-2: #191f2e;
+      --border: #252d40;
+      --text: #eef2ff;
+      --muted: #94a3b8;
+      --accent: #7c5cff;
+      --accent-2: #38bdf8;
+      --ok: #22c55e;
+      --err: #ef4444;
+      --warn: #f59e0b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: radial-gradient(circle at top right, rgba(124,92,255,0.14), transparent 45%), var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 20px 14px 80px;
+    }
+    .wrap { max-width: 820px; margin: 0 auto; }
+    header {
+      background: linear-gradient(135deg, rgba(124,92,255,0.16), rgba(56,189,248,0.1));
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px 20px;
+      margin-bottom: 18px;
+    }
+    .badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+    .badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(124,92,255,0.2);
+      border: 1px solid rgba(124,92,255,0.45);
+      color: #c4b5fd;
+    }
+    .badge.cyan { background: rgba(56,189,248,0.15); border-color: rgba(56,189,248,0.4); color: #7dd3fc; }
+    h1 { font-size: 1.45rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 6px; }
+    .sub { color: var(--muted); font-size: 0.9rem; }
+
+    .toolbar {
+      display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between;
+      background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+      padding: 12px 14px; margin-bottom: 18px; position: sticky; top: 10px; z-index: 20;
+      backdrop-filter: blur(10px);
+    }
+    .tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+    .btn {
+      font-family: inherit; font-weight: 600; font-size: 0.85rem;
+      padding: 8px 14px; border-radius: 10px; border: 1px solid var(--border);
+      background: var(--card-2); color: var(--text); cursor: pointer; transition: 0.15s;
+    }
+    .btn:hover { border-color: var(--accent); }
+    .btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .btn.primary { background: linear-gradient(135deg, var(--accent), #5b45e0); border: none; color: #fff; }
+    .btn.primary:hover { filter: brightness(1.08); }
+    .btn.ghost { background: transparent; }
+
+    .score-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem; padding: 6px 12px; border-radius: 10px;
+      background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.35); color: #86efac;
+    }
+
+    details.cheatsheet {
+      background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+      padding: 14px 16px; margin-bottom: 18px;
+    }
+    details.cheatsheet summary {
+      cursor: pointer; font-weight: 700; color: #7dd3fc; font-size: 0.95rem;
+    }
+    .cheat-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 12px; margin-top: 14px;
+    }
+    .cheat-box {
+      background: var(--card-2); border: 1px solid var(--border); border-radius: 10px; padding: 12px;
+      font-size: 0.84rem;
+    }
+    .cheat-box h4 { color: #c4b5fd; margin-bottom: 6px; font-size: 0.88rem; }
+    .cheat-box code {
+      display: block; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;
+      color: #e2e8f0; background: rgba(0,0,0,0.35); padding: 4px 7px; border-radius: 6px; margin: 4px 0;
+    }
+
+    .q-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+      padding: 18px; margin-bottom: 16px; transition: border-color 0.2s;
+    }
+    .q-card.correct { border-color: rgba(34,197,94,0.65); }
+    .q-card.wrong { border-color: rgba(239,68,68,0.65); }
+    .q-head {
+      display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
+      gap: 8px; margin-bottom: 12px;
+    }
+    .q-num { font-weight: 800; font-size: 0.95rem; color: #c4b5fd; }
+    .q-meta {
+      font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted);
+      background: var(--card-2); padding: 3px 9px; border-radius: 999px; border: 1px solid var(--border);
+    }
+    .q-text { font-size: 0.97rem; margin-bottom: 14px; }
+    .math-block {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.88rem;
+      background: #0d1018; border: 1px solid var(--border); border-radius: 10px;
+      padding: 10px 14px; margin: 10px 0; overflow-x: auto; white-space: pre;
+    }
+    .opts { display: grid; gap: 8px; }
+    .opt-label {
+      display: flex; align-items: center; gap: 10px;
+      background: var(--card-2); border: 1px solid var(--border); border-radius: 10px;
+      padding: 10px 12px; cursor: pointer; font-size: 0.92rem; transition: 0.15s;
+    }
+    .opt-label:hover { border-color: var(--accent); }
+    .opt-label input { accent-color: var(--accent); width: 16px; height: 16px; }
+
+    .bs-row, .match-row {
+      background: var(--card-2); border: 1px solid var(--border); border-radius: 10px;
+      padding: 12px; margin-bottom: 10px;
+    }
+    .bs-row p, .match-row p { font-size: 0.92rem; margin-bottom: 8px; }
+    .bs-btns { display: flex; gap: 8px; }
+    .bs-btn {
+      flex: 1; padding: 7px 10px; border-radius: 8px; border: 1px solid var(--border);
+      background: #0f1320; color: var(--text); font-weight: 600; cursor: pointer; font-size: 0.85rem;
+    }
+    .bs-btn.sel { background: var(--accent); border-color: var(--accent); }
+    select.match-sel {
+      width: 100%; padding: 9px 10px; border-radius: 8px; border: 1px solid var(--border);
+      background: #0f1320; color: var(--text); font-family: inherit; font-size: 0.9rem;
+    }
+
+    .essay-grid { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 8px; }
+    .essay-input {
+      background: #0f1320; border: 1px solid var(--border); border-radius: 8px;
+      color: var(--text); padding: 8px 10px; font-family: 'JetBrains Mono', monospace;
+      font-size: 0.92rem; width: 92px; text-align: center;
+    }
+    .essay-input:focus { outline: none; border-color: var(--accent); }
+    .matrix-grid {
+      display: inline-grid; grid-template-columns: repeat(2, 74px); gap: 8px;
+      padding: 10px 14px; border-left: 2px solid var(--accent-2); border-right: 2px solid var(--accent-2);
+      border-radius: 6px; background: #0d1018; margin-top: 8px;
+    }
+    .matrix-grid input { width: 100%; }
+
+    .explain {
+      margin-top: 14px; padding: 12px 14px; border-radius: 10px;
+      background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.3);
+      font-size: 0.87rem; display: none;
+    }
+    .explain.show { display: block; }
+    .explain .tag { font-weight: 700; margin-bottom: 4px; display: inline-block; }
+    .explain .tag.ok { color: var(--ok); }
+    .explain .tag.err { color: var(--err); }
+    .explain pre {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;
+      background: rgba(0,0,0,0.35); padding: 8px 10px; border-radius: 8px;
+      margin-top: 6px; overflow-x: auto; white-space: pre-wrap;
+    }
+
+    .actions-foot {
+      display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+      margin-top: 22px;
+    }
+    .result-box {
+      display: none; margin-top: 20px; background: var(--card);
+      border: 1px solid var(--accent); border-radius: 16px; padding: 20px; text-align: center;
+    }
+    .result-box.show { display: block; }
+    .big-score { font-size: 2.6rem; font-weight: 800; color: #7dd3fc; font-family: 'JetBrains Mono', monospace; }
+    .breakdown {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 10px; margin-top: 14px;
+    }
+    .bd-item { background: var(--card-2); border-radius: 10px; padding: 10px; font-size: 0.84rem; }
+    .bd-item b { display: block; font-size: 1.05rem; margin-top: 2px; font-family: 'JetBrains Mono', monospace; }
+    footer { text-align: center; color: var(--muted); font-size: 0.8rem; margin-top: 34px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="badge-row">
+        <span class="badge">KELAS XI-7 • MTK LANJUT</span>
+        <span class="badge cyan">SUMATIF 26 NOV – 10 DES 2026</span>
+        <span class="badge">SKOR MAKS 100</span>
+      </div>
+      <h1>Latihan Kisi-Kisi Matematika Lanjut</h1>
+      <p class="sub">Polinomial, Trigonometri & Matriks — 11 soal sesuai kisi-kisi resmi SMAN 1 Sungai Loban (5 PG, 2 Benar-Salah, 2 Mencocokkan, 2 Esai).</p>
+    </header>
+
+    <div class="toolbar">
+      <div class="tabs">
+        <button class="btn active" id="tabA" onclick="switchPack('A')">Paket A</button>
+        <button class="btn" id="tabB" onclick="switchPack('B')">Paket B</button>
+        <button class="btn ghost" onclick="resetQuiz()">Reset</button>
+      </div>
+      <div class="score-pill" id="liveScore">Skor: — / 100</div>
+    </div>
+
+    <details class="cheatsheet">
+      <summary>Ringkasan Rumus Cepat (klik buat buka/tutup)</summary>
+      <div class="cheat-grid">
+        <div class="cheat-box">
+          <h4>Trigonometri</h4>
+          <code>2 sin A cos B = sin(A+B) + sin(A-B)</code>
+          <code>2 cos A cos B = cos(A+B) + cos(A-B)</code>
+          <code>y = A sin(Bx) → Amp = |A|, T = 360°/B</code>
+          <code>sin 2x = 2 sin x cos x</code>
+          <code>cos 2x = cos²x - sin²x = 1 - 2sin²x</code>
+        </div>
+        <div class="cheat-box">
+          <h4>Matriks</h4>
+          <code>Invers 2×2: 1/(ad-bc) · [d, -b; -c, a]</code>
+          <code>Det 3×3: Sarrus (diag kanan - diag kiri)</code>
+          <code>Ordo (m×n) · (n×p) = (m×p)</code>
+          <code>Tambah/Kurang: elemen seletak</code>
+        </div>
+        <div class="cheat-box">
+          <h4>Polinomial</h4>
+          <code>Vieta derajat 3: x₁+x₂+x₃ = -b/a</code>
+          <code>Vieta derajat 3: x₁x₂x₃ = -d/a</code>
+          <code>Vieta derajat 4: x₁+..+x₄ = -b/a</code>
+          <code>Vieta derajat 4: x₁x₂x₃x₄ = +e/a</code>
+          <code>Horner (x-k): turun, kali k, jumlah</code>
+        </div>
+      </div>
+    </details>
+
+    <div id="quizContainer"></div>
+
+    <div class="actions-foot">
+      <button class="btn primary" onclick="gradeAll()">Cek Semua Jawaban & Pembahasan</button>
+      <button class="btn" onclick="resetQuiz()">Ulangi Paket Ini</button>
+    </div>
+
+    <div class="result-box" id="resultBox">
+      <div style="color:var(--muted);font-size:0.9rem;">Total Nilai Simulasi XI-7</div>
+      <div class="big-score" id="finalScore">0 / 100</div>
+      <div id="gradeMsg" style="margin-top:6px;font-size:0.95rem;"></div>
+      <div class="breakdown" id="scoreBreakdown"></div>
+    </div>
+
+    <footer>dibuat khusus buat kado belajar sumatif xi-7 • kado.sang.ceo/kisi-kisi</footer>
+  </div>
+
+  <script>
+    const PACKS = {
+      A: {
+        pg: [
+          {
+            no: 1, materi: 'Trigonometri • L2',
+            q: 'Nilai dari 2 sin 75° cos 15° adalah ...',
+            opts: ['1 + ½√3', '1 − ½√3', '½√3', '½', '1 + ½√2'],
+            ans: 0,
+            exp: 'Gunakan rumus 2 sin A cos B = sin(A+B) + sin(A−B)\n= sin(75°+15°) + sin(75°−15°)\n= sin 90° + sin 60°\n= 1 + ½√3'
+          },
+          {
+            no: 2, materi: 'Matriks • L2',
+            q: 'Determinan dari matriks 3×3 berikut adalah ...',
+            math: 'A = | 2  1  3 |\n    | 0  4  1 |\n    | 1  2  2 |',
+            opts: ['-1', '1', '3', '5', '17'],
+            ans: 1,
+            exp: 'Metode Sarrus:\nDiagonal utama (+) = (2·4·2) + (1·1·1) + (3·0·2) = 16 + 1 + 0 = 17\nDiagonal sekunder (−) = (3·4·1) + (2·1·2) + (1·0·2) = 12 + 4 + 0 = 16\ndet(A) = 17 − 16 = 1'
+          },
+          {
+            no: 3, materi: 'Matriks • L2',
+            q: 'Invers dari matriks B berikut adalah ...',
+            math: 'B = | 5  3 |\n    | 3  2 |',
+            opts: [
+              '[[2, -3], [-3, 5]]',
+              '[[2, 3], [3, 5]]',
+              '[[-2, 3], [3, -5]]',
+              '[[5, -3], [-3, 2]]',
+              '[[1/2, -3], [-3, 5]]'
+            ],
+            ans: 0,
+            exp: 'det(B) = (5)(2) − (3)(3) = 10 − 9 = 1\nB⁻¹ = (1/1) · [[2, -3], [-3, 5]] = [[2, -3], [-3, 5]]'
+          },
+          {
+            no: 4, materi: 'Trigonometri • L2',
+            q: 'Amplitudo dan periode dari fungsi kurva y = −3 sin(2x) + 1 berturut-turut adalah ...',
+            opts: ['3 dan 180°', '−3 dan 180°', '3 dan 360°', '2 dan 180°', '3 dan 90°'],
+            ans: 0,
+            exp: 'Bentuk y = A sin(Bx) + C:\nAmplitudo = |A| = |−3| = 3\nPeriode = 360° / B = 360° / 2 = 180°'
+          },
+          {
+            no: 5, materi: 'Trigonometri • L2',
+            q: 'Himpunan penyelesaian dari 2 cos x − 1 = 0 untuk 0° ≤ x ≤ 360° adalah ...',
+            opts: ['{60°, 120°}', '{60°, 300°}', '{30°, 330°}', '{120°, 240°}', '{60°, 240°}'],
+            ans: 1,
+            exp: '2 cos x = 1 → cos x = ½ = cos 60°\nCos bernilai positif di kuadran I & IV:\nx₁ = 60° dan x₂ = 360° − 60° = 300°\nHP = {60°, 300°}'
+          }
+        ],
+        bs: [
+          {
+            no: 6, materi: 'Trigonometri • L2 (8 poin)',
+            q: 'Tentukan Benar atau Salah untuk setiap pernyataan rumus sudut ganda & identitas trigonometri berikut:',
+            items: [
+              { text: 'Identitas sudut ganda cos 2x dapat ditulis sebagai 1 − 2 sin²x', ans: true },
+              { text: 'Rumus sudut ganda untuk sin 2x adalah 2 sin x', ans: false }
+            ],
+            exp: '1) BENAR: cos 2x = cos²x − sin²x = 1 − 2 sin²x.\n2) SALAH: rumus yang benar adalah sin 2x = 2 sin x cos x.'
+          },
+          {
+            no: 7, materi: 'Matriks • L3 (8 poin)',
+            q: 'Analisis kebenaran pernyataan tentang jenis & perkalian matriks berikut:',
+            items: [
+              { text: 'Matriks A berordo 2×3 dikalikan matriks B berordo 3×2 menghasilkan matriks berordo 2×2', ans: true },
+              { text: 'Perkalian dua matriks persegi selalu bersifat komutatif (A × B = B × A)', ans: false }
+            ],
+            exp: '1) BENAR: (2×3) · (3×2) kolom A = baris B (3=3), hasil ordo 2×2.\n2) SALAH: perkalian matriks umumnya TIDAK komutatif (AB ≠ BA).'
+          }
+        ],
+        match: [
+          {
+            no: 8, materi: 'Polinomial • L2 (8 poin)',
+            q: 'Cocokkan nilai jumlah dan hasil kali akar (Teorema Vieta) untuk polinomial berikut:',
+            math: 'P(x) = 2x³ − 6x² + 4x − 10 = 0\nQ(x) = x⁴ − 5x³ + 2x² − x + 12 = 0',
+            choices: ['3', '5', '12', '-5', '-12'],
+            items: [
+              { text: 'Jumlah akar P(x) yaitu (x₁ + x₂ + x₃)', ans: '3' },
+              { text: 'Hasil kali akar Q(x) yaitu (x₁ · x₂ · x₃ · x₄)', ans: '12' }
+            ],
+            exp: 'Vieta P(x): x₁+x₂+x₃ = −b/a = −(−6)/2 = 3.\nVieta Q(x) derajat 4: x₁x₂x₃x₄ = +e/a = 12/1 = 12.'
+          },
+          {
+            no: 9, materi: 'Trigonometri • L2 (8 poin)',
+            q: 'Cocokkan nilai fungsi invers trigonometri & rumus jumlah sudut berikut:',
+            choices: ['30°', '45°', '60°', '¼(√6 − √2)', '¼(√6 + √2)'],
+            items: [
+              { text: 'Nilai arcsin(½√2) pada kuadran I', ans: '45°' },
+              { text: 'Nilai cos(45° + 30°) = cos 75°', ans: '¼(√6 − √2)' }
+            ],
+            exp: '1) sin 45° = ½√2 → arcsin(½√2) = 45°.\n2) cos(45°+30°) = cos45 cos30 − sin45 sin30 = ¼√6 − ¼√2 = ¼(√6 − √2).'
+          }
+        ],
+        horner: {
+          no: 10, materi: 'Polinomial • L3 (Esai 24 poin)',
+          q: 'Tentukan hasil bagi H(x) = ax² + bx + c dan sisa bagi S dari pembagian polinomial (x³ − 4x² + 5x − 7) : (x − 2) menggunakan skema Horner!',
+          ans: { a: 1, b: -2, c: 1, s: -5 },
+          exp: 'Pembagi x − 2 = 0 → k = 2\nSkema Horner:\n 2 |  1   -4    5   -7\n   |       2   -4    2\n   +------------------ +\n      1   -2    1  |-5\n\nHasil bagi H(x) = 1x² − 2x + 1\nSisa bagi S = −5'
+        },
+        matrix: {
+          no: 11, materi: 'Matriks • L3 (Esai 24 poin)',
+          q: 'Hitung hasil matriks 2A + B − C dari matriks berikut:',
+          math: 'A = | 4  -2 |   B = |  2  3 |   C = | 1   0 |\n    | 1   5 |       | -4  1 |       | 3  -2 |',
+          ans: [9, -1, -5, 13],
+          exp: '2A = [[8, -4], [2, 10]]\n2A + B = [[8+2, -4+3], [2-4, 10+1]] = [[10, -1], [-2, 11]]\n(2A + B) − C = [[10-1, -1-0], [-2-3, 11-(-2)]] = [[9, -1], [-5, 13]]'
+        }
+      },
+      B: {
+        pg: [
+          {
+            no: 1, materi: 'Trigonometri • L2',
+            q: 'Nilai dari 2 cos 75° cos 15° adalah ...',
+            opts: ['0', '½', '½√2', '½√3', '1'],
+            ans: 1,
+            exp: '2 cos A cos B = cos(A+B) + cos(A−B)\n= cos 90° + cos 60° = 0 + ½ = ½'
+          },
+          {
+            no: 2, materi: 'Matriks • L2',
+            q: 'Determinan dari matriks 3×3 berikut adalah ...',
+            math: 'A = | 1  2  0 |\n    | 3  1  2 |\n    | 2  0  1 |',
+            opts: ['1', '3', '5', '9', '-3'],
+            ans: 1,
+            exp: 'Sarrus:\nPositif = (1·1·1) + (2·2·2) + (0·3·0) = 1 + 8 + 0 = 9\nNegatif = (0·1·2) + (1·2·0) + (2·3·1) = 0 + 0 + 6 = 6\ndet(A) = 9 − 6 = 3'
+          },
+          {
+            no: 3, materi: 'Matriks • L2',
+            q: 'Invers dari matriks B berikut adalah ...',
+            math: 'B = | 4  5 |\n    | 3  4 |',
+            opts: [
+              '[[4, 5], [3, 4]]',
+              '[[4, -5], [-3, 4]]',
+              '[[-4, 5], [3, -4]]',
+              '[[4, -3], [-5, 4]]',
+              '[[1/4, -5], [-3, 4]]'
+            ],
+            ans: 1,
+            exp: 'det(B) = 4(4) − 5(3) = 16 − 15 = 1\nB⁻¹ = [[4, -5], [-3, 4]]'
+          },
+          {
+            no: 4, materi: 'Trigonometri • L2',
+            q: 'Amplitudo dan periode dari fungsi y = 4 cos(3x) berturut-turut adalah ...',
+            opts: ['4 dan 120°', '3 dan 120°', '4 dan 180°', '4 dan 90°', '3 dan 360°'],
+            ans: 0,
+            exp: 'Amplitudo = |4| = 4\nPeriode = 360° / 3 = 120°'
+          },
+          {
+            no: 5, materi: 'Trigonometri • L2',
+            q: 'Himpunan penyelesaian dari 2 sin x − √3 = 0 untuk 0° ≤ x ≤ 360° adalah ...',
+            opts: ['{30°, 150°}', '{60°, 120°}', '{60°, 300°}', '{120°, 240°}', '{45°, 135°}'],
+            ans: 1,
+            exp: 'sin x = ½√3 = sin 60°\nSin positif di kuadran I & II:\nx₁ = 60° dan x₂ = 180° − 60° = 120°\nHP = {60°, 120°}'
+          }
+        ],
+        bs: [
+          {
+            no: 6, materi: 'Trigonometri • L2 (8 poin)',
+            q: 'Tentukan Benar atau Salah untuk pernyataan identitas trigonometri berikut:',
+            items: [
+              { text: 'Identitas dasar sin²x + cos²x = 1 berlaku untuk semua sudut x', ans: true },
+              { text: 'Rumus sudut ganda cos 2x sama dengan cos²x + sin²x', ans: false }
+            ],
+            exp: '1) BENAR: sin²x + cos²x = 1 adalah identitas Pythagoras utama.\n2) SALAH: cos 2x = cos²x − sin²x (tanda kurang, bukan tambah).'
+          },
+          {
+            no: 7, materi: 'Matriks • L3 (8 poin)',
+            q: 'Analisis kebenaran pernyataan tentang matriks berikut:',
+            items: [
+              { text: 'Matriks identitas I memiliki elemen diagonal utama bernilai 1 dan elemen lainnya 0', ans: true },
+              { text: 'Matriks berordo 3×2 dapat dikalikan dengan matriks berordo 3×2', ans: false }
+            ],
+            exp: '1) BENAR: definisi matriks identitas persegi.\n2) SALAH: syarat perkalian kolom matriks kiri (2) harus sama dengan baris matriks kanan (3).'
+          }
+        ],
+        match: [
+          {
+            no: 8, materi: 'Polinomial • L2 (8 poin)',
+            q: 'Cocokkan nilai teorema Vieta dari polinomial berikut:',
+            math: 'P(x) = x³ + 4x² − 7x − 10 = 0\nQ(x) = 2x⁴ − 8x³ + x² − 5x + 6 = 0',
+            choices: ['4', '-4', '10', '-10', '3'],
+            items: [
+              { text: 'Hasil kali akar P(x) yaitu (x₁ · x₂ · x₃)', ans: '10' },
+              { text: 'Jumlah akar Q(x) yaitu (x₁ + x₂ + x₃ + x₄)', ans: '4' }
+            ],
+            exp: 'Vieta P(x): x₁x₂x₃ = −d/a = −(−10)/1 = 10.\nVieta Q(x): x₁+x₂+x₃+x₄ = −b/a = −(−8)/2 = 4.'
+          },
+          {
+            no: 9, materi: 'Trigonometri • L2 (8 poin)',
+            q: 'Cocokkan nilai fungsi berikut:',
+            choices: ['30°', '45°', '60°', '¼(√6 + √2)', '¼(√6 − √2)'],
+            items: [
+              { text: 'Nilai arccos(½) pada kuadran I', ans: '60°' },
+              { text: 'Nilai sin(45° + 30°) = sin 75°', ans: '¼(√6 + √2)' }
+            ],
+            exp: '1) cos 60° = ½ → arccos(½) = 60°.\n2) sin(45°+30°) = sin45 cos30 + cos45 sin30 = ¼(√6 + √2).'
+          }
+        ],
+        horner: {
+          no: 10, materi: 'Polinomial • L3 (Esai 24 poin)',
+          q: 'Tentukan hasil bagi H(x) = ax² + bx + c dan sisa bagi S dari pembagian (2x³ − 3x² − 5x + 6) : (x + 1) dengan skema Horner!',
+          ans: { a: 2, b: -5, c: 0, s: 6 },
+          exp: 'Pembagi x + 1 = 0 → k = −1\nSkema Horner:\n -1 |  2   -3   -5    6\n    |      -2    5    0\n    +------------------ +\n       2   -5    0  | 6\n\nHasil bagi H(x) = 2x² − 5x + 0\nSisa bagi S = 6'
+        },
+        matrix: {
+          no: 11, materi: 'Matriks • L3 (Esai 24 poin)',
+          q: 'Hitung hasil matriks A − B + 2C dari matriks berikut:',
+          math: 'A = |  3  1 |   B = | -1   5 |   C = | 2  2 |\n    | -2  4 |       |  3  -2 |       | 0  3 |',
+          ans: [8, 0, -5, 12],
+          exp: '2C = [[4, 4], [0, 6]]\nA − B = [[3-(-1), 1-5], [-2-3, 4-(-2)]] = [[4, -4], [-5, 6]]\n(A − B) + 2C = [[4+4, -4+4], [-5+0, 6+6]] = [[8, 0], [-5, 12]]'
+        }
+      }
+    };
+
+    let currentPack = 'A';
+    let bsState = {};
+
+    function switchPack(p) {
+      currentPack = p;
+      document.getElementById('tabA').classList.toggle('active', p === 'A');
+      document.getElementById('tabB').classList.toggle('active', p === 'B');
+      resetQuiz();
+    }
+
+    function resetQuiz() {
+      bsState = {};
+      document.getElementById('liveScore').textContent = 'Skor: — / 100';
+      document.getElementById('resultBox').classList.remove('show');
+      renderQuiz();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function selectBS(key, val, btn) {
+      bsState[key] = val;
+      const parent = btn.parentElement;
+      parent.querySelectorAll('.bs-btn').forEach(b => b.classList.remove('sel'));
+      btn.classList.add('sel');
+    }
+
+    function renderQuiz() {
+      const pack = PACKS[currentPack];
+      const root = document.getElementById('quizContainer');
+      let html = '';
+
+      // 1-5 PG
+      pack.pg.forEach((item, idx) => {
+        const letters = ['A', 'B', 'C', 'D', 'E'];
+        html += `
+          <div class="q-card" id="card-pg-${idx}">
+            <div class="q-head">
+              <span class="q-num">Soal ${item.no} — Pilihan Ganda</span>
+              <span class="q-meta">${item.materi} • 4 poin</span>
+            </div>
+            <div class="q-text">${item.q}</div>
+            ${item.math ? `<div class="math-block">${item.math}</div>` : ''}
+            <div class="opts">
+              ${item.opts.map((o, oi) => `
+                <label class="opt-label">
+                  <input type="radio" name="pg-${idx}" value="${oi}" />
+                  <span><b>${letters[oi]}.</b> ${o}</span>
+                </label>
+              `).join('')}
+            </div>
+            <div class="explain" id="exp-pg-${idx}"></div>
+          </div>`;
+      });
+
+      // 6-7 Benar-Salah
+      pack.bs.forEach((item, idx) => {
+        html += `
+          <div class="q-card" id="card-bs-${idx}">
+            <div class="q-head">
+              <span class="q-num">Soal ${item.no} — Benar / Salah</span>
+              <span class="q-meta">${item.materi}</span>
+            </div>
+            <div class="q-text">${item.q}</div>
+            ${item.items.map((st, si) => `
+              <div class="bs-row">
+                <p><b>Pernyataan ${si + 1}:</b> ${st.text}</p>
+                <div class="bs-btns">
+                  <button type="button" class="bs-btn" onclick="selectBS('bs-${idx}-${si}', true, this)">Benar</button>
+                  <button type="button" class="bs-btn" onclick="selectBS('bs-${idx}-${si}', false, this)">Salah</button>
+                </div>
+              </div>
+            `).join('')}
+            <div class="explain" id="exp-bs-${idx}"></div>
+          </div>`;
+      });
+
+      // 8-9 Mencocokkan
+      pack.match.forEach((item, idx) => {
+        html += `
+          <div class="q-card" id="card-m-${idx}">
+            <div class="q-head">
+              <span class="q-num">Soal ${item.no} — Mencocokkan</span>
+              <span class="q-meta">${item.materi}</span>
+            </div>
+            <div class="q-text">${item.q}</div>
+            ${item.math ? `<div class="math-block">${item.math}</div>` : ''}
+            ${item.items.map((st, si) => `
+              <div class="match-row">
+                <p><b>Pasangan ${si + 1}:</b> ${st.text}</p>
+                <select class="match-sel" id="match-${idx}-${si}">
+                  <option value="">-- pilih jawaban --</option>
+                  ${item.choices.map(c => `<option value="${c}">${c}</option>`).join('')}
+                </select>
+              </div>
+            `).join('')}
+            <div class="explain" id="exp-m-${idx}"></div>
+          </div>`;
+      });
+
+      // 10 Horner Esai
+      const h = pack.horner;
+      html += `
+        <div class="q-card" id="card-horner">
+          <div class="q-head">
+            <span class="q-num">Soal ${h.no} — Uraian (Horner)</span>
+            <span class="q-meta">${h.materi}</span>
+          </div>
+          <div class="q-text">${h.q}</div>
+          <div style="font-size:0.86rem;color:var(--muted);margin-bottom:6px;">Isi koefisien H(x) = a·x² + b·x + c dan sisa S:</div>
+          <div class="essay-grid">
+            <input class="essay-input" type="number" id="h-a" placeholder="a" /><span>x² +</span>
+            <input class="essay-input" type="number" id="h-b" placeholder="b" /><span>x +</span>
+            <input class="essay-input" type="number" id="h-c" placeholder="c" />
+            <span style="margin-left:8px;">Sisa S =</span>
+            <input class="essay-input" type="number" id="h-s" placeholder="S" />
+          </div>
+          <div class="explain" id="exp-horner"></div>
+        </div>`;
+
+      // 11 Matriks Esai
+      const m = pack.matrix;
+      html += `
+        <div class="q-card" id="card-matrix">
+          <div class="q-head">
+            <span class="q-num">Soal ${m.no} — Uraian (Matriks)</span>
+            <span class="q-meta">${m.materi}</span>
+          </div>
+          <div class="q-text">${m.q}</div>
+          <div class="math-block">${m.math}</div>
+          <div style="font-size:0.86rem;color:var(--muted);">Isi keempat elemen matriks hasil (baris 1 lalu baris 2):</div>
+          <div class="matrix-grid">
+            <input class="essay-input" type="number" id="m-0" placeholder="a11" />
+            <input class="essay-input" type="number" id="m-1" placeholder="a12" />
+            <input class="essay-input" type="number" id="m-2" placeholder="a21" />
+            <input class="essay-input" type="number" id="m-3" placeholder="a22" />
+          </div>
+          <div class="explain" id="exp-matrix"></div>
+        </div>`;
+
+      root.innerHTML = html;
+    }
+
+    function showExp(cardId, expId, isOk, title, body) {
+      const card = document.getElementById(cardId);
+      const exp = document.getElementById(expId);
+      card.classList.remove('correct', 'wrong');
+      card.classList.add(isOk ? 'correct' : 'wrong');
+      exp.innerHTML = `<span class="tag ${isOk ? 'ok' : 'err'}">${title}</span><pre>${body}</pre>`;
+      exp.classList.add('show');
+    }
+
+    function gradeAll() {
+      const pack = PACKS[currentPack];
+      let sPg = 0, sBs = 0, sMatch = 0, sEsai = 0;
+
+      // Grade PG
+      pack.pg.forEach((item, idx) => {
+        const checked = document.querySelector(`input[name="pg-${idx}"]:checked`);
+        const ok = checked && Number(checked.value) === item.ans;
+        if (ok) sPg += 4;
+        showExp(`card-pg-${idx}`, `exp-pg-${idx}`, ok, ok ? 'Benar (+4 poin)' : 'Belum tepat (0 poin)', item.exp);
+      });
+
+      // Grade BS
+      pack.bs.forEach((item, idx) => {
+        let got = 0;
+        item.items.forEach((st, si) => {
+          if (bsState[`bs-${idx}-${si}`] === st.ans) got += 4;
+        });
+        sBs += got;
+        showExp(`card-bs-${idx}`, `exp-bs-${idx}`, got === 8, `Skor soal ini: ${got} / 8 poin`, item.exp);
+      });
+
+      // Grade Match
+      pack.match.forEach((item, idx) => {
+        let got = 0;
+        item.items.forEach((st, si) => {
+          const val = document.getElementById(`match-${idx}-${si}`).value;
+          if (val === st.ans) got += 4;
+        });
+        sMatch += got;
+        showExp(`card-m-${idx}`, `exp-m-${idx}`, got === 8, `Skor soal ini: ${got} / 8 poin`, item.exp);
+      });
+
+      // Grade Horner (24 pts: 6 pts per value a,b,c,s)
+      const ha = document.getElementById('h-a').value.trim();
+      const hb = document.getElementById('h-b').value.trim();
+      const hc = document.getElementById('h-c').value.trim();
+      const hs = document.getElementById('h-s').value.trim();
+      const ansH = pack.horner.ans;
+      let hPts = 0;
+      if (ha !== '' && Number(ha) === ansH.a) hPts += 6;
+      if (hb !== '' && Number(hb) === ansH.b) hPts += 6;
+      if (hc !== '' && Number(hc) === ansH.c) hPts += 6;
+      if (hs !== '' && Number(hs) === ansH.s) hPts += 6;
+      sEsai += hPts;
+      showExp('card-horner', 'exp-horner', hPts === 24, `Skor Esai Horner: ${hPts} / 24 poin`, pack.horner.exp);
+
+      // Grade Matrix (24 pts: 6 pts per cell)
+      const ansM = pack.matrix.ans;
+      let mPts = 0;
+      for (let i = 0; i < 4; i++) {
+        const v = document.getElementById(`m-${i}`).value.trim();
+        if (v !== '' && Number(v) === ansM[i]) mPts += 6;
+      }
+      sEsai += mPts;
+      showExp('card-matrix', 'exp-matrix', mPts === 24, `Skor Esai Matriks: ${mPts} / 24 poin`, pack.matrix.exp);
+
+      const total = sPg + sBs + sMatch + sEsai;
+      document.getElementById('liveScore').textContent = `Skor: ${total} / 100`;
+      document.getElementById('finalScore').textContent = `${total} / 100`;
+      document.getElementById('gradeMsg').textContent =
+        total >= 90 ? 'gg banget papa kado, udah siap 100% bantai sumatif xi-7' :
+        total >= 75 ? 'udah mantap papa, tinggal poles sedikit yang masih salah di pembahasan' :
+        'ayo pelan-pelan cek pembahasannya lalu coba lagi paket a & b yaa papa';
+
+      document.getElementById('scoreBreakdown').innerHTML = `
+        <div class="bd-item">Pilihan Ganda<b>${sPg} / 20</b></div>
+        <div class="bd-item">Benar–Salah<b>${sBs} / 16</b></div>
+        <div class="bd-item">Mencocokkan<b>${sMatch} / 16</b></div>
+        <div class="bd-item">Uraian (Esai)<b>${sEsai} / 48</b></div>
+      `;
+      const rb = document.getElementById('resultBox');
+      rb.classList.add('show');
+      rb.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    renderQuiz();
+  </script>
+</body>
+</html>
